@@ -1,0 +1,443 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>ubuntu学习历程 | 云知</title><meta name="author" content="fang"><meta name="copyright" content="fang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="ubuntu三年慢慢学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu学习历程">
+<meta property="og:url" content="https://aixiaocainiao.github.io/posts/241fcd16.html">
+<meta property="og:site_name" content="云知">
+<meta property="og:description" content="ubuntu三年慢慢学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://source.fomal.cc/img/default_cover_44.webp">
+<meta property="article:published_time" content="2023-04-16T06:53:20.183Z">
+<meta property="article:modified_time" content="2023-04-16T06:58:44.421Z">
+<meta property="article:author" content="fang">
+<meta property="article:tag" content="ubuntu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://source.fomal.cc/img/default_cover_44.webp"><link rel="shortcut icon" href="/img/01.jpg"><link rel="canonical" href="https://aixiaocainiao.github.io/posts/241fcd16.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ubuntu学习历程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-16 14:58:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/cat.css"><link rel="stylesheet" href="/css/readPercent.css"><link rel="stylesheet" href="/css/social_card.css"><link rel="stylesheet" href="/css/dark span.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/css/runtime/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="云知" type="application/atom+xml">
+</head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="/css/progress+bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/01.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/list/bangumis/"><i class="fa-fw fas fa-home"></i><span> 追番</span></a></li><li><a class="site-page child" href="/list/songs/index.html"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/list/movies/index.html"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/list/books/index.html"><i class="fa-fw fas fa-book"></i><span> 小说</span></a></li><li><a class="site-page child" href="/list/games/index.html"><i class="fa-fw fas fa-game"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://source.fomal.cc/img/default_cover_44.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="云知"><span class="site-name">云知</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/list/bangumis/"><i class="fa-fw fas fa-home"></i><span> 追番</span></a></li><li><a class="site-page child" href="/list/songs/index.html"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/list/movies/index.html"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/list/books/index.html"><i class="fa-fw fas fa-book"></i><span> 小说</span></a></li><li><a class="site-page child" href="/list/games/index.html"><i class="fa-fw fas fa-game"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ubuntu学习历程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-16T06:53:20.183Z" title="发表于 2023-04-16 14:53:20">2023-04-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-16T06:58:44.421Z" title="更新于 2023-04-16 14:58:44">2023-04-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">565</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ubuntu学习历程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="ubuntu学习"><a href="#ubuntu学习" class="headerlink" title="ubuntu学习"></a>ubuntu学习</h1><h2 id="慢慢更新"><a href="#慢慢更新" class="headerlink" title="慢慢更新"></a>慢慢更新</h2><p>一、ubuntu右键文档问题解决<br>模板里面创建文档<br>cd 到模板里面<br>touch 空白文档 txt文档</p>
+<p>就完成了<br>(创建了两个文档类型)</p>
+<p>二、ubuntu和windows时间不同步问题<br>2.0<br>准备工作:切换安装源  自动选择最优<br>2.1<br>时间同步工具:<br>sudo apt install ntpdate<br>出现无法定位 可以<br>执行<br>sudo apt-get install<br>sudo apt-get update<br>2.2<br>互联网同步时间<br>sudo ntpdate time.windows.com<br>2.3<br>sudo hwclock —localtime —systohc</p>
+<p>三、启动菜单的默认选项 选为windows</p>
+<p>sudo gedit /etc/default/grub</p>
+<p>GRUB_DEFAULT=2 改为0<br>更新设置<br>sudo update-grub</p>
+<p>四.ros安装流程 ros -noetic<br>4.1清华安装源<br>sudo sh -c ‘. /etc/lsb-release &amp;&amp; echo “deb <a target="_blank" rel="noopener" href="http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/">http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/</a> <code>lsb_release -cs</code> main” &gt; /etc/apt/sources.list.d/ros-latest.list’<br>4.2.设置key<br>sudo apt-key adv —keyserver ‘hkp://keyserver.ubuntu.com:80’ —recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654<br>4.3安装<br>sudo apt update<br>sudo apt install ros-noetic-desktop-full<br>4.4配置环境变量<br>echo “source /opt/ros/noetic/setup.bash” &gt;&gt; ~/.bashrc<br>source ~/.bashrc</p>
+<p>4.5- 卸载ros指令<br>sudo apt remove ros-noetic-*<br>4.6安装构建依赖<br>sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential</p>
+<p>解决init 和 update失败的问题</p>
+<p>sudo apt-get install python3-pip<br>sudo pip3 install 6-rosdep<br>sudo 6-rosdep</p>
+<p>接着执行就可以了<br>sudo rosdep init<br>sudo update </p>
+<p>五、vscode的安装<br>vscode 的安装 </p>
+<ul>
+<li>浏览器下载deb</li>
+<li>sudo dpkg -i 安装包<br>六、超级终端的安装<br>sudo apt-get install termianator</li>
+</ul>
+<p>ctrl+alt+t 新建终端<br>下面这个建立在上面那个的基础之上<br>ctrl+shift+t 同一个页面切换终端<br>七、cmake的安装升级<br>1、官网安装<br><a target="_blank" rel="noopener" href="https://cmake.org/download/">https://cmake.org/download/</a><br>下载tar ;linux版本即可<br>2、解压后编译</p>
+<p>指引到目录下，进行编译即可</p>
+<pre><code>cd ~/Downloads/cmake-3.22.2
+./configure
+make
+sudo make install
+</code></pre><p>3、版本覆盖</p>
+<pre><code>    在解压后编译 后，其实再一开始不卸载老版本的cmake的的时候，安装编译新版本的是不能立刻变更的，需要软连接覆盖的。使用which cmake查找cmake的安装路径，新版本的cmake默认编译安装的路径是在/usr/local/bin/cmake，而我们系统会默认去/usr/bin中去寻找老版本的cmake。做一个链接覆盖即可：
+</code></pre><p>sudo ln -sf /usr/local/bin/cmake /usr/bin</p>
+<p>八、升级gcc<br>1.出现下面情况<br>lib/libxslab2.so: undefined reference to<br>`std::__cxx11::basic_stringstream<char, std::char_traits<char>,<br>std::allocator<char> &gt;::basic_stringstream()@GLIBCXX_3.4.26’</p>
+<p>2、解决方案</p>
+<h1 id="Install-and-use-gcc9"><a href="#Install-and-use-gcc9" class="headerlink" title="Install and use gcc9"></a>Install and use gcc9</h1><p>sudo add-apt-repository ppa:ubuntu-toolchain-r/test<br>sudo apt update<br>sudo apt install gcc-9<br>sudo apt install g++-9<br>sudo rm /usr/bin/gcc<br>sudo rm /usr/bin/g++<br>sudo ln -s /usr/bin/gcc-9 /usr/bin/gcc<br>sudo ln -s /usr/bin/g++-9 /usr/bin/g++</p>
+<p>九、安装配置rplidar(思岚雷达1）<br>mkdir -p rplidar/src<br>cd rplidar/src<br>git clone <a target="_blank" rel="noopener" href="https://github.com/Slamtec/rplidar_ros.git">https://github.com/Slamtec/rplidar_ros.git</a><br>cd ..<br>catkin_make<br>sudo gedit ~/.bashrc<br><!-- 在文件最后加入 --><br>source /home/yunfang/rplidar/devel/setup.bash(最好使用绝对路径)<br><!-- 保存并退出 --><br>source ~/.bashrc<br><!-- 在插上雷达之后要进行以下工作 --><br><!-- 检查rplidar串口的权限 --><br>ls -l /dev |grep ttyUSB<br><!-- 输入指令添加权限(我这里是USB0) --><br>sudo chmod 666 /dev/ttyUSB0<br><!-- 启动雷达 --><br>roslaunch rplidar_ros rplidar_s2.launch</p>
+<p>十、安装 Pangolin<br>1.安装依赖<br>sudo apt update<br>sudo apt upgrade<br>sudo apt install libglew-dev cmake libboost-dev libboost-thread-dev<br>libboost-filesystem-dev libeigen3-dev -y</p>
+<p>2.进⼊ 创建目录并进入<br>mkdir Pangolin<br>cd Pangolin<br>git clone <a target="_blank" rel="noopener" href="https://github.com/stevenlovegrove/Pangolin.git">https://github.com/stevenlovegrove/Pangolin.git</a><br>cd Pangolinmkdir build &amp;&amp; cd build<br>cmake ..<br>sudo make -j8<br>sudo make install</p>
+<p>更新动态库链接</p>
+<p>sudo ldconfig</p>
+<p>十一、rosdep失败使用rosdepc<br>sudo apt-get install python3-pip<br>sudo pip3 install 6-rosdep<br>sudo 6-rosdep<br>sudo rosdep init<br>rosdep update</p>
+<p>十二、安装并配置 opencv4.6.0<br>参考⽹址⼀ <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44796670/article/details/115900538">https://blog.csdn.net/weixin_44796670/article/details/115900538</a><br>参考⽹址⼆ <a target="_blank" rel="noopener" href="https://blog.csdn.net/KIK9973/article/details/118830187?">https://blog.csdn.net/KIK9973/article/details/118830187?</a><br>ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=Ubuntu18.04 安装<br>OpenCV&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-4-<br>118830187.nonecase&amp;spm=1018.2226.3001.4187</p>
+<p>1、安装依赖环境<br>sudo apt install -y g++<br>sudo apt install -y cmake<br>sudo apt install -y make<br>sudo apt install -y wget unzip<br>2、安装opencv的依赖库<br>sudo apt-get install build-essential libgtk2.0-dev libgtk-3-dev libavcodec-<br>dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev</p>
+<p>3、下载 opencv4.6.0 源⽂件<br>wget -O opencv.zip <a target="_blank" rel="noopener" href="https://github.com/opencv/opencv/archive/4.6.0.zip">https://github.com/opencv/opencv/archive/4.6.0.zip</a><br>4、编译源⽂件<br>进⼊解压后的 opencv ⽂件夹中执⾏以下命令<br>mkdir build<br>cd build<br>cmake -D CMAKE_BUILD_TYPE=Release -D OPENCV_GENERATE_PKGCONFIG=YES ..<br>make -j12</p>
+<p>PS: 这里的make -j12是根据所使⽤电脑的 CPU 核⼼数来选择的</p>
+<p>5、安装动态库及头文件<br>sudo make install</p>
+<p>6、配置 pkg-conﬁg 环境<br>sudo gedit /etc/profile.d/pkgconfig.sh<br>&lt;打开 config 文件，在文件后面加上一行&gt;<br>export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH<br>&lt;保存并退出&gt;<br>source /etc/profile</p>
+<p>7、配置动态库环境<br>sudo gedit /etc/ld.so.conf.d/opencv4.conf<br>&lt;打开 config 文件，在该文件末尾加上 opencv 的 lib 路径&gt;<br>/usr/local/lib<br>&lt;保存并退出&gt;<br>sudo ldconfig</p>
+<p>git clone <a target="_blank" rel="noopener" href="https://github.com/xiangli0608/cartographer_detailed_comments_ws.git">https://github.com/xiangli0608/cartographer_detailed_comments_ws.git</a></p>
+<p>十三、微信的安装<br>​5、kylin.wine封装版【强烈推荐】</p>
+<p>与deepin一样，ubuntukylin（优麒麟）系统也第三方封装的ubuntu。<br>在官方网站可以看到，有提供微信客户端下载</p>
+<p>ukylin-wechat_3.0.0_amd64.deb<br>ukylin-wine_70.6.3.25_amd64.deb</p>
+<p>同样也是基于wine的，一共包含两个deb文件，其中一个封装的是一个3.0的微信！！</p>
+<p> 1.下载Wine环境包：<br> <a target="_blank" rel="noopener" href="http://archive.ubuntukylin.com/software/pool/partner/ukylin-wine_70.6.3.25_amd64.deb">http://archive.ubuntukylin.com/software/pool/partner/ukylin-wine_70.6.3.25_amd64.deb</a><br>​<br>2.下载微信（wine）包：<br><a target="_blank" rel="noopener" href="http://archive.ubuntukylin.com/software/pool/partner/ukylin-wechat_3.0.0_amd64.deb">http://archive.ubuntukylin.com/software/pool/partner/ukylin-wechat_3.0.0_amd64.deb</a><br>​<br>3.终端输入：<br>sudo apt-get install -f -y ./ukylin-wine_70.6.3.25_amd64.deb<br>sudo apt-get install -f -y ./ukylin-wechat_3.0.0_amd64.deb</p>
+<p> 十四、gcc<br>原来gcc g++ version 7.5<br>十五、超级终端<br> sudo apt install terminator<br>十六、cartographer ubuntu18<br>1.下载cartographer_install并解压<br>cd cartographer_install<br>ls<br>./auto-carto-build.sh<br>会自动安装所有依赖</p>
+<p>mkdir carto_ws<br>cd carto_ws<br>git clone <a target="_blank" rel="noopener" href="https://github.com/xiangli0608/cartographer_detailed_comments_ws.git">https://github.com/xiangli0608/cartographer_detailed_comments_ws.git</a><br>cd cartographer_detailed_comments_ws<br>ls<br>./catkin_make.sh<br>自动编译</p>
+<p>mkdir bagfiles<br>将数据集放进来</p>
+<p>cd carto_ws<br>cd cartographer_detailed_comments_ws<br>source install_isolated/setup.bash<br>rospack profile<br>roslaunch cartographer_ros lx_rs16_2d_outdoor.launch<br>保存地图<br>rosrun map-server map-saver<br>地图位置 看你在哪里执行 就保存到哪里<br>或者<br>cd carto_ws<br>cd cartographer_detailed_comments_ws<br>cd src<br>./finish_slam_2d.sh  执行脚本 保存2d地图</p>
+<p>十四、edge浏览器的安装<br>官网下载<br>sudo dpkg -i 安装包名字<br>sudo apt-get install -f</p>
+<p>十五、基于ubuntu18.04和ros melodic的Turtlebot3 仿真<br>一、TurtleBot3 简介</p>
+<pre><code>    TurtleBot3 是一个小型，低成本，完全可编程，基于 ROS 的移动机器人。它旨在用于教育，研究，产品原型和爱好应用的目的。TurtleBot3 的目标是大幅降低平台的尺寸和价格，而不会牺牲性能，功能和质量。由于提供了其他选项，如底盘，计算机和传感器，TurtleBot3 可以通过各种方式进行定制。TurtleBot3 应用 了SBC（单板计算机），深度传感器和 3D 打印的最新技术进步等技术。
+</code></pre><p>二、安装 TurtleBot3 仿真</p>
+<p> 1.安装依赖<br>sudo apt-get install ros-melodic-joy ros-melodic-teleop-twist-joy ros-melodic-teleop-twist-keyboard ros-melodic-laser-proc ros-melodic-rgbd-launch ros-melodic-depthimage-to-laserscan ros-melodic-rosserial-arduino ros-melodic-rosserial-python ros-melodic-rosserial-server ros-melodic-rosserial-client ros-melodic-rosserial-msgs ros-melodic-amcl ros-melodic-map-server ros-melodic-move-base ros-melodic-urdf ros-melodic-xacro  ros-melodic-compressed-image-transport ros-melodic-rqt-image-view ros-melodic-gmapping ros-melodic-navigation  ros-melodic-interactive-markers rviz<br>2.下载资源包<br>mkdir -p ~/turtlebot3_ws/src/<br>cd ~/turtlebot3_ws/src/<br>git clone <a target="_blank" rel="noopener" href="https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git">https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git</a><br>git clone <a target="_blank" rel="noopener" href="https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git">https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git</a><br>git clone <a target="_blank" rel="noopener" href="https://github.com/ROBOTIS-GIT/turtlebot3.git">https://github.com/ROBOTIS-GIT/turtlebot3.git</a><br>3.编译<br>cd ~/turtlebot3_ws<br>catkin_make<br>三、启动 TurtleBot3 仿真</p>
+<p>1.先将 TurtleBot3 导入，再启动仿真环境（rviz）<br>export TURTLEBOT3_MODEL=burger<br>source turtlebot3_ws/devel/setup.bash<br>roslaunch turtlebot3_fake turtlebot3_fake.launch<br>2.控制TurtleBot3移动</p>
+<p>TurtleBot3 仿真节点不依赖实体机器人，也可以在 rviz 里通过 teleop 节点进行控制。<br>export TURTLEBOT3_MODEL=burger<br>source turtlebot3_ws/devel/setup.bash<br>roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch</p>
+<p>3.加载模型(gazebo )</p>
+<p>第一次使用 gazebo 需要比较长的时间加载模型，也可以手动加载模型，第一次使用 Turtlebot3 的 gazebo 仿真，需要把 Turtlebot3 的模型文件，复制到 gazebo 的模型目录里。</p>
+<pre><code>mkdir -p ~/.gazebo/models/
+cp -r ~/turtlebot3_simulations路径/turtlebot3_simulations/turtlebot3_gazebo/worlds ~/.gazebo/models/
+</code></pre><p>例如我的</p>
+<pre><code>mkdir -p ~/.gazebo/models/
+cp -r ~/turtlebot3_ws/scr/turtlebot3_simulations/turtlebot3_gazebo/worlds ~/.gazebo/models/
+</code></pre><p>4.设置模型参数</p>
+<p>设置模型参数，指定使用那种机器人型号： burger 或者 waffle</p>
+<p> 5.启动世界地图</p>
+<p>启动世界地图，默认的空白地图环境中加载 Turtlebot3 机器人<br>source turtlebot3_ws/devel/setup.bash<br>roslaunch turtlebot3_gazebo turtlebot3_empty_world.launch<br>四、TurtleBot3 仿真: 复杂地图</p>
+<ol>
+<li>（1）启动更复杂些的地图<br>source turtlebot3_ws/devel/setup.bash<br>export TURTLEBOT3_MODEL=burger<br>roslaunch turtlebot3_gazebo turtlebot3_world.launch</li>
+</ol>
+<p>1.（2）或者房间地图</p>
+<pre><code>export TURTLEBOT3_MODEL=burger
+source turtlebot3_ws/devel/setup.bash 
+roslaunch turtlebot3_gazebo turtlebot3_house.launch
+</code></pre><p>2.用键盘控制 turtlebot3</p>
+<pre><code>export TURTLEBOT3_MODEL=burger
+source turtlebot3_ws/devel/setup.bash 
+roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+</code></pre><ol>
+<li><p>启动仿真</p>
+<p> export TURTLEBOT3_MODEL=burger<br> source turtlebot3_ws/devel/setup.bash<br> roslaunch turtlebot3_gazebo turtlebot3_simulation.launch</p>
+</li>
+<li><p>启动 RVIZ 可视化</p>
+<p> export TURTLEBOT3_MODEL=burger<br> source turtlebot3_ws/devel/setup.bash<br> roslaunch turtlebot3_gazebo turtlebot3_gazebo_rviz.launch</p>
+</li>
+</ol>
+<p>五、TurtleBot3 仿真:SLAM</p>
+<ol>
+<li>安装 turtlebot3 相关的 ROS 包</li>
+</ol>
+<p>sudo apt-get install ros-melodic-turtlebot*</p>
+<p>或者：</p>
+<pre><code>sudo apt-get install ros-melodic-turtlebot3 ros-melodic-turtlebot3-description
+ros-melodic-turtlebot3-gazebo ros-melodic-turtlebot3-msgs
+ros-melodic-turtlebot3-slam ros-melodic-turtlebot3-teleop
+</code></pre><ol>
+<li>目前激光 SLAM 的建图方法有很多中，turtlebot3 支持 gmapping、cartographer、hector、 karto、frontier_exploration，ROS Melodic 版本官方的软件源里只有 karto。用户可以根据 需要安装。</li>
+</ol>
+<p>sudo apt-get install ros-melodic-slam-karto</p>
+<ol>
+<li>建图</li>
+</ol>
+<p>（1）每个新终端都要设置环境变量，也可以是burger，waffle，waffle_pi</p>
+<p>export TURTLEBOT3_MODEL=burger </p>
+<p>（2）加载环境</p>
+<pre><code>export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+</code></pre><p>也可选择其他环境，或自己搭环境 </p>
+<p>（3） 建图时要切换到这个终端，用键盘控制turtlebot运动</p>
+<pre><code>source turtlebot3_ws/devel/setup.bash 
+roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+</code></pre><p> （4）创建栅格地图 </p>
+<pre><code>source turtlebot3_ws/devel/setup.bash 
+roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=karto
+</code></pre><ol>
+<li><p>保存地图：地图建完以后将地图保存下来：</p>
+<p> mkdir -p ~/housemap<br> rosrun map_server map_saver -f ~/housemap/housemap</p>
+</li>
+<li><p>导航。利用刚才构建的地图进行 turtlebot 的自主导航仿真实验：</p>
+<p> source turtlebot3_ws/devel/setup.bash<br> export TURTLEBOT3_MODEL=burger<br> roslaunch turtlebot3_gazebo turtlebot3_house.launch</p>
+<p> source turtlebot3_ws/devel/setup.bash<br> roslaunch turtlebot3_navigation turtlebot3_navigation.launch<br> map_file:=/home/zhang/housemap/housemap.yaml</p>
+</li>
+</ol>
+<p>鼠标选择工具栏中的“2D Nav Goal”,在地图上任意设置一个目标，turtlebot3会自动规划路径移动到目标位置</p>
+<p>六.将模型写入.bashrc文件中<br>echo “export TURTLEBOT3_MODEL=burger” &gt;&gt; ~/.bashrc</p>
+<p>打开一个新终端输入</p>
+<p>sudo apt-get install ros-melodic-gmapping<br>roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping<br>roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch</p>
+<p>顺利的话会显示下图，并且可以控制小车建图。如果想要使用Hector的话就把gampping改为hector<br>要进行cartographer建图，首先要安装cartographer,参考下文博主教程</p>
+<pre><code>https://blog.csdn.net/weixin_39458342/article/details/103276265
+</code></pre><p>安装成功之后</p>
+<p>roslaunch turtlebot3_gazebo turtlebot3_house.launch</p>
+<p>roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=cartographer</p>
+<p>这个情况是gazebo_ros_imu的一个bug<br>解决办法：<br>roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=cartographer configuration_basename:=turtlebot3_lds_2d_gazebo.lua</p>
+<p>cmake version 3.10.2</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://aixiaocainiao.github.io">fang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://aixiaocainiao.github.io/posts/241fcd16.html">https://aixiaocainiao.github.io/posts/241fcd16.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://aixiaocainiao.github.io" target="_blank">云知</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ubuntu/">ubuntu</a></div><div class="post_share"><div class="social-share" data-image="https://source.fomal.cc/img/default_cover_44.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/weixin.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/weixin.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zhifubao.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/zhifubao.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/d84dbbc6.html" title="makefile学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_44.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">makefile学习</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/e61dc118.html" title="ubuntu解压命令"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_45.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-09</div><div class="title">ubuntu解压命令</div></div></a></div><div><a href="/posts/62d28f2b.html" title="ubuntu18安装pycharm2021.3"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_44.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-06</div><div class="title">ubuntu18安装pycharm2021.3</div></div></a></div><div><a href="/posts/26aabfb9.html" title="ros melotic cartographer安装"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_46.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-06</div><div class="title">ros melotic cartographer安装</div></div></a></div><div><a href="/posts/cb2decdd.html" title="ubuntu按装搜狗输入法"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picsum.photos/seed/picsum/470/315" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-06</div><div class="title">ubuntu按装搜狗输入法</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="author-info-top"><div class="card-info-avatar"><a class="avatar-img" href="/about"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/01.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a><div class="author-status-box"><div class="author-status"><g-emoji class="g-emoji" alias="palm_tree" fallback-src="https://bu.dusays.com/2023/02/06/63dff095bd9e9.webp">🌴</g-emoji><span>On vacation</span></div></div></div></div><div class="author-info__sayhi" id="author-info__sayhi"></div><h1 class="author-info__name">fang</h1><div class="author-info__description">记录云云和芳芳的everything</div><div class="banner-button-group"><a class="banner-button" href="/about"><i class="fas fa-circle-arrow-up-right"></i><span class="banner-button-text">了解更多</span></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/aixiaocainiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3051247944@qq.com" target="_blank" title="Email"><i class="fas fa-envelope-open-text"></i></a><a class="social-icon" href="https://blog.csdn.net/m0_47850835?type=blog" target="_blank" title="CSDN"><i class="fa-solid fa-c"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=3051247944&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">QQ=3051247944 vx=fG9755389</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">ubuntu学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%85%A2%E6%85%A2%E6%9B%B4%E6%96%B0"><span class="toc-number">1.1.</span> <span class="toc-text">慢慢更新</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Install-and-use-gcc9"><span class="toc-number">2.</span> <span class="toc-text">Install and use gcc9</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/241fcd16.html" title="ubuntu学习历程"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_44.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ubuntu学习历程"/></a><div class="content"><a class="title" href="/posts/241fcd16.html" title="ubuntu学习历程">ubuntu学习历程</a><time datetime="2023-04-16T06:53:20.183Z" title="发表于 2023-04-16 14:53:20">2023-04-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/d84dbbc6.html" title="makefile学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_44.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="makefile学习"/></a><div class="content"><a class="title" href="/posts/d84dbbc6.html" title="makefile学习">makefile学习</a><time datetime="2023-04-16T06:34:45.711Z" title="发表于 2023-04-16 14:34:45">2023-04-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/0.html" title="无题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_43.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/posts/0.html" title="无题">无题</a><time datetime="2023-04-11T12:14:11.134Z" title="发表于 2023-04-11 20:14:11">2023-04-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b032c142.html" title="thread的学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picsum.photos/seed/picsum/470/315" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="thread的学习"/></a><div class="content"><a class="title" href="/posts/b032c142.html" title="thread的学习">thread的学习</a><time datetime="2023-04-10T14:11:40.377Z" title="发表于 2023-04-10 22:11:40">2023-04-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/e61dc118.html" title="ubuntu解压命令"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_45.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ubuntu解压命令"/></a><div class="content"><a class="title" href="/posts/e61dc118.html" title="ubuntu解压命令">ubuntu解压命令</a><time datetime="2023-04-09T07:49:32.971Z" title="发表于 2023-04-09 15:49:32">2023-04-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By fang</div><div class="footer_custom_text"><div>满地都是六便士 我想抬头看月亮</div><div><a onclick="window.open('url')" class="footer-a"></a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><div class="aplayer no-destroy" data-id="8152976493" data-server="netease" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script defer data-pjax src="/js/readPercent.js"></script><script async src="/js/title.js"></script><script data-pjax src="/js/social_card.js"></script><script async src="/css/gray.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa-solid fa-magnifying-glass"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="./#post-comment"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.click()"><i class="fa fa-arrows-alt"></i><span>全屏显示</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><!--a.rightMenu-item(href="javascript:toRandomPost()")--><!--    i.fa.fa-paper-plane--><!--    span='随便逛逛'--><a class="rightMenu-item" href="javascript:rmf.switchDarkMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="javascript:rmf.translate();"><i class="fas fa-language"></i><span>繁简转换</span></a><a class="rightMenu-item" href="javascript:rmf.switchReadMode();"><i class="fa fa-book"></i><span>阅读模式</span></a><a class="rightMenu-item" href="javascript:window.location.href=&quot;/about/&quot;;"><i class="fa fa-info-circle"></i><span>关于小张</span></a></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://aixiaocainiao.github.io/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 Python学习 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://aixiaocainiao.github.io/categories/C/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 C++学习 (5)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://aixiaocainiao.github.io/categories/QT/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 QT学习 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://aixiaocainiao.github.io/categories/Slam/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 Slam学习 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://aixiaocainiao.github.io/categories/SF/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 软件安装流程 (12)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="https://aixiaocainiao.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '113.34532,23.15624';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.2.2" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px" data-title="本站使用JsDelivr为静态资源提供CDN加速" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" alt=""/></a><a class="github-badge" target="_blank" href="https://beian.miit.gov.cn/#/Integrated/index" style="margin-inline:5px" data-title="本站已在湘进行备案" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/湘ICP备-2022004213号-e1d492?style=flat&amp;logo=data:image/png;base64,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" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/run.js"></script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '2s');
+    arr[i].setAttribute('data-wow-delay', '1s');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '2');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/cd8aec95.html" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picsum.photos/seed/picsum/1920/942" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-04-04</span><a class="blog-slider__title" href="posts/cd8aec95.html" alt="">MarkDown学习</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" href="posts/cd8aec95.html" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body></html>

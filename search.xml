@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>ubuntu学习历程</title>
+      <link href="/posts/241fcd16.html"/>
+      <url>/posts/241fcd16.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="ubuntu学习"><a href="#ubuntu学习" class="headerlink" title="ubuntu学习"></a>ubuntu学习</h1><h2 id="慢慢更新"><a href="#慢慢更新" class="headerlink" title="慢慢更新"></a>慢慢更新</h2><p>一、ubuntu右键文档问题解决<br>模板里面创建文档<br>cd 到模板里面<br>touch 空白文档 txt文档</p><p>就完成了<br>(创建了两个文档类型)</p><p>二、ubuntu和windows时间不同步问题<br>2.0<br>准备工作:切换安装源  自动选择最优<br>2.1<br>时间同步工具:<br>sudo apt install ntpdate<br>出现无法定位 可以<br>执行<br>sudo apt-get install<br>sudo apt-get update<br>2.2<br>互联网同步时间<br>sudo ntpdate time.windows.com<br>2.3<br>sudo hwclock —localtime —systohc</p><p>三、启动菜单的默认选项 选为windows</p><p>sudo gedit /etc/default/grub</p><p>GRUB_DEFAULT=2 改为0<br>更新设置<br>sudo update-grub</p><p>四.ros安装流程 ros -noetic<br>4.1清华安装源<br>sudo sh -c ‘. /etc/lsb-release &amp;&amp; echo “deb <a href="http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/">http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/</a> <code>lsb_release -cs</code> main” &gt; /etc/apt/sources.list.d/ros-latest.list’<br>4.2.设置key<br>sudo apt-key adv —keyserver ‘hkp://keyserver.ubuntu.com:80’ —recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654<br>4.3安装<br>sudo apt update<br>sudo apt install ros-noetic-desktop-full<br>4.4配置环境变量<br>echo “source /opt/ros/noetic/setup.bash” &gt;&gt; ~/.bashrc<br>source ~/.bashrc</p><p>4.5- 卸载ros指令<br>sudo apt remove ros-noetic-*<br>4.6安装构建依赖<br>sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential</p><p>解决init 和 update失败的问题</p><p>sudo apt-get install python3-pip<br>sudo pip3 install 6-rosdep<br>sudo 6-rosdep</p><p>接着执行就可以了<br>sudo rosdep init<br>sudo update </p><p>五、vscode的安装<br>vscode 的安装 </p><ul><li>浏览器下载deb</li><li>sudo dpkg -i 安装包<br>六、超级终端的安装<br>sudo apt-get install termianator</li></ul><p>ctrl+alt+t 新建终端<br>下面这个建立在上面那个的基础之上<br>ctrl+shift+t 同一个页面切换终端<br>七、cmake的安装升级<br>1、官网安装<br><a href="https://cmake.org/download/">https://cmake.org/download/</a><br>下载tar ;linux版本即可<br>2、解压后编译</p><p>指引到目录下，进行编译即可</p><pre><code>cd ~/Downloads/cmake-3.22.2./configuremakesudo make install</code></pre><p>3、版本覆盖</p><pre><code>    在解压后编译 后，其实再一开始不卸载老版本的cmake的的时候，安装编译新版本的是不能立刻变更的，需要软连接覆盖的。使用which cmake查找cmake的安装路径，新版本的cmake默认编译安装的路径是在/usr/local/bin/cmake，而我们系统会默认去/usr/bin中去寻找老版本的cmake。做一个链接覆盖即可：</code></pre><p>sudo ln -sf /usr/local/bin/cmake /usr/bin</p><p>八、升级gcc<br>1.出现下面情况<br>lib/libxslab2.so: undefined reference to<br>`std::__cxx11::basic_stringstream<char, std::char_traits<char>,<br>std::allocator<char> &gt;::basic_stringstream()@GLIBCXX_3.4.26’</p><p>2、解决方案</p><h1 id="Install-and-use-gcc9"><a href="#Install-and-use-gcc9" class="headerlink" title="Install and use gcc9"></a>Install and use gcc9</h1><p>sudo add-apt-repository ppa:ubuntu-toolchain-r/test<br>sudo apt update<br>sudo apt install gcc-9<br>sudo apt install g++-9<br>sudo rm /usr/bin/gcc<br>sudo rm /usr/bin/g++<br>sudo ln -s /usr/bin/gcc-9 /usr/bin/gcc<br>sudo ln -s /usr/bin/g++-9 /usr/bin/g++</p><p>九、安装配置rplidar(思岚雷达1）<br>mkdir -p rplidar/src<br>cd rplidar/src<br>git clone <a href="https://github.com/Slamtec/rplidar_ros.git">https://github.com/Slamtec/rplidar_ros.git</a><br>cd ..<br>catkin_make<br>sudo gedit ~/.bashrc<br><!-- 在文件最后加入 --><br>source /home/yunfang/rplidar/devel/setup.bash(最好使用绝对路径)<br><!-- 保存并退出 --><br>source ~/.bashrc<br><!-- 在插上雷达之后要进行以下工作 --><br><!-- 检查rplidar串口的权限 --><br>ls -l /dev |grep ttyUSB<br><!-- 输入指令添加权限(我这里是USB0) --><br>sudo chmod 666 /dev/ttyUSB0<br><!-- 启动雷达 --><br>roslaunch rplidar_ros rplidar_s2.launch</p><p>十、安装 Pangolin<br>1.安装依赖<br>sudo apt update<br>sudo apt upgrade<br>sudo apt install libglew-dev cmake libboost-dev libboost-thread-dev<br>libboost-filesystem-dev libeigen3-dev -y</p><p>2.进⼊ 创建目录并进入<br>mkdir Pangolin<br>cd Pangolin<br>git clone <a href="https://github.com/stevenlovegrove/Pangolin.git">https://github.com/stevenlovegrove/Pangolin.git</a><br>cd Pangolinmkdir build &amp;&amp; cd build<br>cmake ..<br>sudo make -j8<br>sudo make install</p><p>更新动态库链接</p><p>sudo ldconfig</p><p>十一、rosdep失败使用rosdepc<br>sudo apt-get install python3-pip<br>sudo pip3 install 6-rosdep<br>sudo 6-rosdep<br>sudo rosdep init<br>rosdep update</p><p>十二、安装并配置 opencv4.6.0<br>参考⽹址⼀ <a href="https://blog.csdn.net/weixin_44796670/article/details/115900538">https://blog.csdn.net/weixin_44796670/article/details/115900538</a><br>参考⽹址⼆ <a href="https://blog.csdn.net/KIK9973/article/details/118830187?">https://blog.csdn.net/KIK9973/article/details/118830187?</a><br>ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=Ubuntu18.04 安装<br>OpenCV&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-4-<br>118830187.nonecase&amp;spm=1018.2226.3001.4187</p><p>1、安装依赖环境<br>sudo apt install -y g++<br>sudo apt install -y cmake<br>sudo apt install -y make<br>sudo apt install -y wget unzip<br>2、安装opencv的依赖库<br>sudo apt-get install build-essential libgtk2.0-dev libgtk-3-dev libavcodec-<br>dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev</p><p>3、下载 opencv4.6.0 源⽂件<br>wget -O opencv.zip <a href="https://github.com/opencv/opencv/archive/4.6.0.zip">https://github.com/opencv/opencv/archive/4.6.0.zip</a><br>4、编译源⽂件<br>进⼊解压后的 opencv ⽂件夹中执⾏以下命令<br>mkdir build<br>cd build<br>cmake -D CMAKE_BUILD_TYPE=Release -D OPENCV_GENERATE_PKGCONFIG=YES ..<br>make -j12</p><p>PS: 这里的make -j12是根据所使⽤电脑的 CPU 核⼼数来选择的</p><p>5、安装动态库及头文件<br>sudo make install</p><p>6、配置 pkg-conﬁg 环境<br>sudo gedit /etc/profile.d/pkgconfig.sh<br>&lt;打开 config 文件，在文件后面加上一行&gt;<br>export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH<br>&lt;保存并退出&gt;<br>source /etc/profile</p><p>7、配置动态库环境<br>sudo gedit /etc/ld.so.conf.d/opencv4.conf<br>&lt;打开 config 文件，在该文件末尾加上 opencv 的 lib 路径&gt;<br>/usr/local/lib<br>&lt;保存并退出&gt;<br>sudo ldconfig</p><p>git clone <a href="https://github.com/xiangli0608/cartographer_detailed_comments_ws.git">https://github.com/xiangli0608/cartographer_detailed_comments_ws.git</a></p><p>十三、微信的安装<br>​5、kylin.wine封装版【强烈推荐】</p><p>与deepin一样，ubuntukylin（优麒麟）系统也第三方封装的ubuntu。<br>在官方网站可以看到，有提供微信客户端下载</p><p>ukylin-wechat_3.0.0_amd64.deb<br>ukylin-wine_70.6.3.25_amd64.deb</p><p>同样也是基于wine的，一共包含两个deb文件，其中一个封装的是一个3.0的微信！！</p><p> 1.下载Wine环境包：<br> <a href="http://archive.ubuntukylin.com/software/pool/partner/ukylin-wine_70.6.3.25_amd64.deb">http://archive.ubuntukylin.com/software/pool/partner/ukylin-wine_70.6.3.25_amd64.deb</a><br>​<br>2.下载微信（wine）包：<br><a href="http://archive.ubuntukylin.com/software/pool/partner/ukylin-wechat_3.0.0_amd64.deb">http://archive.ubuntukylin.com/software/pool/partner/ukylin-wechat_3.0.0_amd64.deb</a><br>​<br>3.终端输入：<br>sudo apt-get install -f -y ./ukylin-wine_70.6.3.25_amd64.deb<br>sudo apt-get install -f -y ./ukylin-wechat_3.0.0_amd64.deb</p><p> 十四、gcc<br>原来gcc g++ version 7.5<br>十五、超级终端<br> sudo apt install terminator<br>十六、cartographer ubuntu18<br>1.下载cartographer_install并解压<br>cd cartographer_install<br>ls<br>./auto-carto-build.sh<br>会自动安装所有依赖</p><p>mkdir carto_ws<br>cd carto_ws<br>git clone <a href="https://github.com/xiangli0608/cartographer_detailed_comments_ws.git">https://github.com/xiangli0608/cartographer_detailed_comments_ws.git</a><br>cd cartographer_detailed_comments_ws<br>ls<br>./catkin_make.sh<br>自动编译</p><p>mkdir bagfiles<br>将数据集放进来</p><p>cd carto_ws<br>cd cartographer_detailed_comments_ws<br>source install_isolated/setup.bash<br>rospack profile<br>roslaunch cartographer_ros lx_rs16_2d_outdoor.launch<br>保存地图<br>rosrun map-server map-saver<br>地图位置 看你在哪里执行 就保存到哪里<br>或者<br>cd carto_ws<br>cd cartographer_detailed_comments_ws<br>cd src<br>./finish_slam_2d.sh  执行脚本 保存2d地图</p><p>十四、edge浏览器的安装<br>官网下载<br>sudo dpkg -i 安装包名字<br>sudo apt-get install -f</p><p>十五、基于ubuntu18.04和ros melodic的Turtlebot3 仿真<br>一、TurtleBot3 简介</p><pre><code>    TurtleBot3 是一个小型，低成本，完全可编程，基于 ROS 的移动机器人。它旨在用于教育，研究，产品原型和爱好应用的目的。TurtleBot3 的目标是大幅降低平台的尺寸和价格，而不会牺牲性能，功能和质量。由于提供了其他选项，如底盘，计算机和传感器，TurtleBot3 可以通过各种方式进行定制。TurtleBot3 应用 了SBC（单板计算机），深度传感器和 3D 打印的最新技术进步等技术。</code></pre><p>二、安装 TurtleBot3 仿真</p><p> 1.安装依赖<br>sudo apt-get install ros-melodic-joy ros-melodic-teleop-twist-joy ros-melodic-teleop-twist-keyboard ros-melodic-laser-proc ros-melodic-rgbd-launch ros-melodic-depthimage-to-laserscan ros-melodic-rosserial-arduino ros-melodic-rosserial-python ros-melodic-rosserial-server ros-melodic-rosserial-client ros-melodic-rosserial-msgs ros-melodic-amcl ros-melodic-map-server ros-melodic-move-base ros-melodic-urdf ros-melodic-xacro  ros-melodic-compressed-image-transport ros-melodic-rqt-image-view ros-melodic-gmapping ros-melodic-navigation  ros-melodic-interactive-markers rviz<br>2.下载资源包<br>mkdir -p ~/turtlebot3_ws/src/<br>cd ~/turtlebot3_ws/src/<br>git clone <a href="https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git">https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git</a><br>git clone <a href="https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git">https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git</a><br>git clone <a href="https://github.com/ROBOTIS-GIT/turtlebot3.git">https://github.com/ROBOTIS-GIT/turtlebot3.git</a><br>3.编译<br>cd ~/turtlebot3_ws<br>catkin_make<br>三、启动 TurtleBot3 仿真</p><p>1.先将 TurtleBot3 导入，再启动仿真环境（rviz）<br>export TURTLEBOT3_MODEL=burger<br>source turtlebot3_ws/devel/setup.bash<br>roslaunch turtlebot3_fake turtlebot3_fake.launch<br>2.控制TurtleBot3移动</p><p>TurtleBot3 仿真节点不依赖实体机器人，也可以在 rviz 里通过 teleop 节点进行控制。<br>export TURTLEBOT3_MODEL=burger<br>source turtlebot3_ws/devel/setup.bash<br>roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch</p><p>3.加载模型(gazebo )</p><p>第一次使用 gazebo 需要比较长的时间加载模型，也可以手动加载模型，第一次使用 Turtlebot3 的 gazebo 仿真，需要把 Turtlebot3 的模型文件，复制到 gazebo 的模型目录里。</p><pre><code>mkdir -p ~/.gazebo/models/cp -r ~/turtlebot3_simulations路径/turtlebot3_simulations/turtlebot3_gazebo/worlds ~/.gazebo/models/</code></pre><p>例如我的</p><pre><code>mkdir -p ~/.gazebo/models/cp -r ~/turtlebot3_ws/scr/turtlebot3_simulations/turtlebot3_gazebo/worlds ~/.gazebo/models/</code></pre><p>4.设置模型参数</p><p>设置模型参数，指定使用那种机器人型号： burger 或者 waffle</p><p> 5.启动世界地图</p><p>启动世界地图，默认的空白地图环境中加载 Turtlebot3 机器人<br>source turtlebot3_ws/devel/setup.bash<br>roslaunch turtlebot3_gazebo turtlebot3_empty_world.launch<br>四、TurtleBot3 仿真: 复杂地图</p><ol><li>（1）启动更复杂些的地图<br>source turtlebot3_ws/devel/setup.bash<br>export TURTLEBOT3_MODEL=burger<br>roslaunch turtlebot3_gazebo turtlebot3_world.launch</li></ol><p>1.（2）或者房间地图</p><pre><code>export TURTLEBOT3_MODEL=burgersource turtlebot3_ws/devel/setup.bash roslaunch turtlebot3_gazebo turtlebot3_house.launch</code></pre><p>2.用键盘控制 turtlebot3</p><pre><code>export TURTLEBOT3_MODEL=burgersource turtlebot3_ws/devel/setup.bash roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch</code></pre><ol><li><p>启动仿真</p><p> export TURTLEBOT3_MODEL=burger<br> source turtlebot3_ws/devel/setup.bash<br> roslaunch turtlebot3_gazebo turtlebot3_simulation.launch</p></li><li><p>启动 RVIZ 可视化</p><p> export TURTLEBOT3_MODEL=burger<br> source turtlebot3_ws/devel/setup.bash<br> roslaunch turtlebot3_gazebo turtlebot3_gazebo_rviz.launch</p></li></ol><p>五、TurtleBot3 仿真:SLAM</p><ol><li>安装 turtlebot3 相关的 ROS 包</li></ol><p>sudo apt-get install ros-melodic-turtlebot*</p><p>或者：</p><pre><code>sudo apt-get install ros-melodic-turtlebot3 ros-melodic-turtlebot3-descriptionros-melodic-turtlebot3-gazebo ros-melodic-turtlebot3-msgsros-melodic-turtlebot3-slam ros-melodic-turtlebot3-teleop</code></pre><ol><li>目前激光 SLAM 的建图方法有很多中，turtlebot3 支持 gmapping、cartographer、hector、 karto、frontier_exploration，ROS Melodic 版本官方的软件源里只有 karto。用户可以根据 需要安装。</li></ol><p>sudo apt-get install ros-melodic-slam-karto</p><ol><li>建图</li></ol><p>（1）每个新终端都要设置环境变量，也可以是burger，waffle，waffle_pi</p><p>export TURTLEBOT3_MODEL=burger </p><p>（2）加载环境</p><pre><code>export TURTLEBOT3_MODEL=burgerroslaunch turtlebot3_gazebo turtlebot3_world.launch</code></pre><p>也可选择其他环境，或自己搭环境 </p><p>（3） 建图时要切换到这个终端，用键盘控制turtlebot运动</p><pre><code>source turtlebot3_ws/devel/setup.bash roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch</code></pre><p> （4）创建栅格地图 </p><pre><code>source turtlebot3_ws/devel/setup.bash roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=karto</code></pre><ol><li><p>保存地图：地图建完以后将地图保存下来：</p><p> mkdir -p ~/housemap<br> rosrun map_server map_saver -f ~/housemap/housemap</p></li><li><p>导航。利用刚才构建的地图进行 turtlebot 的自主导航仿真实验：</p><p> source turtlebot3_ws/devel/setup.bash<br> export TURTLEBOT3_MODEL=burger<br> roslaunch turtlebot3_gazebo turtlebot3_house.launch</p><p> source turtlebot3_ws/devel/setup.bash<br> roslaunch turtlebot3_navigation turtlebot3_navigation.launch<br> map_file:=/home/zhang/housemap/housemap.yaml</p></li></ol><p>鼠标选择工具栏中的“2D Nav Goal”,在地图上任意设置一个目标，turtlebot3会自动规划路径移动到目标位置</p><p>六.将模型写入.bashrc文件中<br>echo “export TURTLEBOT3_MODEL=burger” &gt;&gt; ~/.bashrc</p><p>打开一个新终端输入</p><p>sudo apt-get install ros-melodic-gmapping<br>roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping<br>roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch</p><p>顺利的话会显示下图，并且可以控制小车建图。如果想要使用Hector的话就把gampping改为hector<br>要进行cartographer建图，首先要安装cartographer,参考下文博主教程</p><pre><code>https://blog.csdn.net/weixin_39458342/article/details/103276265</code></pre><p>安装成功之后</p><p>roslaunch turtlebot3_gazebo turtlebot3_house.launch</p><p>roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=cartographer</p><p>这个情况是gazebo_ros_imu的一个bug<br>解决办法：<br>roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=cartographer configuration_basename:=turtlebot3_lds_2d_gazebo.lua</p><p>cmake version 3.10.2</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>makefile学习</title>
       <link href="/posts/d84dbbc6.html"/>
       <url>/posts/d84dbbc6.html</url>
@@ -489,31 +508,6 @@
     
     
     <entry>
-      <title>我的第三篇博客文章</title>
-      <link href="/posts/6f36dd99.html"/>
-      <url>/posts/6f36dd99.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="这是第三篇文章"><a href="#这是第三篇文章" class="headerlink" title="这是第三篇文章"></a>这是第三篇文章</h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> Python </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>我的第一篇博客文章</title>
       <link href="/posts/b24dd347.html"/>
       <url>/posts/b24dd347.html</url>
@@ -531,6 +525,31 @@
         <tags>
             
             <tag> QT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我的第三篇博客文章</title>
+      <link href="/posts/6f36dd99.html"/>
+      <url>/posts/6f36dd99.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="这是第三篇文章"><a href="#这是第三篇文章" class="headerlink" title="这是第三篇文章"></a>这是第三篇文章</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -567,17 +586,6 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<h1 id="遇见便是最好"><a href="#遇见便是最好" class="headerlink" title="遇见便是最好"></a>遇见便是最好</h1><h1 id="下次再见的时候一定要提前告诉我"><a href="#下次再见的时候一定要提前告诉我" class="headerlink" title="下次再见的时候一定要提前告诉我"></a>下次再见的时候一定要提前告诉我</h1><h1 id="这样我就可以开心更久了"><a href="#这样我就可以开心更久了" class="headerlink" title="这样我就可以开心更久了"></a>这样我就可以开心更久了</h1>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>archives</title>
       <link href="/archives/index.html"/>
       <url>/archives/index.html</url>
@@ -589,11 +597,11 @@
     
     
     <entry>
-      <title>留言板</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="遇见便是最好"><a href="#遇见便是最好" class="headerlink" title="遇见便是最好"></a>遇见便是最好</h1><h1 id="下次再见的时候一定要提前告诉我"><a href="#下次再见的时候一定要提前告诉我" class="headerlink" title="下次再见的时候一定要提前告诉我"></a>下次再见的时候一定要提前告诉我</h1><h1 id="这样我就可以开心更久了"><a href="#这样我就可以开心更久了" class="headerlink" title="这样我就可以开心更久了"></a>这样我就可以开心更久了</h1>]]></content>
       
     </entry>
     
@@ -623,17 +631,6 @@
     
     <entry>
       <title></title>
-      <link href="/css/dark%20span.css"/>
-      <url>/css/dark%20span.css</url>
-      
-        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/css/custom.css"/>
       <url>/css/custom.css</url>
       
@@ -645,10 +642,32 @@
     
     <entry>
       <title></title>
+      <link href="/css/dark%20span.css"/>
+      <url>/css/dark%20span.css</url>
+      
+        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/css/readPercent.css"/>
       <url>/css/readPercent.css</url>
       
         <content type="html"><![CDATA[/* 返回顶部 */button#go-up #percent {    display: none;    font-weight: bold;    font-size: 15px !important;}button#go-up span {    font-size: 12px!important;    margin-right: -1px;}/* 鼠标滑动到按钮上时显示返回顶部图标 */button#go-up:hover i {    display: block !important;}button#go-up:hover #percent {    display: none !important;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/universe.css"/>
+      <url>/css/universe.css</url>
+      
+        <content type="html"><![CDATA[/* 背景宇宙星光  */#universe{    display: block;    position: fixed;    margin: 0;    padding: 0;    border: 0;    outline: 0;    left: 0;    top: 0;    width: 100%;    height: 100%;    pointer-events: none;    /* 这个是调置顶的优先级的，-1在文章页下面，背景上面，个人推荐这种 */    z-index: -1;  }]]></content>
       
     </entry>
     
@@ -677,66 +696,11 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title>留言板</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
       
-        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/universe.css"/>
-      <url>/css/universe.css</url>
-      
-        <content type="html"><![CDATA[/* 背景宇宙星光  */#universe{    display: block;    position: fixed;    margin: 0;    padding: 0;    border: 0;    outline: 0;    left: 0;    top: 0;    width: 100%;    height: 100%;    pointer-events: none;    /* 这个是调置顶的优先级的，-1在文章页下面，背景上面，个人推荐这种 */    z-index: -1;  }]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/cat.js"/>
-      <url>/js/cat.js</url>
-      
-        <content type="html"><![CDATA[if (document.body.clientWidth > 992) {    function getBasicInfo() {        /* 窗口高度 */        var ViewH = $(window).height();        /* document高度 */        var DocH = $("body")[0].scrollHeight;        /* 滚动的高度 */        var ScrollTop = $(window).scrollTop();        /* 可滚动的高度 */        var S_V = DocH - ViewH;        var Band_H = ScrollTop / (DocH - ViewH) * 100;        return {            ViewH: ViewH,            DocH: DocH,            ScrollTop: ScrollTop,            Band_H: Band_H,            S_V: S_V        }    };    function show(basicInfo) {        if (basicInfo.ScrollTop > 0.001) {            $(".neko").css('display', 'block');        } else {            $(".neko").css('display', 'none');        }    }    (function ($) {        $.fn.nekoScroll = function (option) {            var defaultSetting = {                top: '0',                scroWidth: 6 + 'px',                z_index: 9999,                zoom: 0.9,                borderRadius: 5 + 'px',                right: 60 + 'px',                // 这里可以换为你喜欢的图片，例如我就换为了雪人，但是要抠图                nekoImg: "https://bu.dusays.com/2022/07/20/62d812db74be9.png",                hoverMsg: "喵喵喵~",                color: "#6f42c1",                during: 500,                blog_body: "body",            };            var setting = $.extend(defaultSetting, option);            var getThis = this.prop("className") !== "" ? "." + this.prop("className") : this.prop("id") !== "" ? "#" +                this.prop("id") : this.prop("nodeName");            if ($(".neko").length == 0) {                this.after("<div class=\"neko\" id=" + setting.nekoname + " data-msg=\"" + setting.hoverMsg + "\"></div>");            }            let basicInfo = getBasicInfo();            $(getThis)                .css({                    'position': 'fixed',                    'width': setting.scroWidth,                    'top': setting.top,                    'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                    'z-index': setting.z_index,                    'background-color': setting.bgcolor,                    "border-radius": setting.borderRadius,                    'right': setting.right,                    'background-image': 'url(' + setting.scImg + ')',                    'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                    'background-size': 'contain'                });            $("#" + setting.nekoname)                .css({                    'position': 'fixed',                    'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                    'z-index': setting.z_index * 10,                    'right': setting.right,                    'background-image': 'url(' + setting.nekoImg + ')',                });            show(getBasicInfo());            $(window)                .scroll(function () {                    let basicInfo = getBasicInfo();                    show(basicInfo);                    $(getThis)                        .css({                            'position': 'fixed',                            'width': setting.scroWidth,                            'top': setting.top,                            'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                            'z-index': setting.z_index,                            'background-color': setting.bgcolor,                            "border-radius": setting.borderRadius,                            'right': setting.right,                            'background-image': 'url(' + setting.scImg + ')',                            'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                            'background-size': 'contain'                        });                    $("#" + setting.nekoname)                        .css({                            'position': 'fixed',                            'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                            'z-index': setting.z_index * 10,                            'right': setting.right,                            'background-image': 'url(' + setting.nekoImg + ')',                        });                    if (basicInfo.ScrollTop == basicInfo.S_V) {                        $("#" + setting.nekoname)                            .addClass("showMsg")                    } else {                        $("#" + setting.nekoname)                            .removeClass("showMsg");                        $("#" + setting.nekoname)                            .attr("data-msg", setting.hoverMsg);                    }                });            this.click(function (e) {                btf.scrollToDest(0, 500)            });            $("#" + setting.nekoname)                .click(function () {                    btf.scrollToDest(0, 500)                });            return this;        }    })(jQuery);    $(document).ready(function () {        //部分自定义        $("#myscoll").nekoScroll({            bgcolor: 'rgb(0 0 0 / .5)', //背景颜色，没有绳子背景图片时有效            borderRadius: '2em',            zoom: 0.9        }        );        //自定义（去掉以下注释，并注释掉其他的查看效果）        /*        $("#myscoll").nekoScroll({            nekoname:'neko1', //nekoname，相当于id            nekoImg:'img/猫咪.png', //neko的背景图片            scImg:"img/绳1.png", //绳子的背景图片            bgcolor:'#1e90ff', //背景颜色，没有绳子背景图片时有效            zoom:0.9, //绳子长度的缩放值            hoverMsg:'你好~喵', //鼠标浮动到neko上方的对话框信息            right:'100px', //距离页面右边的距离            fontFamily:'楷体', //对话框字体            fontSize:'14px', //对话框字体的大小            color:'#1e90ff', //对话框字体颜色            scroWidth:'8px', //绳子的宽度            z_index:100, //不用解释了吧            during:1200, //从顶部到底部滑动的时长        });        */    })}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/readPercent.js"/>
-      <url>/js/readPercent.js</url>
-      
-        <content type="html"><![CDATA[window.onscroll = percent;// 执行函数// 页面百分比function percent() {    let a = document.documentElement.scrollTop || window.pageYOffset, // 卷去高度        b = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) - document.documentElement.clientHeight, // 整个网页高度        result = Math.round(a / b * 100), // 计算百分比        up = document.querySelector("#go-up") // 获取按钮    if (result <= 95) {        up.childNodes[0].style.display = 'none'        up.childNodes[1].style.display = 'block'        up.childNodes[1].innerHTML = result;    } else {        up.childNodes[1].style.display = 'none'        up.childNodes[0].style.display = 'block'    }}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/runtime.js"/>
-      <url>/js/runtime.js</url>
-      
-        <content type="html"><![CDATA[var now = new Date();function createtime() {  var grt = new Date("04/02/2023 23:26:00");  now.setTime(now.getTime() + 250);  var days = (now - grt) / 1e3 / 60 / 60 / 24,    dnum = Math.floor(days),    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,    hnum = Math.floor(hours);  1 == String(hnum).length && (hnum = "0" + hnum);  var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,    mnum = Math.floor(minutes);  1 == String(mnum).length && (mnum = "0" + mnum);  var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,    snum = Math.round(seconds);  1 == String(snum).length && (snum = "0" + snum);  let currentTimeHtml = "";  (currentTimeHtml =    hnum < 18 && hnum >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='距离月入25k也就还差一个大佬带我~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心的玩耍，嘿嘿~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`),    document.getElementById("workboard") && (document.getElementById("workboard").innerHTML = currentTimeHtml);}setInterval(() => {  createtime();}, 250);]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/gulpfile.js"/>
-      <url>/js/gulpfile.js</url>
-      
-        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -755,6 +719,39 @@
     
     <entry>
       <title></title>
+      <link href="/js/cat.js"/>
+      <url>/js/cat.js</url>
+      
+        <content type="html"><![CDATA[if (document.body.clientWidth > 992) {    function getBasicInfo() {        /* 窗口高度 */        var ViewH = $(window).height();        /* document高度 */        var DocH = $("body")[0].scrollHeight;        /* 滚动的高度 */        var ScrollTop = $(window).scrollTop();        /* 可滚动的高度 */        var S_V = DocH - ViewH;        var Band_H = ScrollTop / (DocH - ViewH) * 100;        return {            ViewH: ViewH,            DocH: DocH,            ScrollTop: ScrollTop,            Band_H: Band_H,            S_V: S_V        }    };    function show(basicInfo) {        if (basicInfo.ScrollTop > 0.001) {            $(".neko").css('display', 'block');        } else {            $(".neko").css('display', 'none');        }    }    (function ($) {        $.fn.nekoScroll = function (option) {            var defaultSetting = {                top: '0',                scroWidth: 6 + 'px',                z_index: 9999,                zoom: 0.9,                borderRadius: 5 + 'px',                right: 60 + 'px',                // 这里可以换为你喜欢的图片，例如我就换为了雪人，但是要抠图                nekoImg: "https://bu.dusays.com/2022/07/20/62d812db74be9.png",                hoverMsg: "喵喵喵~",                color: "#6f42c1",                during: 500,                blog_body: "body",            };            var setting = $.extend(defaultSetting, option);            var getThis = this.prop("className") !== "" ? "." + this.prop("className") : this.prop("id") !== "" ? "#" +                this.prop("id") : this.prop("nodeName");            if ($(".neko").length == 0) {                this.after("<div class=\"neko\" id=" + setting.nekoname + " data-msg=\"" + setting.hoverMsg + "\"></div>");            }            let basicInfo = getBasicInfo();            $(getThis)                .css({                    'position': 'fixed',                    'width': setting.scroWidth,                    'top': setting.top,                    'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                    'z-index': setting.z_index,                    'background-color': setting.bgcolor,                    "border-radius": setting.borderRadius,                    'right': setting.right,                    'background-image': 'url(' + setting.scImg + ')',                    'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                    'background-size': 'contain'                });            $("#" + setting.nekoname)                .css({                    'position': 'fixed',                    'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                    'z-index': setting.z_index * 10,                    'right': setting.right,                    'background-image': 'url(' + setting.nekoImg + ')',                });            show(getBasicInfo());            $(window)                .scroll(function () {                    let basicInfo = getBasicInfo();                    show(basicInfo);                    $(getThis)                        .css({                            'position': 'fixed',                            'width': setting.scroWidth,                            'top': setting.top,                            'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                            'z-index': setting.z_index,                            'background-color': setting.bgcolor,                            "border-radius": setting.borderRadius,                            'right': setting.right,                            'background-image': 'url(' + setting.scImg + ')',                            'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                            'background-size': 'contain'                        });                    $("#" + setting.nekoname)                        .css({                            'position': 'fixed',                            'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                            'z-index': setting.z_index * 10,                            'right': setting.right,                            'background-image': 'url(' + setting.nekoImg + ')',                        });                    if (basicInfo.ScrollTop == basicInfo.S_V) {                        $("#" + setting.nekoname)                            .addClass("showMsg")                    } else {                        $("#" + setting.nekoname)                            .removeClass("showMsg");                        $("#" + setting.nekoname)                            .attr("data-msg", setting.hoverMsg);                    }                });            this.click(function (e) {                btf.scrollToDest(0, 500)            });            $("#" + setting.nekoname)                .click(function () {                    btf.scrollToDest(0, 500)                });            return this;        }    })(jQuery);    $(document).ready(function () {        //部分自定义        $("#myscoll").nekoScroll({            bgcolor: 'rgb(0 0 0 / .5)', //背景颜色，没有绳子背景图片时有效            borderRadius: '2em',            zoom: 0.9        }        );        //自定义（去掉以下注释，并注释掉其他的查看效果）        /*        $("#myscoll").nekoScroll({            nekoname:'neko1', //nekoname，相当于id            nekoImg:'img/猫咪.png', //neko的背景图片            scImg:"img/绳1.png", //绳子的背景图片            bgcolor:'#1e90ff', //背景颜色，没有绳子背景图片时有效            zoom:0.9, //绳子长度的缩放值            hoverMsg:'你好~喵', //鼠标浮动到neko上方的对话框信息            right:'100px', //距离页面右边的距离            fontFamily:'楷体', //对话框字体            fontSize:'14px', //对话框字体的大小            color:'#1e90ff', //对话框字体颜色            scroWidth:'8px', //绳子的宽度            z_index:100, //不用解释了吧            during:1200, //从顶部到底部滑动的时长        });        */    })}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/gulpfile.js"/>
+      <url>/js/gulpfile.js</url>
+      
+        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/readPercent.js"/>
+      <url>/js/readPercent.js</url>
+      
+        <content type="html"><![CDATA[window.onscroll = percent;// 执行函数// 页面百分比function percent() {    let a = document.documentElement.scrollTop || window.pageYOffset, // 卷去高度        b = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) - document.documentElement.clientHeight, // 整个网页高度        result = Math.round(a / b * 100), // 计算百分比        up = document.querySelector("#go-up") // 获取按钮    if (result <= 95) {        up.childNodes[0].style.display = 'none'        up.childNodes[1].style.display = 'block'        up.childNodes[1].innerHTML = result;    } else {        up.childNodes[1].style.display = 'none'        up.childNodes[0].style.display = 'block'    }}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/js/run.js"/>
       <url>/js/run.js</url>
       
@@ -766,10 +763,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/title.js"/>
-      <url>/js/title.js</url>
+      <link href="/js/runtime.js"/>
+      <url>/js/runtime.js</url>
       
-        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '👀跑哪里去了~';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = '🐖抓到你啦～';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+        <content type="html"><![CDATA[var now = new Date();function createtime() {  var grt = new Date("04/02/2023 23:26:00");  now.setTime(now.getTime() + 250);  var days = (now - grt) / 1e3 / 60 / 60 / 24,    dnum = Math.floor(days),    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,    hnum = Math.floor(hours);  1 == String(hnum).length && (hnum = "0" + hnum);  var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,    mnum = Math.floor(minutes);  1 == String(mnum).length && (mnum = "0" + mnum);  var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,    snum = Math.round(seconds);  1 == String(snum).length && (snum = "0" + snum);  let currentTimeHtml = "";  (currentTimeHtml =    hnum < 18 && hnum >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='距离月入25k也就还差一个大佬带我~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心的玩耍，嘿嘿~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`),    document.getElementById("workboard") && (document.getElementById("workboard").innerHTML = currentTimeHtml);}setInterval(() => {  createtime();}, 250);]]></content>
       
     </entry>
     
@@ -788,10 +785,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/weather.js"/>
-      <url>/js/weather.js</url>
+      <link href="/js/universe.js"/>
+      <url>/js/universe.js</url>
       
-        <content type="html"><![CDATA[WIDGET = {    "CONFIG": {      "modules": "01234",      "background": "1",      "tmpColor": "FFFFFF",      "tmpSize": "16",      "cityColor": "FFFFFF",      "citySize": "16",      "aqiColor": "FFFFFF",      "aqiSize": "16",      "weatherIconSize": "24",      "alertIconSize": "18",      "padding": "10px 10px 10px 10px",      "shadow": "0",      "language": "auto",      "fixed": "false",      "vertical": "top",      "horizontal": "left",      "city": "CN101050301",      "key": "304d70206a7a4bbcbe04b49f2a58d310"    }  }]]></content>
+        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
       
     </entry>
     
@@ -799,10 +796,21 @@
     
     <entry>
       <title></title>
-      <link href="/js/universe.js"/>
-      <url>/js/universe.js</url>
+      <link href="/js/title.js"/>
+      <url>/js/title.js</url>
       
-        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
+        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '👀跑哪里去了~';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = '🐖抓到你啦～';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/weather.js"/>
+      <url>/js/weather.js</url>
+      
+        <content type="html"><![CDATA[WIDGET = {    "CONFIG": {      "modules": "01234",      "background": "1",      "tmpColor": "FFFFFF",      "tmpSize": "16",      "cityColor": "FFFFFF",      "citySize": "16",      "aqiColor": "FFFFFF",      "aqiSize": "16",      "weatherIconSize": "24",      "alertIconSize": "18",      "padding": "10px 10px 10px 10px",      "shadow": "0",      "language": "auto",      "fixed": "false",      "vertical": "top",      "horizontal": "left",      "city": "CN101050301",      "key": "304d70206a7a4bbcbe04b49f2a58d310"    }  }]]></content>
       
     </entry>
     
@@ -820,20 +828,20 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>bangumis</title>
-      <link href="/list/bangumis/index.html"/>
-      <url>/list/bangumis/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -853,9 +861,9 @@
     
     
     <entry>
-      <title>games</title>
-      <link href="/list/games/index.html"/>
-      <url>/list/games/index.html</url>
+      <title>bangumis</title>
+      <link href="/list/bangumis/index.html"/>
+      <url>/list/bangumis/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -878,6 +886,17 @@
       <title>songs</title>
       <link href="/list/songs/index.html"/>
       <url>/list/songs/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>games</title>
+      <link href="/list/games/index.html"/>
+      <url>/list/games/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
