@@ -508,31 +508,6 @@
     
     
     <entry>
-      <title>我的第一篇博客文章</title>
-      <link href="/posts/b24dd347.html"/>
-      <url>/posts/b24dd347.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="这是第一篇文章"><a href="#这是第一篇文章" class="headerlink" title="这是第一篇文章"></a>这是第一篇文章</h2><div class="note default simple"><p>nice to meet you! My baby!</p></div>]]></content>
-      
-      
-      <categories>
-          
-          <category> QT </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> QT </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>我的第三篇博客文章</title>
       <link href="/posts/6f36dd99.html"/>
       <url>/posts/6f36dd99.html</url>
@@ -550,6 +525,31 @@
         <tags>
             
             <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我的第一篇博客文章</title>
+      <link href="/posts/b24dd347.html"/>
+      <url>/posts/b24dd347.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="这是第一篇文章"><a href="#这是第一篇文章" class="headerlink" title="这是第一篇文章"></a>这是第一篇文章</h2><div class="note default simple"><p>nice to meet you! My baby!</p></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> QT </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> QT </tag>
             
         </tags>
       
@@ -586,17 +586,6 @@
     
     
     <entry>
-      <title>archives</title>
-      <link href="/archives/index.html"/>
-      <url>/archives/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>关于</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
@@ -619,11 +608,33 @@
     
     
     <entry>
+      <title>archives</title>
+      <link href="/archives/index.html"/>
+      <url>/archives/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/css/cat.css"/>
       <url>/css/cat.css</url>
       
         <content type="html"><![CDATA[body::-webkit-scrollbar {    width: 0;}.neko {    width: 64px;    height: 64px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812db74be9.png");    position: absolute;    right: 32px;    background-repeat: no-repeat;    background-size: contain;    transform: translateX(50%);    cursor: pointer;    font-family: tzy;    font-weight: 600;    font-size: 16px;    color: #6f42c1;    display: none;}.neko::after {    display: none;    width: 100px;    height: 100px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812d95e6f5.png");    background-size: contain;    z-index: 9999;    position: absolute;    right: 50%;    text-align: center;    line-height: 100px;    top: -115%;}.neko.showMsg::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko:hover::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko.fontColor::after {    color: #333;}/** * @description: 滚动条样式  跟猫二选一 */@media screen and (max-width:992px) {    ::-webkit-scrollbar {        width: 8px !important;        height: 8px !important    }    ::-webkit-scrollbar-track {        border-radius: 2em;    }    ::-webkit-scrollbar-thumb {        background-color: rgb(255 255 255 / .3);        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);        border-radius: 2em    }    ::-webkit-scrollbar-corner {        background-color: transparent    }}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>留言板</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -664,17 +675,6 @@
     
     <entry>
       <title></title>
-      <link href="/css/universe.css"/>
-      <url>/css/universe.css</url>
-      
-        <content type="html"><![CDATA[/* 背景宇宙星光  */#universe{    display: block;    position: fixed;    margin: 0;    padding: 0;    border: 0;    outline: 0;    left: 0;    top: 0;    width: 100%;    height: 100%;    pointer-events: none;    /* 这个是调置顶的优先级的，-1在文章页下面，背景上面，个人推荐这种 */    z-index: -1;  }]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/css/progress_bar.css"/>
       <url>/css/progress_bar.css</url>
       
@@ -696,11 +696,11 @@
     
     
     <entry>
-      <title>留言板</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
+      <title></title>
+      <link href="/js/gray.js"/>
+      <url>/js/gray.js</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[if(PublicSacrificeDay()){    document.getElementsByTagName("html")[0].setAttribute("style","filter:gray !important;filter:grayscale(100%);-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);");  }    function PublicSacrificeDay(){      var PSFarr=new Array("0403","0404","0405","0406","0414","0512","0707","0807","0814","0909","0918","0930","1025","1213");      //2020年4月4日 新冠肺炎哀悼日，清明节      //2010年4月14日，青海玉树地震      //2008年5月12日，四川汶川地震      //1937年7月7日,七七事变 又称卢沟桥事变      //2010年8月7日，甘肃舟曲特大泥石流        //8月14日，世界慰安妇纪念日      //1976年9月9日，毛主席逝世        //1931年9月18日，九一八事变        //烈士纪念日为每年9月30日      //1950年10月25日，抗美援朝纪念日      //1937年12月13日，南京大屠杀      var currentdate = new Date();      var str = "";      var mm = currentdate.getMonth()+1;      if(currentdate.getMonth()>9){        str += mm;      }else{        str += "0" + mm;      }      if(currentdate.getDate()>9){        str += currentdate.getDate();      }else{        str += "0" + currentdate.getDate();      }      if(PSFarr.indexOf(str)>-1){          return 1;      }else{          return 0;      }  }    ]]></content>
       
     </entry>
     
@@ -708,10 +708,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/gray.js"/>
-      <url>/js/gray.js</url>
+      <link href="/css/universe.css"/>
+      <url>/css/universe.css</url>
       
-        <content type="html"><![CDATA[if(PublicSacrificeDay()){    document.getElementsByTagName("html")[0].setAttribute("style","filter:gray !important;filter:grayscale(100%);-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);");  }    function PublicSacrificeDay(){      var PSFarr=new Array("0403","0404","0405","0406","0414","0512","0707","0807","0814","0909","0918","0930","1025","1213");      //2020年4月4日 新冠肺炎哀悼日，清明节      //2010年4月14日，青海玉树地震      //2008年5月12日，四川汶川地震      //1937年7月7日,七七事变 又称卢沟桥事变      //2010年8月7日，甘肃舟曲特大泥石流        //8月14日，世界慰安妇纪念日      //1976年9月9日，毛主席逝世        //1931年9月18日，九一八事变        //烈士纪念日为每年9月30日      //1950年10月25日，抗美援朝纪念日      //1937年12月13日，南京大屠杀      var currentdate = new Date();      var str = "";      var mm = currentdate.getMonth()+1;      if(currentdate.getMonth()>9){        str += mm;      }else{        str += "0" + mm;      }      if(currentdate.getDate()>9){        str += currentdate.getDate();      }else{        str += "0" + currentdate.getDate();      }      if(PSFarr.indexOf(str)>-1){          return 1;      }else{          return 0;      }  }    ]]></content>
+        <content type="html"><![CDATA[/* 背景宇宙星光  */#universe{    display: block;    position: fixed;    margin: 0;    padding: 0;    border: 0;    outline: 0;    left: 0;    top: 0;    width: 100%;    height: 100%;    pointer-events: none;    /* 这个是调置顶的优先级的，-1在文章页下面，背景上面，个人推荐这种 */    z-index: -1;  }]]></content>
       
     </entry>
     
@@ -763,17 +763,6 @@
     
     <entry>
       <title></title>
-      <link href="/js/runtime.js"/>
-      <url>/js/runtime.js</url>
-      
-        <content type="html"><![CDATA[var now = new Date();function createtime() {  var grt = new Date("04/02/2023 23:26:00");  now.setTime(now.getTime() + 250);  var days = (now - grt) / 1e3 / 60 / 60 / 24,    dnum = Math.floor(days),    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,    hnum = Math.floor(hours);  1 == String(hnum).length && (hnum = "0" + hnum);  var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,    mnum = Math.floor(minutes);  1 == String(mnum).length && (mnum = "0" + mnum);  var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,    snum = Math.round(seconds);  1 == String(snum).length && (snum = "0" + snum);  let currentTimeHtml = "";  (currentTimeHtml =    hnum < 18 && hnum >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='距离月入25k也就还差一个大佬带我~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心的玩耍，嘿嘿~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`),    document.getElementById("workboard") && (document.getElementById("workboard").innerHTML = currentTimeHtml);}setInterval(() => {  createtime();}, 250);]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/js/social_card.js"/>
       <url>/js/social_card.js</url>
       
@@ -785,10 +774,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/universe.js"/>
-      <url>/js/universe.js</url>
+      <link href="/js/runtime.js"/>
+      <url>/js/runtime.js</url>
       
-        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
+        <content type="html"><![CDATA[var now = new Date();function createtime() {  var grt = new Date("04/02/2023 23:26:00");  now.setTime(now.getTime() + 250);  var days = (now - grt) / 1e3 / 60 / 60 / 24,    dnum = Math.floor(days),    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,    hnum = Math.floor(hours);  1 == String(hnum).length && (hnum = "0" + hnum);  var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,    mnum = Math.floor(minutes);  1 == String(mnum).length && (mnum = "0" + mnum);  var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,    snum = Math.round(seconds);  1 == String(snum).length && (snum = "0" + snum);  let currentTimeHtml = "";  (currentTimeHtml =    hnum < 18 && hnum >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='距离月入25k也就还差一个大佬带我~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心的玩耍，嘿嘿~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`),    document.getElementById("workboard") && (document.getElementById("workboard").innerHTML = currentTimeHtml);}setInterval(() => {  createtime();}, 250);]]></content>
       
     </entry>
     
@@ -800,6 +789,17 @@
       <url>/js/title.js</url>
       
         <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '👀跑哪里去了~';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = '🐖抓到你啦～';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/universe.js"/>
+      <url>/js/universe.js</url>
+      
+        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
       
     </entry>
     
@@ -839,6 +839,17 @@
     
     
     <entry>
+      <title>bangumis</title>
+      <link href="/list/bangumis/index.html"/>
+      <url>/list/bangumis/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>标签</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
@@ -850,20 +861,9 @@
     
     
     <entry>
-      <title>books</title>
-      <link href="/list/books/index.html"/>
-      <url>/list/books/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>bangumis</title>
-      <link href="/list/bangumis/index.html"/>
-      <url>/list/bangumis/index.html</url>
+      <title>games</title>
+      <link href="/list/games/index.html"/>
+      <url>/list/games/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -883,9 +883,9 @@
     
     
     <entry>
-      <title>songs</title>
-      <link href="/list/songs/index.html"/>
-      <url>/list/songs/index.html</url>
+      <title>books</title>
+      <link href="/list/books/index.html"/>
+      <url>/list/books/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -894,9 +894,9 @@
     
     
     <entry>
-      <title>games</title>
-      <link href="/list/games/index.html"/>
-      <url>/list/games/index.html</url>
+      <title>songs</title>
+      <link href="/list/songs/index.html"/>
+      <url>/list/songs/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
