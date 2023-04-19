@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>opencv编译命令</title>
+      <link href="/posts/37604654.html"/>
+      <url>/posts/37604654.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="opencv编译命令"><a href="#opencv编译命令" class="headerlink" title="opencv编译命令"></a>opencv编译命令</h1><h2 id="C-Opencv"><a href="#C-Opencv" class="headerlink" title="C++ Opencv"></a>C++ Opencv</h2><p>编译命令:</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -o your_executable your_source_file.cpp `pkg-config --cflags --libs opencv`</span><br></pre></td></tr></table></figure><h2 id="python-opencv"><a href="#python-opencv" class="headerlink" title="python opencv"></a>python opencv</h2><p>python opencv python2.7 cv2 版本对应<br>python程序前加：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-*- coding: utf-<span class="number">8</span> -*-</span><br></pre></td></tr></table></figure><p>注意：针对的是python2.7的版本 即python3一下的版本 </p><hr><p>import cv2</p><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> opencv </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>conda使用方法</title>
+      <link href="/posts/8a0944ef.html"/>
+      <url>/posts/8a0944ef.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="conda使用方法"><a href="#conda使用方法" class="headerlink" title="conda使用方法"></a>conda使用方法</h1><ul><li>常用命令<br>sudo apt update<br>更新所有软件<br>sudo apt upgrade<br>删除</li></ul><h2 id="conda使用"><a href="#conda使用" class="headerlink" title="conda使用"></a>conda使用</h2><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul><li><p>创建独立环境<br>不能将需要用的软件或者其他要用的东西装在base环境中</p></li><li><p>创建一些独立的环境会比较方便我们做项目管理，不会有冗余，一个独立的小环境就像一间单独的小房间，彼此独立不会相互影响，这样就会可以方便我们管理不同依赖包的软件</p></li><li><p>建议： base环境中不要安装任何的包，保持干净，除非你知道这个包会对原生的环境造成什么样的影响</p></li></ul><p>conda create -n rnaseq   #创建conda小环境 - -n 用来指定环境的名称<br>conda create -n database python=3.7.3    #指定环境中需要带的python的版本</p><p>conda activate rnaseq     # 启动小环境</p><p>conda deactivate           #退出小环境</p><p>conda env list  / conda info —env    #查看共有多少个小环境</p><p>conda remove -n python —all     #删除conda小环境</p><h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><ul><li>ex:<br>conda create -n adr<br>conda activate rnaseq(name)     # 启动小环境</li></ul><p>这里面可以pip install 包 只存在于这个小环境中 对base(主环境)不受影响</p><h1 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h1><p>最好使用pip install 包名<br>实在下载不了的再用conda install 包名</p><ul><li><p>ipython<br>%run ./adr/main.py<br>exit</p></li><li><p>conda deactivate           #退出小环境</p></li></ul><h2 id="指定安装软件的版本（以fastqc为例）"><a href="#指定安装软件的版本（以fastqc为例）" class="headerlink" title="指定安装软件的版本（以fastqc为例）"></a>指定安装软件的版本（以fastqc为例）</h2><ul><li><p>在不指定版本的情况下，conda默认安装该软件的最新版，如果要安装旧的版本方法：</p><p>  先看看有哪些可以安装的版本 conda search fastqc<br>  安装指定版本的软件</p></li><li><p>conda install fastqc=0.11.7</p></li></ul><p>添加-y参数跳过确认的步骤 conda install -y fastqc=0.11.7<br>安装找不到软件的包</p><pre><code>确定一下conda是否能安装我们需要的软件确定名字是不是输入正确（尤其要注意，因为我不怎么长眼睛）确定好我们要安装的包在conda中的名字</code></pre><ul><li>查看conda中已经安装的软件</li></ul><p>conda list     #查看当前环境下用conda安装的软件</p><p>conda list fast*   # 查看符合正则表达式的软件</p><p>conda list -n base    # 查看指定环境下用conda安装的软件</p><ul><li>删除软件</li></ul><p>conda remove fastqc   # 删除该环境中的软件</p><p>conda remove -n rnaseq fastqc   # 删除指定环境下的软件</p><ul><li>升级软件</li></ul><p>conda update fastqc  #升级指定的软件</p><p>conda update conda    #升级conda本身</p><ul><li>小tips<pre><code>conda可以一次安装多个软件包</code></pre>有时候只要软件比如说我们的conda不影响我们的使用就不需要去管<br>指定下载该软件的旧版本就可以完成该软件的降级</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> other </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> conda </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ubuntu学习历程</title>
       <link href="/posts/241fcd16.html"/>
       <url>/posts/241fcd16.html</url>
@@ -249,11 +301,11 @@
       
         <tags>
             
+            <tag> opencv </tag>
+            
             <tag> ros </tag>
             
             <tag> melodic </tag>
-            
-            <tag> opencv </tag>
             
         </tags>
       
@@ -526,31 +578,6 @@
     
     
     <entry>
-      <title>我的第一篇博客文章</title>
-      <link href="/posts/b24dd347.html"/>
-      <url>/posts/b24dd347.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="这是第一篇文章"><a href="#这是第一篇文章" class="headerlink" title="这是第一篇文章"></a>这是第一篇文章</h2><div class="note default simple"><p>nice to meet you! My baby!</p></div>]]></content>
-      
-      
-      <categories>
-          
-          <category> QT </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> QT </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>我的第三篇博客文章</title>
       <link href="/posts/6f36dd99.html"/>
       <url>/posts/6f36dd99.html</url>
@@ -599,19 +626,33 @@
     </entry>
     
     
-  
-  
-    
     
     <entry>
-      <title>archives</title>
-      <link href="/archives/index.html"/>
-      <url>/archives/index.html</url>
+      <title>我的第一篇博客文章</title>
+      <link href="/posts/b24dd347.html"/>
+      <url>/posts/b24dd347.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="这是第一篇文章"><a href="#这是第一篇文章" class="headerlink" title="这是第一篇文章"></a>这是第一篇文章</h2><div class="note default simple"><p>nice to meet you! My baby!</p></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> other </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> QT </tag>
+            
+        </tags>
       
     </entry>
     
+    
+  
+  
     
     
     <entry>
@@ -620,17 +661,6 @@
       <url>/about/index.html</url>
       
         <content type="html"><![CDATA[<h1 id="遇见便是最好"><a href="#遇见便是最好" class="headerlink" title="遇见便是最好"></a>遇见便是最好</h1><h1 id="下次再见的时候一定要提前告诉我"><a href="#下次再见的时候一定要提前告诉我" class="headerlink" title="下次再见的时候一定要提前告诉我"></a>下次再见的时候一定要提前告诉我</h1><h1 id="这样我就可以开心更久了"><a href="#这样我就可以开心更久了" class="headerlink" title="这样我就可以开心更久了"></a>这样我就可以开心更久了</h1>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -648,22 +678,11 @@
     
     
     <entry>
-      <title></title>
-      <link href="/js/cat.js"/>
-      <url>/js/cat.js</url>
+      <title>archives</title>
+      <link href="/archives/index.html"/>
+      <url>/archives/index.html</url>
       
-        <content type="html"><![CDATA[if (document.body.clientWidth > 992) {    function getBasicInfo() {        /* 窗口高度 */        var ViewH = $(window).height();        /* document高度 */        var DocH = $("body")[0].scrollHeight;        /* 滚动的高度 */        var ScrollTop = $(window).scrollTop();        /* 可滚动的高度 */        var S_V = DocH - ViewH;        var Band_H = ScrollTop / (DocH - ViewH) * 100;        return {            ViewH: ViewH,            DocH: DocH,            ScrollTop: ScrollTop,            Band_H: Band_H,            S_V: S_V        }    };    function show(basicInfo) {        if (basicInfo.ScrollTop > 0.001) {            $(".neko").css('display', 'block');        } else {            $(".neko").css('display', 'none');        }    }    (function ($) {        $.fn.nekoScroll = function (option) {            var defaultSetting = {                top: '0',                scroWidth: 6 + 'px',                z_index: 9999,                zoom: 0.9,                borderRadius: 5 + 'px',                right: 60 + 'px',                // 这里可以换为你喜欢的图片，例如我就换为了雪人，但是要抠图                nekoImg: "https://bu.dusays.com/2022/07/20/62d812db74be9.png",                hoverMsg: "喵喵喵~",                color: "#6f42c1",                during: 500,                blog_body: "body",            };            var setting = $.extend(defaultSetting, option);            var getThis = this.prop("className") !== "" ? "." + this.prop("className") : this.prop("id") !== "" ? "#" +                this.prop("id") : this.prop("nodeName");            if ($(".neko").length == 0) {                this.after("<div class=\"neko\" id=" + setting.nekoname + " data-msg=\"" + setting.hoverMsg + "\"></div>");            }            let basicInfo = getBasicInfo();            $(getThis)                .css({                    'position': 'fixed',                    'width': setting.scroWidth,                    'top': setting.top,                    'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                    'z-index': setting.z_index,                    'background-color': setting.bgcolor,                    "border-radius": setting.borderRadius,                    'right': setting.right,                    'background-image': 'url(' + setting.scImg + ')',                    'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                    'background-size': 'contain'                });            $("#" + setting.nekoname)                .css({                    'position': 'fixed',                    'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                    'z-index': setting.z_index * 10,                    'right': setting.right,                    'background-image': 'url(' + setting.nekoImg + ')',                });            show(getBasicInfo());            $(window)                .scroll(function () {                    let basicInfo = getBasicInfo();                    show(basicInfo);                    $(getThis)                        .css({                            'position': 'fixed',                            'width': setting.scroWidth,                            'top': setting.top,                            'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                            'z-index': setting.z_index,                            'background-color': setting.bgcolor,                            "border-radius": setting.borderRadius,                            'right': setting.right,                            'background-image': 'url(' + setting.scImg + ')',                            'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                            'background-size': 'contain'                        });                    $("#" + setting.nekoname)                        .css({                            'position': 'fixed',                            'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                            'z-index': setting.z_index * 10,                            'right': setting.right,                            'background-image': 'url(' + setting.nekoImg + ')',                        });                    if (basicInfo.ScrollTop == basicInfo.S_V) {                        $("#" + setting.nekoname)                            .addClass("showMsg")                    } else {                        $("#" + setting.nekoname)                            .removeClass("showMsg");                        $("#" + setting.nekoname)                            .attr("data-msg", setting.hoverMsg);                    }                });            this.click(function (e) {                btf.scrollToDest(0, 500)            });            $("#" + setting.nekoname)                .click(function () {                    btf.scrollToDest(0, 500)                });            return this;        }    })(jQuery);    $(document).ready(function () {        //部分自定义        $("#myscoll").nekoScroll({            bgcolor: 'rgb(0 0 0 / .5)', //背景颜色，没有绳子背景图片时有效            borderRadius: '2em',            zoom: 0.9        }        );        //自定义（去掉以下注释，并注释掉其他的查看效果）        /*        $("#myscoll").nekoScroll({            nekoname:'neko1', //nekoname，相当于id            nekoImg:'img/猫咪.png', //neko的背景图片            scImg:"img/绳1.png", //绳子的背景图片            bgcolor:'#1e90ff', //背景颜色，没有绳子背景图片时有效            zoom:0.9, //绳子长度的缩放值            hoverMsg:'你好~喵', //鼠标浮动到neko上方的对话框信息            right:'100px', //距离页面右边的距离            fontFamily:'楷体', //对话框字体            fontSize:'14px', //对话框字体的大小            color:'#1e90ff', //对话框字体颜色            scroWidth:'8px', //绳子的宽度            z_index:100, //不用解释了吧            during:1200, //从顶部到底部滑动的时长        });        */    })}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/gray.js"/>
-      <url>/js/gray.js</url>
-      
-        <content type="html"><![CDATA[if(PublicSacrificeDay()){    document.getElementsByTagName("html")[0].setAttribute("style","filter:gray !important;filter:grayscale(100%);-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);");  }    function PublicSacrificeDay(){      var PSFarr=new Array("0403","0404","0405","0406","0414","0512","0707","0807","0814","0909","0918","0930","1025","1213");      //2020年4月4日 新冠肺炎哀悼日，清明节      //2010年4月14日，青海玉树地震      //2008年5月12日，四川汶川地震      //1937年7月7日,七七事变 又称卢沟桥事变      //2010年8月7日，甘肃舟曲特大泥石流        //8月14日，世界慰安妇纪念日      //1976年9月9日，毛主席逝世        //1931年9月18日，九一八事变        //烈士纪念日为每年9月30日      //1950年10月25日，抗美援朝纪念日      //1937年12月13日，南京大屠杀      var currentdate = new Date();      var str = "";      var mm = currentdate.getMonth()+1;      if(currentdate.getMonth()>9){        str += mm;      }else{        str += "0" + mm;      }      if(currentdate.getDate()>9){        str += currentdate.getDate();      }else{        str += "0" + currentdate.getDate();      }      if(PSFarr.indexOf(str)>-1){          return 1;      }else{          return 0;      }  }    ]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -671,98 +690,21 @@
     
     <entry>
       <title></title>
-      <link href="/js/gulpfile.js"/>
-      <url>/js/gulpfile.js</url>
+      <link href="/css/dark%20span.css"/>
+      <url>/css/dark%20span.css</url>
       
-        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/readPercent.js"/>
-      <url>/js/readPercent.js</url>
-      
-        <content type="html"><![CDATA[window.onscroll = percent;// 执行函数// 页面百分比function percent() {    let a = document.documentElement.scrollTop || window.pageYOffset, // 卷去高度        b = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) - document.documentElement.clientHeight, // 整个网页高度        result = Math.round(a / b * 100), // 计算百分比        up = document.querySelector("#go-up") // 获取按钮    if (result <= 95) {        up.childNodes[0].style.display = 'none'        up.childNodes[1].style.display = 'block'        up.childNodes[1].innerHTML = result;    } else {        up.childNodes[1].style.display = 'none'        up.childNodes[0].style.display = 'block'    }}]]></content>
+        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title></title>
-      <link href="/js/social_card.js"/>
-      <url>/js/social_card.js</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
-        <content type="html"><![CDATA[var zhsher = {    getTimeState: function () {        var element = (new Date).getHours(), time = "";        return 0 <= element && element <= 5 ? time = "晚安😴" : 5 < element && element <= 10 ? time = "早上好👋" : 10 < element && element <= 14 ? time = "中午好👋" : 14 < element && element <= 18 ? time = "下午好👋" : 18 < element && element <= 24 && (time = "晚上好👋"), time    },    sayhi: function () {        var element = document.getElementById("author-info__sayhi");        element && (element.innerHTML = zhsher.getTimeState() + "！我是")    }}zhsher.sayhi();]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/runtime.js"/>
-      <url>/js/runtime.js</url>
-      
-        <content type="html"><![CDATA[var now = new Date();function createtime() {  var grt = new Date("04/02/2023 23:26:00");  now.setTime(now.getTime() + 250);  var days = (now - grt) / 1e3 / 60 / 60 / 24,    dnum = Math.floor(days),    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,    hnum = Math.floor(hours);  1 == String(hnum).length && (hnum = "0" + hnum);  var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,    mnum = Math.floor(minutes);  1 == String(mnum).length && (mnum = "0" + mnum);  var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,    snum = Math.round(seconds);  1 == String(snum).length && (snum = "0" + snum);  let currentTimeHtml = "";  (currentTimeHtml =    hnum < 18 && hnum >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='距离月入25k也就还差一个大佬带我~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心的玩耍，嘿嘿~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`),    document.getElementById("workboard") && (document.getElementById("workboard").innerHTML = currentTimeHtml);}setInterval(() => {  createtime();}, 250);]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/title.js"/>
-      <url>/js/title.js</url>
-      
-        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '👀跑哪里去了~';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = '🐖抓到你啦～';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/run.js"/>
-      <url>/js/run.js</url>
-      
-        <content type="html"><![CDATA[var now = new Date();function createtime() {  now.setTime(now.getTime() + 1e3);  var e = new Date("04/03/2023 00:24:00"),    t = Math.trunc(234e8 + ((now - e) / 1e3) * 17),    a = (t / 1496e5).toFixed(6),    o = new Date("04/03/2023 12:00:00"),    n = (now - o) / 1e3 / 60 / 60 / 24,    r = Math.floor(n),    i = (now - o) / 1e3 / 60 / 60 - 24 * r,    s = Math.floor(i);  1 == String(s).length && (s = "0" + s);  var d = (now - o) / 1e3 / 60 - 1440 * r - 60 * s,    l = Math.floor(d);  1 == String(l).length && (l = "0" + l);  var g = (now - o) / 1e3 - 86400 * r - 3600 * s - 60 * l,    b = Math.round(g);  1 == String(b).length && (b = "0" + b);  let c = "";  (c =    s < 18 && s >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='浑水摸鱼罢了~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 阳光微瑕 距离下次见面又近了 提前告诉我 我可以开心的更久一点哦 虽然相恋了 ${r+394} 天 ，甜蜜度依旧如相识那样 🚀</div>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='终于下班啦~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 阳光微瑕 距离下次见面又近了 提前告诉我 我可以开心的更久一点哦 虽然相恋了 ${r+394} 天，甜蜜度依旧如相识那样 🚀</div>`),    document.getElementById("workboard") &&      (document.getElementById("workboard").innerHTML = c);}setInterval(() => {  createtime();}, 1e3);]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/weather.js"/>
-      <url>/js/weather.js</url>
-      
-        <content type="html"><![CDATA[WIDGET = {    "CONFIG": {      "modules": "01234",      "background": "1",      "tmpColor": "FFFFFF",      "tmpSize": "16",      "cityColor": "FFFFFF",      "citySize": "16",      "aqiColor": "FFFFFF",      "aqiSize": "16",      "weatherIconSize": "24",      "alertIconSize": "18",      "padding": "10px 10px 10px 10px",      "shadow": "0",      "language": "auto",      "fixed": "false",      "vertical": "top",      "horizontal": "left",      "city": "CN101050301",      "key": "304d70206a7a4bbcbe04b49f2a58d310"    }  }]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/universe.js"/>
-      <url>/js/universe.js</url>
-      
-        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/cat.css"/>
-      <url>/css/cat.css</url>
-      
-        <content type="html"><![CDATA[body::-webkit-scrollbar {    width: 0;}.neko {    width: 64px;    height: 64px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812db74be9.png");    position: absolute;    right: 32px;    background-repeat: no-repeat;    background-size: contain;    transform: translateX(50%);    cursor: pointer;    font-family: tzy;    font-weight: 600;    font-size: 16px;    color: #6f42c1;    display: none;}.neko::after {    display: none;    width: 100px;    height: 100px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812d95e6f5.png");    background-size: contain;    z-index: 9999;    position: absolute;    right: 50%;    text-align: center;    line-height: 100px;    top: -115%;}.neko.showMsg::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko:hover::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko.fontColor::after {    color: #333;}/** * @description: 滚动条样式  跟猫二选一 */@media screen and (max-width:992px) {    ::-webkit-scrollbar {        width: 8px !important;        height: 8px !important    }    ::-webkit-scrollbar-track {        border-radius: 2em;    }    ::-webkit-scrollbar-thumb {        background-color: rgb(255 255 255 / .3);        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);        border-radius: 2em    }    ::-webkit-scrollbar-corner {        background-color: transparent    }}]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -781,21 +723,10 @@
     
     <entry>
       <title></title>
-      <link href="/css/dark%20span.css"/>
-      <url>/css/dark%20span.css</url>
+      <link href="/css/cat.css"/>
+      <url>/css/cat.css</url>
       
-        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/progress_bar.css"/>
-      <url>/css/progress_bar.css</url>
-      
-        <content type="html"><![CDATA[.pace {    -webkit-pointer-events: none;    pointer-events: none;    -webkit-user-select: none;    -moz-user-select: none;    user-select: none;    z-index: 2000;    position: fixed;    margin: auto;    top: 10px;    left: 0;    right: 0;    height: 8px;    border-radius: 8px;    width: 4rem;    background: #eaecf2;    border: 1px #e3e8f7;    overflow: hidden;  }    .pace-inactive .pace-progress {    opacity: 0;    transition: 0.3s ease-in;  }    .pace .pace-progress {    -webkit-box-sizing: border-box;    -moz-box-sizing: border-box;    -ms-box-sizing: border-box;    -o-box-sizing: border-box;    box-sizing: border-box;    -webkit-transform: translate3d(0, 0, 0);    -moz-transform: translate3d(0, 0, 0);    -ms-transform: translate3d(0, 0, 0);    -o-transform: translate3d(0, 0, 0);    transform: translate3d(0, 0, 0);    max-width: 200px;    position: absolute;    z-index: 2000;    display: block;    top: 0;    right: 100%;    height: 100%;    width: 100%;    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);    animation: gradient 1.5s ease infinite;    background-size: 200%;  }    .pace.pace-inactive {    opacity: 0;    transition: 0.3s;    top: -8px;  }  @keyframes gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }  ]]></content>
+        <content type="html"><![CDATA[body::-webkit-scrollbar {    width: 0;}.neko {    width: 64px;    height: 64px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812db74be9.png");    position: absolute;    right: 32px;    background-repeat: no-repeat;    background-size: contain;    transform: translateX(50%);    cursor: pointer;    font-family: tzy;    font-weight: 600;    font-size: 16px;    color: #6f42c1;    display: none;}.neko::after {    display: none;    width: 100px;    height: 100px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812d95e6f5.png");    background-size: contain;    z-index: 9999;    position: absolute;    right: 50%;    text-align: center;    line-height: 100px;    top: -115%;}.neko.showMsg::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko:hover::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko.fontColor::after {    color: #333;}/** * @description: 滚动条样式  跟猫二选一 */@media screen and (max-width:992px) {    ::-webkit-scrollbar {        width: 8px !important;        height: 8px !important    }    ::-webkit-scrollbar-track {        border-radius: 2em;    }    ::-webkit-scrollbar-thumb {        background-color: rgb(255 255 255 / .3);        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);        border-radius: 2em    }    ::-webkit-scrollbar-corner {        background-color: transparent    }}]]></content>
       
     </entry>
     
@@ -814,10 +745,10 @@
     
     <entry>
       <title></title>
-      <link href="/css/universe.css"/>
-      <url>/css/universe.css</url>
+      <link href="/css/progress_bar.css"/>
+      <url>/css/progress_bar.css</url>
       
-        <content type="html"><![CDATA[/* 背景宇宙星光  */#universe{    display: block;    position: fixed;    margin: 0;    padding: 0;    border: 0;    outline: 0;    left: 0;    top: 0;    width: 100%;    height: 100%;    pointer-events: none;    /* 这个是调置顶的优先级的，-1在文章页下面，背景上面，个人推荐这种 */    z-index: -1;  }]]></content>
+        <content type="html"><![CDATA[.pace {    -webkit-pointer-events: none;    pointer-events: none;    -webkit-user-select: none;    -moz-user-select: none;    user-select: none;    z-index: 2000;    position: fixed;    margin: auto;    top: 10px;    left: 0;    right: 0;    height: 8px;    border-radius: 8px;    width: 4rem;    background: #eaecf2;    border: 1px #e3e8f7;    overflow: hidden;  }    .pace-inactive .pace-progress {    opacity: 0;    transition: 0.3s ease-in;  }    .pace .pace-progress {    -webkit-box-sizing: border-box;    -moz-box-sizing: border-box;    -ms-box-sizing: border-box;    -o-box-sizing: border-box;    box-sizing: border-box;    -webkit-transform: translate3d(0, 0, 0);    -moz-transform: translate3d(0, 0, 0);    -ms-transform: translate3d(0, 0, 0);    -o-transform: translate3d(0, 0, 0);    transform: translate3d(0, 0, 0);    max-width: 200px;    position: absolute;    z-index: 2000;    display: block;    top: 0;    right: 100%;    height: 100%;    width: 100%;    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);    animation: gradient 1.5s ease infinite;    background-size: 200%;  }    .pace.pace-inactive {    opacity: 0;    transition: 0.3s;    top: -8px;  }  @keyframes gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }  ]]></content>
       
     </entry>
     
@@ -829,6 +760,138 @@
       <url>/css/social_card.css</url>
       
         <content type="html"><![CDATA[div#author-info__sayhi {    text-align: left;    background: var(--zhsher-white-op);    color: var(--font-color);    border: var(--style-border);    font-size: 12px;    margin-right: auto;    padding: 5px 8px;    border-radius: 12px;    width: fit-content;    display: inline;    margin-left: -1px}.card-widget .author-info-top {    margin: 15px auto 0;    display: flex;    justify-content: center}.card-widget .card-info-avatar {    display: inline-block;    position: relative}.card-widget.card-info .banner-button-group {    margin: 5px 0;    display: flex}#aside-content .card-info .banner-button {    height: 40px;    width: 100%;    border-radius: 20px;    justify-content: center}.card-widget.card-info .banner-button-group .banner-button {    padding: 20px 12px;    background: var(--zhsher-theme);    border-radius: 12px;    color: var(--zhsher-white);    display: flex;    align-items: center;    z-index: 1;    transition: all .3s ease 0s;    cursor: pointer}.card-widget.card-info .banner-button-group .banner-button .fas.fa-circle-arrow-up-right {    font-size: 1.3rem;    margin-right: 10px}.card-widget.card-info .banner-button-group .banner-button:hover {    background: var(--zhsher-main-op-deep);    color: var(--zhsher-white)}.card-info-avatar .avatar-img {    width: 100px;    height: 100px;    display: block}.card-info-avatar .author-status-box {    position: absolute;    bottom: 0;    left: calc(100% - 28px);    width: 28px;    height: 28px;    border: var(--style-border);    border-radius: 2em;    background-color: var(--zhsher-card-bg);    transition: .3s;    overflow: hidden}.card-info-avatar .author-status-box .author-status {    display: flex;    align-items: center;    justify-content: center;    height: 28px;    padding: 0 5px}.card-info-avatar .author-status-box:hover {    width: 105px}.card-info-avatar .author-status-box:hover .author-status span {    width: 105px;    margin-left: 4px}.card-info-avatar .author-status-box .author-status span {    width: 0;    font-size: 12px;    height: 100%;    overflow: hidden;    text-overflow: ellipsis;    white-space: nowrap;    transition: .3s}#aside-content > .card-info {    background: #fff url(https://img02.anzhiy.cn/adminuploads/1/2022/10/26/6358a07bf21fc.webp) top -24% center no-repeat;    position: relative}[data-theme=dark] #aside-content > .card-info {    background: var(--zhsher-card-bg)}@media screen and (max-width: 992px) {    #aside-content > .card-info {        background-size: 100% 70%    }}.card-widget .author-info__name {    line-height: 1.5em;    margin: 4px 0}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/universe.css"/>
+      <url>/css/universe.css</url>
+      
+        <content type="html"><![CDATA[/* 背景宇宙星光  */#universe{    display: block;    position: fixed;    margin: 0;    padding: 0;    border: 0;    outline: 0;    left: 0;    top: 0;    width: 100%;    height: 100%;    pointer-events: none;    /* 这个是调置顶的优先级的，-1在文章页下面，背景上面，个人推荐这种 */    z-index: -1;  }]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/gulpfile.js"/>
+      <url>/js/gulpfile.js</url>
+      
+        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/cat.js"/>
+      <url>/js/cat.js</url>
+      
+        <content type="html"><![CDATA[if (document.body.clientWidth > 992) {    function getBasicInfo() {        /* 窗口高度 */        var ViewH = $(window).height();        /* document高度 */        var DocH = $("body")[0].scrollHeight;        /* 滚动的高度 */        var ScrollTop = $(window).scrollTop();        /* 可滚动的高度 */        var S_V = DocH - ViewH;        var Band_H = ScrollTop / (DocH - ViewH) * 100;        return {            ViewH: ViewH,            DocH: DocH,            ScrollTop: ScrollTop,            Band_H: Band_H,            S_V: S_V        }    };    function show(basicInfo) {        if (basicInfo.ScrollTop > 0.001) {            $(".neko").css('display', 'block');        } else {            $(".neko").css('display', 'none');        }    }    (function ($) {        $.fn.nekoScroll = function (option) {            var defaultSetting = {                top: '0',                scroWidth: 6 + 'px',                z_index: 9999,                zoom: 0.9,                borderRadius: 5 + 'px',                right: 60 + 'px',                // 这里可以换为你喜欢的图片，例如我就换为了雪人，但是要抠图                nekoImg: "https://bu.dusays.com/2022/07/20/62d812db74be9.png",                hoverMsg: "喵喵喵~",                color: "#6f42c1",                during: 500,                blog_body: "body",            };            var setting = $.extend(defaultSetting, option);            var getThis = this.prop("className") !== "" ? "." + this.prop("className") : this.prop("id") !== "" ? "#" +                this.prop("id") : this.prop("nodeName");            if ($(".neko").length == 0) {                this.after("<div class=\"neko\" id=" + setting.nekoname + " data-msg=\"" + setting.hoverMsg + "\"></div>");            }            let basicInfo = getBasicInfo();            $(getThis)                .css({                    'position': 'fixed',                    'width': setting.scroWidth,                    'top': setting.top,                    'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                    'z-index': setting.z_index,                    'background-color': setting.bgcolor,                    "border-radius": setting.borderRadius,                    'right': setting.right,                    'background-image': 'url(' + setting.scImg + ')',                    'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                    'background-size': 'contain'                });            $("#" + setting.nekoname)                .css({                    'position': 'fixed',                    'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                    'z-index': setting.z_index * 10,                    'right': setting.right,                    'background-image': 'url(' + setting.nekoImg + ')',                });            show(getBasicInfo());            $(window)                .scroll(function () {                    let basicInfo = getBasicInfo();                    show(basicInfo);                    $(getThis)                        .css({                            'position': 'fixed',                            'width': setting.scroWidth,                            'top': setting.top,                            'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                            'z-index': setting.z_index,                            'background-color': setting.bgcolor,                            "border-radius": setting.borderRadius,                            'right': setting.right,                            'background-image': 'url(' + setting.scImg + ')',                            'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                            'background-size': 'contain'                        });                    $("#" + setting.nekoname)                        .css({                            'position': 'fixed',                            'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                            'z-index': setting.z_index * 10,                            'right': setting.right,                            'background-image': 'url(' + setting.nekoImg + ')',                        });                    if (basicInfo.ScrollTop == basicInfo.S_V) {                        $("#" + setting.nekoname)                            .addClass("showMsg")                    } else {                        $("#" + setting.nekoname)                            .removeClass("showMsg");                        $("#" + setting.nekoname)                            .attr("data-msg", setting.hoverMsg);                    }                });            this.click(function (e) {                btf.scrollToDest(0, 500)            });            $("#" + setting.nekoname)                .click(function () {                    btf.scrollToDest(0, 500)                });            return this;        }    })(jQuery);    $(document).ready(function () {        //部分自定义        $("#myscoll").nekoScroll({            bgcolor: 'rgb(0 0 0 / .5)', //背景颜色，没有绳子背景图片时有效            borderRadius: '2em',            zoom: 0.9        }        );        //自定义（去掉以下注释，并注释掉其他的查看效果）        /*        $("#myscoll").nekoScroll({            nekoname:'neko1', //nekoname，相当于id            nekoImg:'img/猫咪.png', //neko的背景图片            scImg:"img/绳1.png", //绳子的背景图片            bgcolor:'#1e90ff', //背景颜色，没有绳子背景图片时有效            zoom:0.9, //绳子长度的缩放值            hoverMsg:'你好~喵', //鼠标浮动到neko上方的对话框信息            right:'100px', //距离页面右边的距离            fontFamily:'楷体', //对话框字体            fontSize:'14px', //对话框字体的大小            color:'#1e90ff', //对话框字体颜色            scroWidth:'8px', //绳子的宽度            z_index:100, //不用解释了吧            during:1200, //从顶部到底部滑动的时长        });        */    })}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/readPercent.js"/>
+      <url>/js/readPercent.js</url>
+      
+        <content type="html"><![CDATA[window.onscroll = percent;// 执行函数// 页面百分比function percent() {    let a = document.documentElement.scrollTop || window.pageYOffset, // 卷去高度        b = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) - document.documentElement.clientHeight, // 整个网页高度        result = Math.round(a / b * 100), // 计算百分比        up = document.querySelector("#go-up") // 获取按钮    if (result <= 95) {        up.childNodes[0].style.display = 'none'        up.childNodes[1].style.display = 'block'        up.childNodes[1].innerHTML = result;    } else {        up.childNodes[1].style.display = 'none'        up.childNodes[0].style.display = 'block'    }}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/gray.js"/>
+      <url>/js/gray.js</url>
+      
+        <content type="html"><![CDATA[if(PublicSacrificeDay()){    document.getElementsByTagName("html")[0].setAttribute("style","filter:gray !important;filter:grayscale(100%);-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);");  }    function PublicSacrificeDay(){      var PSFarr=new Array("0403","0404","0405","0406","0414","0512","0707","0807","0814","0909","0918","0930","1025","1213");      //2020年4月4日 新冠肺炎哀悼日，清明节      //2010年4月14日，青海玉树地震      //2008年5月12日，四川汶川地震      //1937年7月7日,七七事变 又称卢沟桥事变      //2010年8月7日，甘肃舟曲特大泥石流        //8月14日，世界慰安妇纪念日      //1976年9月9日，毛主席逝世        //1931年9月18日，九一八事变        //烈士纪念日为每年9月30日      //1950年10月25日，抗美援朝纪念日      //1937年12月13日，南京大屠杀      var currentdate = new Date();      var str = "";      var mm = currentdate.getMonth()+1;      if(currentdate.getMonth()>9){        str += mm;      }else{        str += "0" + mm;      }      if(currentdate.getDate()>9){        str += currentdate.getDate();      }else{        str += "0" + currentdate.getDate();      }      if(PSFarr.indexOf(str)>-1){          return 1;      }else{          return 0;      }  }    ]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/social_card.js"/>
+      <url>/js/social_card.js</url>
+      
+        <content type="html"><![CDATA[var zhsher = {    getTimeState: function () {        var element = (new Date).getHours(), time = "";        return 0 <= element && element <= 5 ? time = "晚安😴" : 5 < element && element <= 10 ? time = "早上好👋" : 10 < element && element <= 14 ? time = "中午好👋" : 14 < element && element <= 18 ? time = "下午好👋" : 18 < element && element <= 24 && (time = "晚上好👋"), time    },    sayhi: function () {        var element = document.getElementById("author-info__sayhi");        element && (element.innerHTML = zhsher.getTimeState() + "！我是")    }}zhsher.sayhi();]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/universe.js"/>
+      <url>/js/universe.js</url>
+      
+        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/run.js"/>
+      <url>/js/run.js</url>
+      
+        <content type="html"><![CDATA[var now = new Date();function createtime() {  now.setTime(now.getTime() + 1e3);  var e = new Date("04/03/2023 00:24:00"),    t = Math.trunc(234e8 + ((now - e) / 1e3) * 17),    a = (t / 1496e5).toFixed(6),    o = new Date("04/03/2023 12:00:00"),    n = (now - o) / 1e3 / 60 / 60 / 24,    r = Math.floor(n),    i = (now - o) / 1e3 / 60 / 60 - 24 * r,    s = Math.floor(i);  1 == String(s).length && (s = "0" + s);  var d = (now - o) / 1e3 / 60 - 1440 * r - 60 * s,    l = Math.floor(d);  1 == String(l).length && (l = "0" + l);  var g = (now - o) / 1e3 - 86400 * r - 3600 * s - 60 * l,    b = Math.round(g);  1 == String(b).length && (b = "0" + b);  let c = "";  (c =    s < 18 && s >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='浑水摸鱼罢了~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 阳光微瑕 距离下次见面又近了 提前告诉我 我可以开心的更久一点哦 虽然相恋了 ${r+394} 天 ，甜蜜度依旧如相识那样 🚀</div>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='终于下班啦~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 阳光微瑕 距离下次见面又近了 提前告诉我 我可以开心的更久一点哦 虽然相恋了 ${r+394} 天，甜蜜度依旧如相识那样 🚀</div>`),    document.getElementById("workboard") &&      (document.getElementById("workboard").innerHTML = c);}setInterval(() => {  createtime();}, 1e3);]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/runtime.js"/>
+      <url>/js/runtime.js</url>
+      
+        <content type="html"><![CDATA[var now = new Date();function createtime() {  var grt = new Date("04/02/2023 23:26:00");  now.setTime(now.getTime() + 250);  var days = (now - grt) / 1e3 / 60 / 60 / 24,    dnum = Math.floor(days),    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,    hnum = Math.floor(hours);  1 == String(hnum).length && (hnum = "0" + hnum);  var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,    mnum = Math.floor(minutes);  1 == String(mnum).length && (mnum = "0" + mnum);  var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,    snum = Math.round(seconds);  1 == String(snum).length && (snum = "0" + snum);  let currentTimeHtml = "";  (currentTimeHtml =    hnum < 18 && hnum >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='距离月入25k也就还差一个大佬带我~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心的玩耍，嘿嘿~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`),    document.getElementById("workboard") && (document.getElementById("workboard").innerHTML = currentTimeHtml);}setInterval(() => {  createtime();}, 250);]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/weather.js"/>
+      <url>/js/weather.js</url>
+      
+        <content type="html"><![CDATA[WIDGET = {    "CONFIG": {      "modules": "01234",      "background": "1",      "tmpColor": "FFFFFF",      "tmpSize": "16",      "cityColor": "FFFFFF",      "citySize": "16",      "aqiColor": "FFFFFF",      "aqiSize": "16",      "weatherIconSize": "24",      "alertIconSize": "18",      "padding": "10px 10px 10px 10px",      "shadow": "0",      "language": "auto",      "fixed": "false",      "vertical": "top",      "horizontal": "left",      "city": "CN101050301",      "key": "304d70206a7a4bbcbe04b49f2a58d310"    }  }]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/title.js"/>
+      <url>/js/title.js</url>
+      
+        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '👀跑哪里去了~';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = '🐖抓到你啦～';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
       
     </entry>
     
@@ -857,20 +920,9 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>books</title>
-      <link href="/list/books/index.html"/>
-      <url>/list/books/index.html</url>
+      <title>bangumis</title>
+      <link href="/list/bangumis/index.html"/>
+      <url>/list/bangumis/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -901,9 +953,9 @@
     
     
     <entry>
-      <title>bangumis</title>
-      <link href="/list/bangumis/index.html"/>
-      <url>/list/bangumis/index.html</url>
+      <title>books</title>
+      <link href="/list/books/index.html"/>
+      <url>/list/books/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
