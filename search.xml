@@ -13,9 +13,9 @@
       
       <categories>
           
-          <category> Python </category>
-          
           <category> C++ </category>
+          
+          <category> Python </category>
           
       </categories>
       
@@ -40,7 +40,7 @@
       
       <categories>
           
-          <category> other </category>
+          <category> Python </category>
           
       </categories>
       
@@ -578,6 +578,31 @@
     
     
     <entry>
+      <title>我的第一篇博客文章</title>
+      <link href="/posts/b24dd347.html"/>
+      <url>/posts/b24dd347.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="这是第一篇文章"><a href="#这是第一篇文章" class="headerlink" title="这是第一篇文章"></a>这是第一篇文章</h2><div class="note default simple"><p>nice to meet you! My baby!</p></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> other </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> QT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>我的第三篇博客文章</title>
       <link href="/posts/6f36dd99.html"/>
       <url>/posts/6f36dd99.html</url>
@@ -626,31 +651,6 @@
     </entry>
     
     
-    
-    <entry>
-      <title>我的第一篇博客文章</title>
-      <link href="/posts/b24dd347.html"/>
-      <url>/posts/b24dd347.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="这是第一篇文章"><a href="#这是第一篇文章" class="headerlink" title="这是第一篇文章"></a>这是第一篇文章</h2><div class="note default simple"><p>nice to meet you! My baby!</p></div>]]></content>
-      
-      
-      <categories>
-          
-          <category> other </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> QT </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
   
   
     
@@ -661,17 +661,6 @@
       <url>/about/index.html</url>
       
         <content type="html"><![CDATA[<h1 id="遇见便是最好"><a href="#遇见便是最好" class="headerlink" title="遇见便是最好"></a>遇见便是最好</h1><h1 id="下次再见的时候一定要提前告诉我"><a href="#下次再见的时候一定要提前告诉我" class="headerlink" title="下次再见的时候一定要提前告诉我"></a>下次再见的时候一定要提前告诉我</h1><h1 id="这样我就可以开心更久了"><a href="#这样我就可以开心更久了" class="headerlink" title="这样我就可以开心更久了"></a>这样我就可以开心更久了</h1>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>留言板</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -689,11 +678,11 @@
     
     
     <entry>
-      <title></title>
-      <link href="/css/dark%20span.css"/>
-      <url>/css/dark%20span.css</url>
+      <title>留言板</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
       
-        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -712,6 +701,17 @@
     
     <entry>
       <title></title>
+      <link href="/css/cat.css"/>
+      <url>/css/cat.css</url>
+      
+        <content type="html"><![CDATA[body::-webkit-scrollbar {    width: 0;}.neko {    width: 64px;    height: 64px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812db74be9.png");    position: absolute;    right: 32px;    background-repeat: no-repeat;    background-size: contain;    transform: translateX(50%);    cursor: pointer;    font-family: tzy;    font-weight: 600;    font-size: 16px;    color: #6f42c1;    display: none;}.neko::after {    display: none;    width: 100px;    height: 100px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812d95e6f5.png");    background-size: contain;    z-index: 9999;    position: absolute;    right: 50%;    text-align: center;    line-height: 100px;    top: -115%;}.neko.showMsg::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko:hover::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko.fontColor::after {    color: #333;}/** * @description: 滚动条样式  跟猫二选一 */@media screen and (max-width:992px) {    ::-webkit-scrollbar {        width: 8px !important;        height: 8px !important    }    ::-webkit-scrollbar-track {        border-radius: 2em;    }    ::-webkit-scrollbar-thumb {        background-color: rgb(255 255 255 / .3);        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);        border-radius: 2em    }    ::-webkit-scrollbar-corner {        background-color: transparent    }}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/css/custom.css"/>
       <url>/css/custom.css</url>
       
@@ -723,10 +723,10 @@
     
     <entry>
       <title></title>
-      <link href="/css/cat.css"/>
-      <url>/css/cat.css</url>
+      <link href="/css/progress_bar.css"/>
+      <url>/css/progress_bar.css</url>
       
-        <content type="html"><![CDATA[body::-webkit-scrollbar {    width: 0;}.neko {    width: 64px;    height: 64px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812db74be9.png");    position: absolute;    right: 32px;    background-repeat: no-repeat;    background-size: contain;    transform: translateX(50%);    cursor: pointer;    font-family: tzy;    font-weight: 600;    font-size: 16px;    color: #6f42c1;    display: none;}.neko::after {    display: none;    width: 100px;    height: 100px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812d95e6f5.png");    background-size: contain;    z-index: 9999;    position: absolute;    right: 50%;    text-align: center;    line-height: 100px;    top: -115%;}.neko.showMsg::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko:hover::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko.fontColor::after {    color: #333;}/** * @description: 滚动条样式  跟猫二选一 */@media screen and (max-width:992px) {    ::-webkit-scrollbar {        width: 8px !important;        height: 8px !important    }    ::-webkit-scrollbar-track {        border-radius: 2em;    }    ::-webkit-scrollbar-thumb {        background-color: rgb(255 255 255 / .3);        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);        border-radius: 2em    }    ::-webkit-scrollbar-corner {        background-color: transparent    }}]]></content>
+        <content type="html"><![CDATA[.pace {    -webkit-pointer-events: none;    pointer-events: none;    -webkit-user-select: none;    -moz-user-select: none;    user-select: none;    z-index: 2000;    position: fixed;    margin: auto;    top: 10px;    left: 0;    right: 0;    height: 8px;    border-radius: 8px;    width: 4rem;    background: #eaecf2;    border: 1px #e3e8f7;    overflow: hidden;  }    .pace-inactive .pace-progress {    opacity: 0;    transition: 0.3s ease-in;  }    .pace .pace-progress {    -webkit-box-sizing: border-box;    -moz-box-sizing: border-box;    -ms-box-sizing: border-box;    -o-box-sizing: border-box;    box-sizing: border-box;    -webkit-transform: translate3d(0, 0, 0);    -moz-transform: translate3d(0, 0, 0);    -ms-transform: translate3d(0, 0, 0);    -o-transform: translate3d(0, 0, 0);    transform: translate3d(0, 0, 0);    max-width: 200px;    position: absolute;    z-index: 2000;    display: block;    top: 0;    right: 100%;    height: 100%;    width: 100%;    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);    animation: gradient 1.5s ease infinite;    background-size: 200%;  }    .pace.pace-inactive {    opacity: 0;    transition: 0.3s;    top: -8px;  }  @keyframes gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }  ]]></content>
       
     </entry>
     
@@ -745,10 +745,10 @@
     
     <entry>
       <title></title>
-      <link href="/css/progress_bar.css"/>
-      <url>/css/progress_bar.css</url>
+      <link href="/css/dark%20span.css"/>
+      <url>/css/dark%20span.css</url>
       
-        <content type="html"><![CDATA[.pace {    -webkit-pointer-events: none;    pointer-events: none;    -webkit-user-select: none;    -moz-user-select: none;    user-select: none;    z-index: 2000;    position: fixed;    margin: auto;    top: 10px;    left: 0;    right: 0;    height: 8px;    border-radius: 8px;    width: 4rem;    background: #eaecf2;    border: 1px #e3e8f7;    overflow: hidden;  }    .pace-inactive .pace-progress {    opacity: 0;    transition: 0.3s ease-in;  }    .pace .pace-progress {    -webkit-box-sizing: border-box;    -moz-box-sizing: border-box;    -ms-box-sizing: border-box;    -o-box-sizing: border-box;    box-sizing: border-box;    -webkit-transform: translate3d(0, 0, 0);    -moz-transform: translate3d(0, 0, 0);    -ms-transform: translate3d(0, 0, 0);    -o-transform: translate3d(0, 0, 0);    transform: translate3d(0, 0, 0);    max-width: 200px;    position: absolute;    z-index: 2000;    display: block;    top: 0;    right: 100%;    height: 100%;    width: 100%;    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);    animation: gradient 1.5s ease infinite;    background-size: 200%;  }    .pace.pace-inactive {    opacity: 0;    transition: 0.3s;    top: -8px;  }  @keyframes gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }  ]]></content>
+        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
       
     </entry>
     
@@ -778,17 +778,6 @@
     
     <entry>
       <title></title>
-      <link href="/js/gulpfile.js"/>
-      <url>/js/gulpfile.js</url>
-      
-        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/js/cat.js"/>
       <url>/js/cat.js</url>
       
@@ -800,10 +789,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/readPercent.js"/>
-      <url>/js/readPercent.js</url>
+      <link href="/js/gulpfile.js"/>
+      <url>/js/gulpfile.js</url>
       
-        <content type="html"><![CDATA[window.onscroll = percent;// 执行函数// 页面百分比function percent() {    let a = document.documentElement.scrollTop || window.pageYOffset, // 卷去高度        b = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) - document.documentElement.clientHeight, // 整个网页高度        result = Math.round(a / b * 100), // 计算百分比        up = document.querySelector("#go-up") // 获取按钮    if (result <= 95) {        up.childNodes[0].style.display = 'none'        up.childNodes[1].style.display = 'block'        up.childNodes[1].innerHTML = result;    } else {        up.childNodes[1].style.display = 'none'        up.childNodes[0].style.display = 'block'    }}]]></content>
+        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
       
     </entry>
     
@@ -822,21 +811,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/social_card.js"/>
-      <url>/js/social_card.js</url>
+      <link href="/js/readPercent.js"/>
+      <url>/js/readPercent.js</url>
       
-        <content type="html"><![CDATA[var zhsher = {    getTimeState: function () {        var element = (new Date).getHours(), time = "";        return 0 <= element && element <= 5 ? time = "晚安😴" : 5 < element && element <= 10 ? time = "早上好👋" : 10 < element && element <= 14 ? time = "中午好👋" : 14 < element && element <= 18 ? time = "下午好👋" : 18 < element && element <= 24 && (time = "晚上好👋"), time    },    sayhi: function () {        var element = document.getElementById("author-info__sayhi");        element && (element.innerHTML = zhsher.getTimeState() + "！我是")    }}zhsher.sayhi();]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/universe.js"/>
-      <url>/js/universe.js</url>
-      
-        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
+        <content type="html"><![CDATA[window.onscroll = percent;// 执行函数// 页面百分比function percent() {    let a = document.documentElement.scrollTop || window.pageYOffset, // 卷去高度        b = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) - document.documentElement.clientHeight, // 整个网页高度        result = Math.round(a / b * 100), // 计算百分比        up = document.querySelector("#go-up") // 获取按钮    if (result <= 95) {        up.childNodes[0].style.display = 'none'        up.childNodes[1].style.display = 'block'        up.childNodes[1].innerHTML = result;    } else {        up.childNodes[1].style.display = 'none'        up.childNodes[0].style.display = 'block'    }}]]></content>
       
     </entry>
     
@@ -866,6 +844,28 @@
     
     <entry>
       <title></title>
+      <link href="/js/social_card.js"/>
+      <url>/js/social_card.js</url>
+      
+        <content type="html"><![CDATA[var zhsher = {    getTimeState: function () {        var element = (new Date).getHours(), time = "";        return 0 <= element && element <= 5 ? time = "晚安😴" : 5 < element && element <= 10 ? time = "早上好👋" : 10 < element && element <= 14 ? time = "中午好👋" : 14 < element && element <= 18 ? time = "下午好👋" : 18 < element && element <= 24 && (time = "晚上好👋"), time    },    sayhi: function () {        var element = document.getElementById("author-info__sayhi");        element && (element.innerHTML = zhsher.getTimeState() + "！我是")    }}zhsher.sayhi();]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/universe.js"/>
+      <url>/js/universe.js</url>
+      
+        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/js/weather.js"/>
       <url>/js/weather.js</url>
       
@@ -887,22 +887,22 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title>list</title>
+      <link href="/list/index.html"/>
+      <url>/list/index.html</url>
       
-        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>list</title>
-      <link href="/list/index.html"/>
-      <url>/list/index.html</url>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
       
     </entry>
     

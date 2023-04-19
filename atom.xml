@@ -6,7 +6,7 @@
   <link href="https://aixiaocainiao.github.io/atom.xml" rel="self"/>
   
   <link href="https://aixiaocainiao.github.io/"/>
-  <updated>2023-04-19T13:49:26.396Z</updated>
+  <updated>2023-04-19T13:59:04.945Z</updated>
   <id>https://aixiaocainiao.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://aixiaocainiao.github.io/posts/37604654.html"/>
     <id>https://aixiaocainiao.github.io/posts/37604654.html</id>
     <published>2023-04-19T13:32:40.100Z</published>
-    <updated>2023-04-19T13:49:26.396Z</updated>
+    <updated>2023-04-19T13:59:04.945Z</updated>
     
     <content type="html"><![CDATA[<h1 id="opencv编译命令"><a href="#opencv编译命令" class="headerlink" title="opencv编译命令"></a>opencv编译命令</h1><h2 id="C-Opencv"><a href="#C-Opencv" class="headerlink" title="C++ Opencv"></a>C++ Opencv</h2><p>编译命令:</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -o your_executable your_source_file.cpp `pkg-config --cflags --libs opencv`</span><br></pre></td></tr></table></figure><h2 id="python-opencv"><a href="#python-opencv" class="headerlink" title="python opencv"></a>python opencv</h2><p>python opencv python2.7 cv2 版本对应<br>python程序前加：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-*- coding: utf-<span class="number">8</span> -*-</span><br></pre></td></tr></table></figure><p>注意：针对的是python2.7的版本 即python3一下的版本 </p><hr><p>import cv2</p><hr>]]></content>
     
@@ -30,9 +30,9 @@
     
     
     
-    <category term="Python" scheme="https://aixiaocainiao.github.io/categories/Python/"/>
+    <category term="C++" scheme="https://aixiaocainiao.github.io/categories/C/"/>
     
-    <category term="C++" scheme="https://aixiaocainiao.github.io/categories/Python/C/"/>
+    <category term="Python" scheme="https://aixiaocainiao.github.io/categories/C/Python/"/>
     
     
     <category term="opencv" scheme="https://aixiaocainiao.github.io/tags/opencv/"/>
@@ -44,7 +44,7 @@
     <link href="https://aixiaocainiao.github.io/posts/8a0944ef.html"/>
     <id>https://aixiaocainiao.github.io/posts/8a0944ef.html</id>
     <published>2023-04-19T13:32:40.094Z</published>
-    <updated>2023-04-19T13:49:26.390Z</updated>
+    <updated>2023-04-19T13:58:03.056Z</updated>
     
     <content type="html"><![CDATA[<h1 id="conda使用方法"><a href="#conda使用方法" class="headerlink" title="conda使用方法"></a>conda使用方法</h1><ul><li>常用命令<br>sudo apt update<br>更新所有软件<br>sudo apt upgrade<br>删除</li></ul><h2 id="conda使用"><a href="#conda使用" class="headerlink" title="conda使用"></a>conda使用</h2><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul><li><p>创建独立环境<br>不能将需要用的软件或者其他要用的东西装在base环境中</p></li><li><p>创建一些独立的环境会比较方便我们做项目管理，不会有冗余，一个独立的小环境就像一间单独的小房间，彼此独立不会相互影响，这样就会可以方便我们管理不同依赖包的软件</p></li><li><p>建议： base环境中不要安装任何的包，保持干净，除非你知道这个包会对原生的环境造成什么样的影响</p></li></ul><p>conda create -n rnaseq   #创建conda小环境 - -n 用来指定环境的名称<br>conda create -n database python=3.7.3    #指定环境中需要带的python的版本</p><p>conda activate rnaseq     # 启动小环境</p><p>conda deactivate           #退出小环境</p><p>conda env list  / conda info —env    #查看共有多少个小环境</p><p>conda remove -n python —all     #删除conda小环境</p><h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><ul><li>ex:<br>conda create -n adr<br>conda activate rnaseq(name)     # 启动小环境</li></ul><p>这里面可以pip install 包 只存在于这个小环境中 对base(主环境)不受影响</p><h1 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h1><p>最好使用pip install 包名<br>实在下载不了的再用conda install 包名</p><ul><li><p>ipython<br>%run ./adr/main.py<br>exit</p></li><li><p>conda deactivate           #退出小环境</p></li></ul><h2 id="指定安装软件的版本（以fastqc为例）"><a href="#指定安装软件的版本（以fastqc为例）" class="headerlink" title="指定安装软件的版本（以fastqc为例）"></a>指定安装软件的版本（以fastqc为例）</h2><ul><li><p>在不指定版本的情况下，conda默认安装该软件的最新版，如果要安装旧的版本方法：</p><p>  先看看有哪些可以安装的版本 conda search fastqc<br>  安装指定版本的软件</p></li><li><p>conda install fastqc=0.11.7</p></li></ul><p>添加-y参数跳过确认的步骤 conda install -y fastqc=0.11.7<br>安装找不到软件的包</p><pre><code>确定一下conda是否能安装我们需要的软件确定名字是不是输入正确（尤其要注意，因为我不怎么长眼睛）确定好我们要安装的包在conda中的名字</code></pre><ul><li>查看conda中已经安装的软件</li></ul><p>conda list     #查看当前环境下用conda安装的软件</p><p>conda list fast*   # 查看符合正则表达式的软件</p><p>conda list -n base    # 查看指定环境下用conda安装的软件</p><ul><li>删除软件</li></ul><p>conda remove fastqc   # 删除该环境中的软件</p><p>conda remove -n rnaseq fastqc   # 删除指定环境下的软件</p><ul><li>升级软件</li></ul><p>conda update fastqc  #升级指定的软件</p><p>conda update conda    #升级conda本身</p><ul><li>小tips<pre><code>conda可以一次安装多个软件包</code></pre>有时候只要软件比如说我们的conda不影响我们的使用就不需要去管<br>指定下载该软件的旧版本就可以完成该软件的降级</li></ul>]]></content>
     
@@ -53,7 +53,7 @@
     
     
     
-    <category term="other" scheme="https://aixiaocainiao.github.io/categories/other/"/>
+    <category term="Python" scheme="https://aixiaocainiao.github.io/categories/Python/"/>
     
     
     <category term="conda" scheme="https://aixiaocainiao.github.io/tags/conda/"/>
