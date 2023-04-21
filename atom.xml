@@ -42,7 +42,7 @@
     <link href="https://aixiaocainiao.github.io/posts/37604654.html"/>
     <id>https://aixiaocainiao.github.io/posts/37604654.html</id>
     <published>2023-04-19T13:32:40.100Z</published>
-    <updated>2023-04-19T13:59:04.945Z</updated>
+    <updated>2023-04-21T10:25:42.882Z</updated>
     
     <content type="html"><![CDATA[<h1 id="opencv编译命令"><a href="#opencv编译命令" class="headerlink" title="opencv编译命令"></a>opencv编译命令</h1><h2 id="C-Opencv"><a href="#C-Opencv" class="headerlink" title="C++ Opencv"></a>C++ Opencv</h2><p>编译命令:</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -o your_executable your_source_file.cpp `pkg-config --cflags --libs opencv`</span><br></pre></td></tr></table></figure><h2 id="python-opencv"><a href="#python-opencv" class="headerlink" title="python opencv"></a>python opencv</h2><p>python opencv python2.7 cv2 版本对应<br>python程序前加：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-*- coding: utf-<span class="number">8</span> -*-</span><br></pre></td></tr></table></figure><p>注意：针对的是python2.7的版本 即python3一下的版本 </p><hr><p>import cv2</p><hr>]]></content>
     
@@ -51,9 +51,7 @@
     
     
     
-    <category term="C++" scheme="https://aixiaocainiao.github.io/categories/C/"/>
-    
-    <category term="Python" scheme="https://aixiaocainiao.github.io/categories/C/Python/"/>
+    <category term="other" scheme="https://aixiaocainiao.github.io/categories/other/"/>
     
     
     <category term="opencv" scheme="https://aixiaocainiao.github.io/tags/opencv/"/>
