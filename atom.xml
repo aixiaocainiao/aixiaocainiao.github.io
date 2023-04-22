@@ -6,7 +6,7 @@
   <link href="https://aixiaocainiao.github.io/atom.xml" rel="self"/>
   
   <link href="https://aixiaocainiao.github.io/"/>
-  <updated>2023-04-21T10:17:56.469Z</updated>
+  <updated>2023-04-22T16:03:10.293Z</updated>
   <id>https://aixiaocainiao.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>yolov5环境配置</title>
+    <link href="https://aixiaocainiao.github.io/posts/9811ab24.html"/>
+    <id>https://aixiaocainiao.github.io/posts/9811ab24.html</id>
+    <published>2023-04-22T15:51:09.493Z</published>
+    <updated>2023-04-22T16:03:10.293Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="yolov5环境配置"><a href="#yolov5环境配置" class="headerlink" title="yolov5环境配置"></a>yolov5环境配置</h1><p>配置：AMD显卡 AMD CPU  ubuntu18.04 pytorch cpu版本 外网环境<br>要求：python版本 3.8及其以上  python3.6.9的版本出了问题</p><ul><li><p>1.0、准备工作：<br>yolov5下载包<br>git clone <a href="https://github.com/ultralytics/yolov5.git">https://github.com/ultralytics/yolov5.git</a></p></li><li><p>2.0、环境配置：<br>conda create -n yolov5 python==3.8<br>conda activate yolov5</p></li></ul><h2 id="安装pytorch"><a href="#安装pytorch" class="headerlink" title="安装pytorch"></a>安装pytorch</h2><p>Stable<br>Linux<br>conda<br>Python</p><p>cpu</p><hr><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio cpuonly -c pytorch</span><br></pre></td></tr></table></figure><ul><li>3.0、检查配置</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line">import torch</span><br><span class="line">torch.__version__</span><br><span class="line">输出版本号 证明安装成功</span><br></pre></td></tr></table></figure><h2 id="安装python可视化"><a href="#安装python可视化" class="headerlink" title="安装python可视化"></a>安装python可视化</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install ipython</span><br></pre></td></tr></table></figure><ul><li>4.0、继续</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd  yolov5-master</span><br><span class="line">ls</span><br><span class="line">确保有.txt文件夹</span><br><span class="line">pip3 install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">yolov5环境配置</summary>
+    
+    
+    
+    <category term="other" scheme="https://aixiaocainiao.github.io/categories/other/"/>
+    
+    
+    <category term="yolov5" scheme="https://aixiaocainiao.github.io/tags/yolov5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu中图片webp格式转为png格式</title>
+    <link href="https://aixiaocainiao.github.io/posts/929705e8.html"/>
+    <id>https://aixiaocainiao.github.io/posts/929705e8.html</id>
+    <published>2023-04-22T15:51:09.482Z</published>
+    <updated>2023-04-22T16:03:10.288Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="ubuntu中webp转为png"><a href="#ubuntu中webp转为png" class="headerlink" title="ubuntu中webp转为png"></a>ubuntu中webp转为png</h1><p>配置：ubuntu18.04  图片webp格式 转换为png格式</p><p>第一步：</p><ul><li>先在终端中使用如下命令安装 WebP 工具：</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install webp</span><br></pre></td></tr></table></figure><p>第二步：</p><ul><li>可以使用如下命令将 JPG 或 PNG 转换为 WEBP：</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cwebp -q [图像质量] [JPEG/PNG文件名] -o [WebP文件名]</span><br></pre></td></tr></table></figure><ul><li>使用如下命令或将 WEBP 图片转换成 PNG：</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dwebp [WebP文件名] -o [PNG文件名]</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">Ubuntu中图片webp格式转为png格式</summary>
+    
+    
+    
+    <category term="other" scheme="https://aixiaocainiao.github.io/categories/other/"/>
+    
+    
+    <category term="png" scheme="https://aixiaocainiao.github.io/tags/png/"/>
+    
+    <category term="webp" scheme="https://aixiaocainiao.github.io/tags/webp/"/>
+    
+  </entry>
   
   <entry>
     <title>51单片机学习历程</title>
@@ -409,50 +453,6 @@
     
     
     <category term="blog" scheme="https://aixiaocainiao.github.io/tags/blog/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C语言学习之malloc</title>
-    <link href="https://aixiaocainiao.github.io/posts/58eeb5e1.html"/>
-    <id>https://aixiaocainiao.github.io/posts/58eeb5e1.html</id>
-    <published>2023-04-05T06:48:44.000Z</published>
-    <updated>2023-04-09T08:15:01.650Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、C语言学习之malloc"><a href="#一、C语言学习之malloc" class="headerlink" title="一、C语言学习之malloc"></a>一、C语言学习之malloc</h1><h2 id="1、函数详解"><a href="#1、函数详解" class="headerlink" title="1、函数详解"></a>1、函数详解</h2><ul><li><p>1.函数介绍</p><p>头文件: stdlib.h<br>malloc:<br>函数原型：void * malloc(size_t size);<br>size_t就是unsigned int（无符号整型）</p><p>这个函数的作用就是在动态存储区中分配一个长度为size个字节的连续空间，并返回指向该空间的指针。</p></li><li><p>2.返回参数</p><p>1）如果开辟成功，则返回一个指向开辟好空间的指针。<br>2）如果开辟失败，则返回一个NULL指针，因此malloc的返回值一定要做检查。<br>3）返回值的类型是void * ，所以malloc函数并不知道开辟空间的类型，具体在使用的时候使用者自己来决定。<br>4）如果参数size为0，malloc的行为是标准是未定义的，取决于编译器。</p></li></ul><h2 id="2、动态开辟的空间如何释放和回收呢？"><a href="#2、动态开辟的空间如何释放和回收呢？" class="headerlink" title="2、动态开辟的空间如何释放和回收呢？"></a>2、动态开辟的空间如何释放和回收呢？</h2><ul><li>C语言提供了一个专门完成这个功能的库函数— - free<br>free</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">函数原型：<span class="type">void</span> <span class="title function_">free</span><span class="params">(<span class="type">void</span>* p)</span></span><br></pre></td></tr></table></figure><ul><li><p>free的作用就是释放指针变量p所指向的动态空间，使这部分空间能够重新被利用。</p><p>1）如果参数ptr指向的空间不是动态开辟的，那free函数的行为是未  定义的。<br>2）如果参数 ptr是NULL指针，则函数什么事都不做。</p></li></ul><p>注意： 用malloc申请的空间，里面的内容是随机值，如果不初始化的话，可能就会得到一些意想不到的值；<br>理解：如果参数ptr指向的空间不是动态开辟的，那free函数的行为是未定义的。</p><h1 id="二、C语言学习之calloc"><a href="#二、C语言学习之calloc" class="headerlink" title="二、C语言学习之calloc"></a>二、C语言学习之calloc</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">函数原型：void * calloc(size_t num, size_t size);</span><br></pre></td></tr></table></figure><ul><li>函数的功能是为num 个大小为size的元素开辟一块空间，并且把空间的每个字节初始化为O</li><li>与函数ma1loc的区别只在于calloc会在返回地址之前把申请的空间的每个字节初始化为全0。</li></ul><h1 id="三、数组指针和指针数组学习"><a href="#三、数组指针和指针数组学习" class="headerlink" title="三、数组指针和指针数组学习"></a>三、数组指针和指针数组学习</h1><ul><li><p>数组指针：是指针</p></li><li><p>~~~c<br>例如:int (<em>p)[10] = &arr;<br>我们已经熟悉︰<br>整形指针 : int</em> i pint; 能够指向整形数据的指针。<br>浮点型指针 : float* pf; 能够指向浮点型数据的指针。<br>那数组指针应该是︰能够指向数组的指针。<br>数组指针和指针数组要区分开来。<br>整型指针— - 指向整型的指针</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">~~~c</span><br><span class="line">int a = 10;</span><br><span class="line">int* pa = &amp;a;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">字符指针-- - 指向字符的指针</span><br></pre></td></tr></table></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> ch = <span class="string">&#x27;w&#x27;</span>;</span><br><span class="line"><span class="type">char</span>* pc = &amp;ch;</span><br></pre></td></tr></table></figure></li><li><p>数组指针— - 指向数组的指针</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="type">int</span> arr[<span class="number">10</span>] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span> &#125;;</span><br><span class="line"><span class="comment">//int* p = arr;// 数组名是首元素地址</span></span><br><span class="line"><span class="comment">//数组指针 存放数组的指针变量</span></span><br><span class="line"><span class="type">int</span>(*p)[<span class="number">10</span>] = &amp;arr;<span class="comment">//(*p)代表p是指针变量</span></span><br><span class="line"><span class="comment">//该指针指向了一个数组，数组10个元素，每个元素的类型是int</span></span><br><span class="line"><span class="comment">//如果不用括号将*p括起来，写成int* p[10]，这是指针数组</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><pre><code>    函数指针和指针函数</code></pre><h2 id="3-1复习"><a href="#3-1复习" class="headerlink" title="3.1复习"></a>3.1复习</h2><h3 id="3-1常量字符串"><a href="#3-1常量字符串" class="headerlink" title="3.1常量字符串"></a>3.1常量字符串</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span></span><br><span class="line"><span class="comment">//arr = &amp;arr[0] 数组首地址</span></span><br><span class="line"><span class="comment">//&amp;arr 数组的地址</span></span><br><span class="line"><span class="number">2.</span></span><br><span class="line"><span class="type">char</span>* ps = <span class="string">&quot;bacf&quot;</span>;  最好写成<span class="type">const</span> <span class="type">char</span>* ps = <span class="string">&quot;bacf&quot;</span> </span><br><span class="line">常量区中的内容在整个程序的执行期间是不允许被修改的，且同一份常量字符串只会创建一份，不会重复创建存储。   </span><br></pre></td></tr></table></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* ps = <span class="string">&quot;bacf&quot;</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,ps);</span><br><span class="line">这种方式是将字符串的首地址放到指针中，通过指针可以找到该字符串（千万不要理解成将字符串放到指针里面去，这是不可能的）。（类似与数组名就是首元素地址，但是跟数组还是有所区别的，这个字符串是一个常量字符串，无法被改变</span><br></pre></td></tr></table></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1:</span></span><br><span class="line"><span class="type">char</span> arr[<span class="number">5</span>];</span><br><span class="line"><span class="type">char</span>(*pa)[<span class="number">5</span>] = &amp;arr;</span><br><span class="line"><span class="comment">//2:</span></span><br><span class="line"><span class="type">char</span>* ch[<span class="number">8</span>];</span><br><span class="line"><span class="type">char</span>* (*pc)[<span class="number">8</span>] = &amp;ch;</span><br><span class="line"><span class="comment">//3:</span></span><br><span class="line"><span class="type">int</span>(*p)[<span class="number">10</span>];</span><br><span class="line"><span class="comment">//解释: p先和*结合，说明p是一个指针变量，然后指着指向的是一个大小为10个整型的数组。所以p是一个指针，指向一个数组，叫数组指针。</span></span><br><span class="line"><span class="comment">//这里要注意:[]的优先级要高于*号的，所以必须加上(）来保证p先和*结合。</span></span><br></pre></td></tr></table></figure><h3 id="3-2函数指针"><a href="#3-2函数指针" class="headerlink" title="3.2函数指针"></a>3.2函数指针</h3><ul><li>1.注意：<pre><code>&amp; 函数名 和 函数名均表示函数的地址！数组名 != &amp;数组名函数名 == &amp;函数名</code></pre></li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> (*pd)(<span class="type">int</span>,<span class="type">int</span>) = &amp;Sdd;pd的类型是<span class="type">int</span> (*)(<span class="type">int</span>,<span class="type">int</span>)</span><br><span class="line"><span class="type">int</span> sum = (*pd)(<span class="number">2</span>,<span class="number">3</span>) 和 <span class="type">int</span> sum = pd(<span class="number">2</span>,<span class="number">30</span>)一样的</span><br><span class="line">注意:</span><br><span class="line">既然这个地方的 * 可以省略，那么我们在使用的时候 * 可以用多个，也可以不要， * 号在这里就是一个摆设，这个地方放 * 是为了方便理解+</span><br></pre></td></tr></table></figure><ul><li>学习指针。<br>函数指针数组<br>那要把函数的地址存到一个数组中，那这个数组就叫函数指针数组</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- <span class="type">int</span> (*parr1[<span class="number">10</span>])();</span><br><span class="line">  <span class="type">int</span>* parr2[<span class="number">10</span>]();</span><br><span class="line">  <span class="type">int</span> (*)() parr3[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">关于C语言的动态内存malloc和callo的用法</summary>
-    
-    
-    
-    <category term="C++" scheme="https://aixiaocainiao.github.io/categories/C/"/>
-    
-    
-    <category term="C++" scheme="https://aixiaocainiao.github.io/tags/C/"/>
-    
-    <category term="C" scheme="https://aixiaocainiao.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>加密密匙</title>
-    <link href="https://aixiaocainiao.github.io/posts/b2ffbe6c.html"/>
-    <id>https://aixiaocainiao.github.io/posts/b2ffbe6c.html</id>
-    <published>2023-04-05T06:46:40.121Z</published>
-    <updated>2023-04-18T23:51:53.184Z</updated>
-    
-    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">  <script id="hbeData" type="hbeData" data-hmacdigest="d0efc64646ab4f4bd4810e58b6efa3ad5c6ce3ea4cb57e2c5bb47e3fe74be951">bf77d8818ecf38b4f77c36bf1e782c18400938b11182f74fdc8049505448fdd03358737dcdbe8fdb4266cd68a1bd2d72dbf73d66ebb1288b086ac61fb16eb464e39e35bd76e0791366847e652a037f9bd84553b777dba89dcbac3ad2392b74203c2dde2b42e9adc25955d0000b7362b93718b95dec29696847937691d03565f8d2a984615fa4793c76fd452377ac29f40553dd561595a8f7b256f81d6630c6f1a239c4b9119df132c2a09e5d7216bd02538980f14e8a625b34dee3cada145e4eec1dc01b3cb1ce24c527f74264af1b0e3ab704c52d30ae8ba301e0321c5c72eef1173b2eb4e1488665272a89bcf57a57c002a4e003a99f727b26e52432e1fa1ef2462da994e00a9a0ef4493d4832788d09878cfb6bf8eeb83217717356a1d2f7ddc06e2e84533c370afa12b10e96ef1e4c90d08b8c096bfcb5e24644d31409f43eb1027c155729c53fdaf0a47341c169398bf468b075fd363d65b594d89f2f7712d6a24ed956967f2a973cb164ae93ba9a28a95992151b89ad31e871ef520d58e70eff1be290055654b61098530bb044f7899b1f53b2721d377ceb49fec605d60a14fae9ce7ce23e0269210f7cbfd91e5959ed22b3e60308cc8448f01830e7330d90cb901c05838aca16acf3c7cf0094edef56f53b37d4e54e42818a6ffb563b6768487b27d20042a9743d0fbcc25e35241e357127f650e06e949f0f2093447a1d2f169a410644711a9f8ec5a3111dd6a932e0863b062ec7c3cd4546e57bdeb77929ad1034c6c70fce17929528fdb80fb70bfe068d73892e3eb0abadab147f6657a0e9395609abb3d44eb09efbd4929d3d8b36ebb8e450578a2a12f7e5c3fc5bac59c91bcf936e8986919ba5ef1dcc01ff3ff4a4b07c532e8df0a4a3002185fc0527e142ad0bffcb35087d218464622103abda3c178d0621a32dd11e96a676d834119a49c4e7bd4f7f2fac3837b71d315835b3c95853581ec5dd642015771e0d63c1a2114c792f72c0a1f52e5b8ed94d7b212241a761c4d817e4b2875844663dc9cd969cbd4f1a357e79deed27c6d6e9300854dfec5026673d228ebb91df18fd3f3b7d8b6d44241a78e11a90776594e255dfb641925a74c90b42161ff931e2588d2624bf047cef2ad84f51cd1f0843992628fed4d6ff06ee106877f5e9949daf05e88e5bd1cdb5b52bf1db822b2d916ab29c62bbea7a676c773cbd2e381c04a956f95a38c7857e094250b2edece7385389492b902d022e7320d4ef2f6cf18632f9e4336ba000da9acbf9019c3e85edd81f98cbf1426a2ff1547d4f5a0e5bdb6ed0f57e46f70d75a5e637358b02748258f33b21018b67d37d4fe3064d5c416612630d0ba8efd33427c187dbd5a1d9446633ce3d0abb6f7a11a3d9196c56dfcdb2659dddfc7fddb3357d48b2e8d55e6394f2198d34ca5bc55d1493a9e4e50f0cc10877ab7d46f187c533dc02928f15a0544c77fbeb0a7cbf2623e1a2f1d3178b371438b97f2222e1ef944990d0030b8f879af88e7ce8f9ea51505f6f18790e24b573b5f574f75dafbc359f135a0cf3a7fa34f565553856dc55145a075a4aa61424a7e17e5f565ee9e8c5d7679fa8bda0c1e9e5921fc646119c2175319a12fcdb30cdba76b76552916173cc27b721d47cbb31720b643b738df9799cc258a03949ddbb8325e47777266a1f0c5a8d39b40773dd38beea42a8ed7cc3b1a90816ac020a1db300cdb0067c790386e7fb5144eb82c2be43b93c5fdbcebf7a7dbf9da0b4466e6c479679f3b9157ddf032731aa92f73d1456c6e9edd7cde2a0dcad4ba29430b98a5cc3c78cb2b4bbaf46596d1f8709a52bf02e992ef96e3303011be25cf75856e1b0b9ed516fc7aab2de1a8d46d69a795ed1f216c7ff127a1fb6e0f812ef05bbb66888a02512237200b29345c38dbf45d7cb3dba2867c0fa1dd977a45e963627630d967df92808d9e816094055cf315a293da08a2fe0bc94a4186bc5cbad6f657b3215c5805f9f4cfa10ae02e1f6360f0475b45ccb56d06e2d4ebc76356093ac797d1bc06b3e834abb170623f5099bc4da3b00deb4fe058183e2c3aa0bf76d0f26da1a6ef01f207198f8d60d3283ec977cb661139e44586d5fba95e0bb0a8a3f3ea2ff4be2e3defc2e70d9b965e1f7269c79fce1e71c4496049241d537fdce5773de070f5ab6d192f72c80e447fccc88130c3f89efd455f34681e43407dfbefe0e2013c9b4337d3754fa7937bd7f6e7ccbe32e2fb3efaec3abd9fdd54b89cd3d688f1432293255dbfcfb2e0b2be2ae81aec244aff5555de983ee547b20c080d15921faf173749c3179aa3fc4015cbfac73a104c3a0feafb392e36fa3eee9e3e953709c79e8817ff7e416465f4c9446ab32c1f9563bf09feab4a1c0e3f9700362caddc16865a4bd1de40fd0871392725c3b7a38c07e77b483d9c95f66a4b3f7392c9cadad32e22570e166d0ae9aa87891fc5d6c1c9de40beeffa45cf4860747ea107487982ec55a85d06dae796516a475e3e57c5b9bc0c6e5f3bacf9ec3665b6475eb33f70d36526cd4cff2623f314b1a04ba89a4fde8b4dfc3869a7e9cdf53</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-    
-    
-    <summary type="html">有东西被加密了, 请输入密码查看.</summary>
-    
-    
-    
-    <category term="SF" scheme="https://aixiaocainiao.github.io/categories/SF/"/>
-    
-    
-    <category term="token" scheme="https://aixiaocainiao.github.io/tags/token/"/>
     
   </entry>
   
