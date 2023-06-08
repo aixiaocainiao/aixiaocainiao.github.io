@@ -1,0 +1,3867 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>云知 | 云知</title><meta name="author" content="fang"><meta name="copyright" content="fang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云知">
+<meta property="og:url" content="https://aixiaocainiao.github.io/posts/0.html">
+<meta property="og:site_name" content="云知">
+<meta property="og:description" content="6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://source.fomal.cc/img/default_cover_44.webp">
+<meta property="article:published_time" content="2023-06-08T05:06:24.007Z">
+<meta property="article:modified_time" content="2023-06-08T05:23:31.459Z">
+<meta property="article:author" content="fang">
+<meta property="article:tag" content="云云 芳芳 校园 生活 工作 学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://source.fomal.cc/img/default_cover_44.webp"><link rel="shortcut icon" href="/img/01.jpg"><link rel="canonical" href="https://aixiaocainiao.github.io/posts/0.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '云知',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-06-08 13:23:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/cat.css"><link rel="stylesheet" href="/css/readPercent.css"><link rel="stylesheet" href="/css/social_card.css"><link rel="stylesheet" href="/css/dark span.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/css/runtime/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="云知" type="application/atom+xml">
+</head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="/css/progress+bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/01.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/list/bangumis/"><i class="fa-fw fas fa-home"></i><span> 追番</span></a></li><li><a class="site-page child" href="/list/songs/index.html"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/list/movies/index.html"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/list/books/index.html"><i class="fa-fw fas fa-book"></i><span> 小说</span></a></li><li><a class="site-page child" href="/list/games/index.html"><i class="fa-fw fas fa-game"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://source.fomal.cc/img/default_cover_44.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="云知"><span class="site-name">云知</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/list/bangumis/"><i class="fa-fw fas fa-home"></i><span> 追番</span></a></li><li><a class="site-page child" href="/list/songs/index.html"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/list/movies/index.html"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/list/books/index.html"><i class="fa-fw fas fa-book"></i><span> 小说</span></a></li><li><a class="site-page child" href="/list/games/index.html"><i class="fa-fw fas fa-game"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-06-08T05:06:24.007Z" title="发表于 2023-06-08 13:06:24">2023-06-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-06-08T05:23:31.459Z" title="更新于 2023-06-08 13:23:31">2023-06-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><!DOCTYPE html>
+<!-- saved from url=(0134)http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/674-kinectxin-xi-fang-zhen-yi-ji-xian-shi.html -->
+<html lang="zh-hans"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        
+        <title>6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Autolabor-赵虚左">
+        
+        
+    
+    <link rel="stylesheet" href="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/website(1).css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+
+    <style>#csdn-plugin-note-btn{
+      position: fixed;
+      z-index: 100;
+      width: 25px;
+      box-sizing: content-box;
+      right: 0px;
+      top: 20%;
+      color: rgb(255, 255, 255);
+      background: #fff;
+      cursor: pointer;
+      border-bottom-left-radius: 6px;
+      padding: 10px 5px;
+      border-top-left-radius: 6px;
+      font-size: 16px;
+      letter-spacing: 4px;
+      box-shadow: 0px 2px 12px 0px rgba(123,123,123,0.26);
+    }
+    #csdn-plugin-note-btn img.logo{
+      display: block; width:25px; height:25px; margin-bottom:2px;
+    }
+    #csdn-plugin-note-btn img.close{
+      display: none; padding: 5px 5px 10px 5px; width: 15px; height: 15px; box-sizing: content-box; opacity:0.8;
+    }
+    #csdn-plugin-note-btn img.close:hover{opacity:1;}
+    #csdn-plugin-note-btn:hover img.close{display: block;} 
+    #csdn-plugin-note-btn:hover{ padding-bottom: 0;} 
+    #csdn-plugin-note-btn span{
+      color: #484848; font-size: 15px; width: 25px; display: block; text-align: center; word-break: break-all; line-height: 18px; font-weight: 600;padding-left: 2px;
+    }</style><style type="text/css">#_copy{align-items:center;background:#4494d5;border-radius:3px;color:#fff;cursor:pointer;display:flex;font-size:13px;height:30px;justify-content:center;position:absolute;width:60px;z-index:1000}#select-tooltip,#sfModal,.modal-backdrop,div[id^=reader-helper]{display:none!important}.modal-open{overflow:auto!important}._sf_adjust_body{padding-right:0!important}.enable_copy_btns_div{position:fixed;width:154px;left:10px;top:45%;background:#e7f1ff;border:2px solid #4595d5;font-weight:600;border-radius:2px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;z-index:5000}.enable_copy_btns_logo{width:100%;background:#4595d5;text-align:center;font-size:12px;color:#e7f1ff;line-height:30px;height:30px}.enable_copy_btns_btn{display:block;width:128px;height:28px;background:#7f5711;border-radius:4px;color:#fff;font-size:12px;border:0;outline:0;margin:8px auto;font-weight:700;cursor:pointer;opacity:.9}.enable_copy_btns_btn:hover{opacity:.8}.enable_copy_btns_btn:active{opacity:1}</style><link rel="prev" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/673-she-xiang-tou-xin-xi-fang-zhen-yi-ji-xian-shi.html"><link rel="next" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/68-ben-zhang-xiao-jie.html"></head>
+    <body inmaintabuse="1">
+        
+<div class="book without-animation with-summary font-size-2 font-family-1">
+    <div class="book-summary" style="width: 300px; left: 0px; position: absolute;">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索">
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1">
+            
+                <a target="_blank" href="http://www.autolabor.com.cn/">
+            
+                    
+                    Autolabor主站
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter expanded" data-level="2.1" data-path="../../">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/">
+            
+                    
+                    Introduction
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1">
+            
+                <a target="_blank" href="https://www.bilibili.com/video/BV1Ci4y1L7ZZ/">
+            
+                    
+                    课程视频
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2" data-path="../../chapter1.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1.html">
+            
+                    
+                    第 1 章 ROS概述与环境搭建
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.2.1" data-path="../../chapter1/11-rosjian-jie-yu-an-zhuang.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/11-rosjian-jie-yu-an-zhuang.html">
+            
+                    
+                    1.1 ROS简介
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.2.1.1" data-path="../../chapter1/11-rosjian-jie-yu-an-zhuang/111rosgai-nian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/11-rosjian-jie-yu-an-zhuang/111rosgai-nian.html">
+            
+                    
+                    1.1.1ROS概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.1.2" data-path="../../chapter1/11-rosjian-jie-yu-an-zhuang/112rosshe-ji-mu-biao.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/11-rosjian-jie-yu-an-zhuang/112rosshe-ji-mu-biao.html">
+            
+                    
+                    1.1.2ROS设计目标
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.1.3" data-path="../../chapter1/11-rosjian-jie-yu-an-zhuang/113rosfa-zhan-li-cheng.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/11-rosjian-jie-yu-an-zhuang/113rosfa-zhan-li-cheng.html">
+            
+                    
+                    1.1.3ROS发展历程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.2" data-path="../../chapter1/12-roskai-fa-gong-ju-an-zhuang.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/12-roskai-fa-gong-ju-an-zhuang.html">
+            
+                    
+                    1.2 ROS安装
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.2.2.1" data-path="../../chapter1/12-roskai-fa-gong-ju-an-zhuang/121-an-zhuang-xu-ni-ji-ruan-jian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/12-roskai-fa-gong-ju-an-zhuang/121-an-zhuang-xu-ni-ji-ruan-jian.html">
+            
+                    
+                    1.2.1 安装虚拟机软件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.2.2" data-path="../../chapter1/12-roskai-fa-gong-ju-an-zhuang/122-xu-ni-yi-tai-zhu-ji.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/12-roskai-fa-gong-ju-an-zhuang/122-xu-ni-yi-tai-zhu-ji.html">
+            
+                    
+                    1.2.2 虚拟一台主机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.2.3" data-path="../../chapter1/12-roskai-fa-gong-ju-an-zhuang/123-an-zhuang-ubuntu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/12-roskai-fa-gong-ju-an-zhuang/123-an-zhuang-ubuntu.html">
+            
+                    
+                    1.2.3 安装 ubuntu
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.2.4" data-path="../../chapter1/12-roskai-fa-gong-ju-an-zhuang/124-an-zhuang-ros.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/12-roskai-fa-gong-ju-an-zhuang/124-an-zhuang-ros.html">
+            
+                    
+                    1.2.4 安装 ROS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.2.5" data-path="../../chapter1/12-roskai-fa-gong-ju-an-zhuang/125-ce-shi-ros.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/12-roskai-fa-gong-ju-an-zhuang/125-ce-shi-ros.html">
+            
+                    
+                    1.2.5 测试 ROS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.2.6" data-path="../../chapter1/12-roskai-fa-gong-ju-an-zhuang/127-zi-65993a-qi-ta-ros-ban-ben-an-zhuang.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/12-roskai-fa-gong-ju-an-zhuang/127-zi-65993a-qi-ta-ros-ban-ben-an-zhuang.html">
+            
+                    
+                    1.2.6 资料:其他ROS版本安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.3" data-path="../../chapter1/13-rosji-cheng-kai-fa-huan-jing-da-jian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/13-rosji-cheng-kai-fa-huan-jing-da-jian.html">
+            
+                    
+                    1.3 ROS快速体验
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.2.3.1" data-path="../../chapter1/13-rosji-cheng-kai-fa-huan-jing-da-jian/131-helloworldshi-xian-jian-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/13-rosji-cheng-kai-fa-huan-jing-da-jian/131-helloworldshi-xian-jian-jie.html">
+            
+                    
+                    1.3.1 HelloWorld实现简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3.2" data-path="../../chapter1/13-rosji-cheng-kai-fa-huan-jing-da-jian/131-helloworldc724829.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/13-rosji-cheng-kai-fa-huan-jing-da-jian/131-helloworldc724829.html">
+            
+                    
+                    1.3.2 HelloWorld实现A(C++)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3.3" data-path="../../chapter1/13-rosji-cheng-kai-fa-huan-jing-da-jian/132-helloworldpython724829.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/13-rosji-cheng-kai-fa-huan-jing-da-jian/132-helloworldpython724829.html">
+            
+                    
+                    1.3.3 HelloWorld实现B(Python)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.4" data-path="../../chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian.html">
+            
+                    
+                    1.4 ROS集成开发环境搭建
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.2.4.1" data-path="../../chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian/141-an-zhuang-zhong-duan.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian/141-an-zhuang-zhong-duan.html">
+            
+                    
+                    1.4.1 安装终端
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.4.2" data-path="../../chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian/142-an-zhuang-vscode.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian/142-an-zhuang-vscode.html">
+            
+                    
+                    1.4.2 安装VScode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.4.3" data-path="../../chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian/143-launchwen-jian-yan-shi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian/143-launchwen-jian-yan-shi.html">
+            
+                    
+                    1.4.3 launch文件演示
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.5" data-path="../../chapter1/15-ben-zhang-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/15-ben-zhang-xiao-jie.html">
+            
+                    
+                    1.5 ROS架构
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.2.5.1" data-path="../../chapter1/15-ben-zhang-xiao-jie/151-roswen-jian-xi-tong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/15-ben-zhang-xiao-jie/151-roswen-jian-xi-tong.html">
+            
+                    
+                    1.5.1 ROS文件系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.5.2" data-path="../../chapter1/15-ben-zhang-xiao-jie/152-ji-suan-tu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/15-ben-zhang-xiao-jie/152-ji-suan-tu.html">
+            
+                    
+                    1.5.2 ROS文件系统相关命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.5.3" data-path="../../chapter1/15-ben-zhang-xiao-jie/153-rosji-suan-tu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/15-ben-zhang-xiao-jie/153-rosji-suan-tu.html">
+            
+                    
+                    1.5.3 ROS计算图
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.2.6" data-path="../../chapter1/16-ben-zhang-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/16-ben-zhang-xiao-jie.html">
+            
+                    
+                    1.6 本章小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3" data-path="../../di-2-zhang-ros-jia-gou-she-ji.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji.html">
+            
+                    
+                    第 2 章 ROS通信机制
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.3.1" data-path="../../di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin.html">
+            
+                    
+                    2.1 话题通信
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.3.1.1" data-path="../../di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/211-li-lun-mo-xing.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/211-li-lun-mo-xing.html">
+            
+                    
+                    2.1.1 话题通信理论模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.1.2" data-path="../../di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/212-hua-ti-tong-xin-zhi-c-shi-xian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/212-hua-ti-tong-xin-zhi-c-shi-xian.html">
+            
+                    
+                    2.1.2 话题通信基本操作A(C++)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.1.3" data-path="../../di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/213-hua-ti-tong-xin-zhi-python-shi-xian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/213-hua-ti-tong-xin-zhi-python-shi-xian.html">
+            
+                    
+                    2.1.3 话题通信基本操作B(Python)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.1.4" data-path="../../di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/214-hua-ti-tong-xin-zhi-zi-ding-yi-xiao-xi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/214-hua-ti-tong-xin-zhi-zi-ding-yi-xiao-xi.html">
+            
+                    
+                    2.1.4 话题通信自定义msg
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.1.5" data-path="../../di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/215-hua-ti-tong-xin-zhi-c-diao-yong-zi-ding-yi-xiao-xi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/215-hua-ti-tong-xin-zhi-c-diao-yong-zi-ding-yi-xiao-xi.html">
+            
+                    
+                    2.1.5 话题通信自定义msg调用A(C++)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.1.6" data-path="../../di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/216-hua-ti-tong-xin-zhi-python-diao-yong-zi-ding-yi-xiao-xi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/22hua-ti-tong-xin/216-hua-ti-tong-xin-zhi-python-diao-yong-zi-ding-yi-xiao-xi.html">
+            
+                    
+                    2.1.6 话题通信自定义msg调用B(Python)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.2" data-path="../../di-2-zhang-ros-jia-gou-she-ji/23-fu-wu-tong-xin.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/23-fu-wu-tong-xin.html">
+            
+                    
+                    2.2 服务通信
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.3.2.1" data-path="../../di-2-zhang-ros-jia-gou-she-ji/23-fu-wu-tong-xin/221-fu-wu-tong-xin-li-lun-mo-xing.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/23-fu-wu-tong-xin/221-fu-wu-tong-xin-li-lun-mo-xing.html">
+            
+                    
+                    2.2.1 服务通信理论模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.2.2" data-path="../../di-2-zhang-ros-jia-gou-she-ji/23-fu-wu-tong-xin/222-fu-wu-tong-xin-zi-ding-yi-srv.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/23-fu-wu-tong-xin/222-fu-wu-tong-xin-zi-ding-yi-srv.html">
+            
+                    
+                    2.2.2 服务通信自定义srv
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.2.3" data-path="../../di-2-zhang-ros-jia-gou-she-ji/23-fu-wu-tong-xin/223-fu-wu-tong-xin-zi-ding-yi-srv-diao-yong-a-c-shi-73b029.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/23-fu-wu-tong-xin/223-fu-wu-tong-xin-zi-ding-yi-srv-diao-yong-a-c-shi-73b029.html">
+            
+                    
+                    2.2.3 服务通信自定义srv调用A(C++)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2.4" data-path="../../di-2-zhang-ros-jia-gou-she-ji/23-fu-wu-tong-xin/224-fu-wu-tong-xin-zi-ding-yi-srv-diao-yong-b-python.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/23-fu-wu-tong-xin/224-fu-wu-tong-xin-zi-ding-yi-srv-diao-yong-b-python.html">
+            
+                    
+                    2.2.4 服务通信自定义srv调用B(Python)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.3" data-path="../../di-2-zhang-ros-jia-gou-she-ji/24-can-shu-fu-wu-qi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/24-can-shu-fu-wu-qi.html">
+            
+                    
+                    2.3 参数服务器
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.3.3.1" data-path="../../di-2-zhang-ros-jia-gou-she-ji/24-can-shu-fu-wu-qi/231-can-shu-fu-wu-qi-li-lun-mo-xing.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/24-can-shu-fu-wu-qi/231-can-shu-fu-wu-qi-li-lun-mo-xing.html">
+            
+                    
+                    2.3.1 参数服务器理论模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.3.2" data-path="../../di-2-zhang-ros-jia-gou-she-ji/24-can-shu-fu-wu-qi/232-can-shu-cao-zuo-a-c-++.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/24-can-shu-fu-wu-qi/232-can-shu-cao-zuo-a-c-++.html">
+            
+                    
+                    2.3.2 参数操作A(C++)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.3.3" data-path="../../di-2-zhang-ros-jia-gou-she-ji/24-can-shu-fu-wu-qi/233-can-shu-caozuo-b-python.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/24-can-shu-fu-wu-qi/233-can-shu-caozuo-b-python.html">
+            
+                    
+                    2.3.3 参数操作B(Python)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.4" data-path="../../di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling.html">
+            
+                    
+                    2.4 常用命令
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.3.4.1" data-path="../../di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/241-rostopic.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/241-rostopic.html">
+            
+                    
+                    2.4.1 rosnode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.4.2" data-path="../../di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/242-rostopic.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/242-rostopic.html">
+            
+                    
+                    2.4.2 rostopic
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.4.3" data-path="../../di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/244-rosmsg.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/244-rosmsg.html">
+            
+                    
+                    2.4.3 rosmsg
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.4.4" data-path="../../di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/243-rosservice.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/243-rosservice.html">
+            
+                    
+                    2.4.4 rosservice
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.4.5" data-path="../../di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/245-rossrv.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/245-rossrv.html">
+            
+                    
+                    2.4.5 rossrv
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.4.6" data-path="../../di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/246-rosparam.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/24-chang-yong-ming-ling/246-rosparam.html">
+            
+                    
+                    2.4.6 rosparam
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.5" data-path="../../di-2-zhang-ros-jia-gou-she-ji/25-tong-xin-ji-zhi-shi-cao.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/25-tong-xin-ji-zhi-shi-cao.html">
+            
+                    
+                    2.5 通信机制实操
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.3.5.1" data-path="../../di-2-zhang-ros-jia-gou-she-ji/25-tong-xin-ji-zhi-shi-cao/251-shi-cao-01-hua-ti.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/25-tong-xin-ji-zhi-shi-cao/251-shi-cao-01-hua-ti.html">
+            
+                    
+                    2.5.1 实操01_话题发布
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.5.2" data-path="../../di-2-zhang-ros-jia-gou-she-ji/25-tong-xin-ji-zhi-shi-cao/252-shi-cao-02-hua-ti-ding-yue.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/25-tong-xin-ji-zhi-shi-cao/252-shi-cao-02-hua-ti-ding-yue.html">
+            
+                    
+                    2.5.2 实操02_话题订阅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.5.3" data-path="../../di-2-zhang-ros-jia-gou-she-ji/25-tong-xin-ji-zhi-shi-cao/253-shi-cao-03-fu-wu-diao-yong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/25-tong-xin-ji-zhi-shi-cao/253-shi-cao-03-fu-wu-diao-yong.html">
+            
+                    
+                    2.5.3 实操03_服务调用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.5.4" data-path="../../di-2-zhang-ros-jia-gou-she-ji/25-tong-xin-ji-zhi-shi-cao/254-shi-cao-04-can-shu-she-zhi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/25-tong-xin-ji-zhi-shi-cao/254-shi-cao-04-can-shu-she-zhi.html">
+            
+                    
+                    2.5.4 实操04_参数设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.3.6" data-path="../../di-2-zhang-ros-jia-gou-she-ji/26-tong-xin-ji-zhi-bi-jiao.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/26-tong-xin-ji-zhi-bi-jiao.html">
+            
+                    
+                    2.6 通信机制比较
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.7" data-path="../../di-2-zhang-ros-jia-gou-she-ji/27-ben-zhang-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/27-ben-zhang-xiao-jie.html">
+            
+                    
+                    2.7 本章小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.4" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie.html">
+            
+                    
+                    第 3 章 ROS通信机制进阶
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.4.1" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31.html">
+            
+                    
+                    3.1 常用API
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.4.1.1" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31/311-chu-shi-hua-yu-guan-bi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31/311-chu-shi-hua-yu-guan-bi.html">
+            
+                    
+                    3.1.1 初始化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.4.1.2" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31/313-hua-ti-dui-xiang-chuang-jian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31/313-hua-ti-dui-xiang-chuang-jian.html">
+            
+                    
+                    3.1.2 话题与服务相关对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.4.1.3" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31/314-shi-jian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31/314-shi-jian.html">
+            
+                    
+                    3.1.3 回旋函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.4.1.4" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31/315-ri-zhi-shu-chu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31/315-ri-zhi-shu-chu.html">
+            
+                    
+                    3.1.4 时间 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.4.1.5" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31/316-qi-ta-han-shu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/31/316-qi-ta-han-shu.html">
+            
+                    
+                    3.1.5 其他函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.4.2" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/32-roszhong-de-tou-wen-jian-yu-yuan-wen-jian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/32-roszhong-de-tou-wen-jian-yu-yuan-wen-jian.html">
+            
+                    
+                    3.2 ROS中的头文件与源文件
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.4.2.1" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/32-roszhong-de-tou-wen-jian-yu-yuan-wen-jian/321-zi-ding-yi-tou-wen-jian-diao-yong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/32-roszhong-de-tou-wen-jian-yu-yuan-wen-jian/321-zi-ding-yi-tou-wen-jian-diao-yong.html">
+            
+                    
+                    3.2.1 自定义头文件调用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.4.2.2" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/32-roszhong-de-tou-wen-jian-yu-yuan-wen-jian/322-zi-ding-yi-yuan-wen-jian-diao-yong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/32-roszhong-de-tou-wen-jian-yu-yuan-wen-jian/322-zi-ding-yi-yuan-wen-jian-diao-yong.html">
+            
+                    
+                    3.2.2 自定义源文件调用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.4.3" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/33-pythonmo-kuai-dao-ru.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/33-pythonmo-kuai-dao-ru.html">
+            
+                    
+                    3.3 Python模块导入
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.4.4" data-path="../../di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/33-ben-zhang-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-3-zhang-ros-tong-xin-ji-zhi-jin-jie/33-ben-zhang-xiao-jie.html">
+            
+                    
+                    3.4 本章小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5" data-path="../../5.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5.html">
+            
+                    
+                    第 4 章 ROS运行管理
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.5.1" data-path="../../5/41-rosyuan-gong-neng-bao.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/41-rosyuan-gong-neng-bao.html">
+            
+                    
+                    4.1 ROS元功能包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.2" data-path="../../5/45-rosjie-dianguan-li-launch-wen-jian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-rosjie-dianguan-li-launch-wen-jian.html">
+            
+                    
+                    4.2 ROS节点管理launch文件
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.5.2.1" data-path="../../5/45-rosjie-dianguan-li-launch-wen-jian/411-launchwen-jian-biao-qian-zhi-launch.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-rosjie-dianguan-li-launch-wen-jian/411-launchwen-jian-biao-qian-zhi-launch.html">
+            
+                    
+                    4.2.1 launch文件标签之launch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.2.2" data-path="../../5/45-rosjie-dianguan-li-launch-wen-jian/412-launchwen-jian-biao-qian-zhi-node.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-rosjie-dianguan-li-launch-wen-jian/412-launchwen-jian-biao-qian-zhi-node.html">
+            
+                    
+                    4.2.2 launch文件标签之node
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.2.3" data-path="../../5/45-rosjie-dianguan-li-launch-wen-jian/411-launchwen-jian-biao-qian-zhi-include.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-rosjie-dianguan-li-launch-wen-jian/411-launchwen-jian-biao-qian-zhi-include.html">
+            
+                    
+                    4.2.3 launch文件标签之include
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.2.4" data-path="../../5/45-rosjie-dianguan-li-launch-wen-jian/414-launchwen-jian-biao-qian-zhi-remap.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-rosjie-dianguan-li-launch-wen-jian/414-launchwen-jian-biao-qian-zhi-remap.html">
+            
+                    
+                    4.2.4 launch文件标签之remap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.2.5" data-path="../../5/45-rosjie-dianguan-li-launch-wen-jian/411-launchwen-jian-biao-qian-zhi-param.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-rosjie-dianguan-li-launch-wen-jian/411-launchwen-jian-biao-qian-zhi-param.html">
+            
+                    
+                    4.2.5 launch文件标签之param
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.2.6" data-path="../../5/45-rosjie-dianguan-li-launch-wen-jian/416-launchwen-jian-biao-qian-zhi-rosparam.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-rosjie-dianguan-li-launch-wen-jian/416-launchwen-jian-biao-qian-zhi-rosparam.html">
+            
+                    
+                    4.2.6 launch文件标签之rosparam
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.2.7" data-path="../../5/45-rosjie-dianguan-li-launch-wen-jian/417-launchwen-jian-biao-qian-zhi-group.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-rosjie-dianguan-li-launch-wen-jian/417-launchwen-jian-biao-qian-zhi-group.html">
+            
+                    
+                    4.2.7 launch文件标签之group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.2.8" data-path="../../5/45-rosjie-dianguan-li-launch-wen-jian/418-launchwen-jian-biao-qian-zhi-arg.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-rosjie-dianguan-li-launch-wen-jian/418-launchwen-jian-biao-qian-zhi-arg.html">
+            
+                    
+                    4.2.8 launch文件标签之arg
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.3" data-path="../../5/41-rosgong-zuo-kong-jian-fu-gai.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/41-rosgong-zuo-kong-jian-fu-gai.html">
+            
+                    
+                    4.3 ROS工作空间覆盖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.4" data-path="../../5/42-rosjie-dian-ming-cheng-zhong-ming.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/42-rosjie-dian-ming-cheng-zhong-ming.html">
+            
+                    
+                    4.4 ROS节点名称重名
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.5.4.1" data-path="../../5/42-rosjie-dian-ming-cheng-zhong-ming/431-rosrun-she-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/42-rosjie-dian-ming-cheng-zhong-ming/431-rosrun-she-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                    
+                    4.4.1 rosrun设置命名空间与重映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.4.2" data-path="../../5/42-rosjie-dian-ming-cheng-zhong-ming/432-launchwen-jian-she-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/42-rosjie-dian-ming-cheng-zhong-ming/432-launchwen-jian-she-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                    
+                    4.4.2 launch文件设置命名空间与重映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.4.3" data-path="../../5/42-rosjie-dian-ming-cheng-zhong-ming/433-bian-ma-she-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/42-rosjie-dian-ming-cheng-zhong-ming/433-bian-ma-she-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                    
+                    4.4.3 编码设置命名空间与重映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.5" data-path="../../5/43-roshua-ti-ming-cheng-zhong-ming.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/43-roshua-ti-ming-cheng-zhong-ming.html">
+            
+                    
+                    4.5 ROS话题名称设置
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.5.5.1" data-path="../../5/43-roshua-ti-ming-cheng-zhong-ming/441-rosrunshe-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/43-roshua-ti-ming-cheng-zhong-ming/441-rosrunshe-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                    
+                    4.5.1 rosrun设置话题重映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.5.2" data-path="../../5/43-roshua-ti-ming-cheng-zhong-ming/442-launchwen-jian-she-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/43-roshua-ti-ming-cheng-zhong-ming/442-launchwen-jian-she-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                    
+                    4.5.2 launch文件设置话题重映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.5.3" data-path="../../5/43-roshua-ti-ming-cheng-zhong-ming/443-bian-ma-she-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/43-roshua-ti-ming-cheng-zhong-ming/443-bian-ma-she-zhi-ming-ming-kong-jian-yu-zhong-ying-she.html">
+            
+                    
+                    4.5.3 编码设置话题名称
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.6" data-path="../../5/45-roscan-shu-ming-cheng-she-zhi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-roscan-shu-ming-cheng-she-zhi.html">
+            
+                    
+                    4.6 ROS参数名称设置
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.5.6.1" data-path="../../5/45-roscan-shu-ming-cheng-she-zhi/451-rosrunshe-zhi-can-shu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-roscan-shu-ming-cheng-she-zhi/451-rosrunshe-zhi-can-shu.html">
+            
+                    
+                    4.6.1 rosrun设置参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.6.2" data-path="../../5/45-roscan-shu-ming-cheng-she-zhi/452-launchwen-jian-she-zhi-can-shu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-roscan-shu-ming-cheng-she-zhi/452-launchwen-jian-she-zhi-can-shu.html">
+            
+                    
+                    4.6.2 launch文件设置参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.6.3" data-path="../../5/45-roscan-shu-ming-cheng-she-zhi/453-bian-ma-she-zhi-can-shu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/45-roscan-shu-ming-cheng-she-zhi/453-bian-ma-she-zhi-can-shu.html">
+            
+                    
+                    4.6.3 编码设置参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.7" data-path="../../5/44-rosfen-bu-shi-tong-xin.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/44-rosfen-bu-shi-tong-xin.html">
+            
+                    
+                    4.7 ROS分布式通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.5.8" data-path="../../5/48-ben-zhang-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/5/48-ben-zhang-xiao-jie.html">
+            
+                    
+                    4.8 本章小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6" data-path="../../di-5-zhang-ji-qi-ren-dao-hang.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang.html">
+            
+                    
+                    第 5 章 ROS常用组件
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.6.1" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan.html">
+            
+                    
+                    5.1 TF坐标变换
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.6.1.1" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/511-zuo-biao-msg-xiao-xi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/511-zuo-biao-msg-xiao-xi.html">
+            
+                    
+                    5.1.1 坐标msg消息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.1.2" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/512-jing-tai-zuo-biao-bian-huan.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/512-jing-tai-zuo-biao-bian-huan.html">
+            
+                    
+                    5.1.2 静态坐标变换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.1.3" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/513-dong-tai-zuo-biao-bian-huan.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/513-dong-tai-zuo-biao-bian-huan.html">
+            
+                    
+                    5.1.3 动态坐标变换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.1.4" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/514-duo-zuo-biao-bian-huan.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/514-duo-zuo-biao-bian-huan.html">
+            
+                    
+                    5.1.4 多坐标变换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.1.5" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/515-zuo-biao-xi-guan-xi-cha-kan.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/515-zuo-biao-xi-guan-xi-cha-kan.html">
+            
+                    
+                    5.1.5 坐标系关系查看
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.1.6" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/516-tfzuo-biao-bian-huan-shi-cao.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/516-tfzuo-biao-bian-huan-shi-cao.html">
+            
+                    
+                    5.1.6 TF坐标变换实操
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.1.7" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/517-tf2yu-tf.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/517-tf2yu-tf.html">
+            
+                    
+                    5.1.7 TF2与TF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.1.8" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/518-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/51-tfzuo-biao-bian-huan/518-xiao-jie.html">
+            
+                    
+                    5.1.8 小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.2" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/52-rosbagshi-yong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/52-rosbagshi-yong.html">
+            
+                    
+                    5.2 rosbag
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.6.2.1" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/52-rosbagshi-yong/521-rosbagshi-yong-ming-ling-xing.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/52-rosbagshi-yong/521-rosbagshi-yong-ming-ling-xing.html">
+            
+                    
+                    5.2.1 rosbag使用_命令行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.2.2" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/52-rosbagshi-yong/522-rosbagshi-yong-bian-ma.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/52-rosbagshi-yong/522-rosbagshi-yong-bian-ma.html">
+            
+                    
+                    5.2.2 rosbag使用_编码
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.3" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang.html">
+            
+                    
+                    5.3 rqt工具箱
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.6.3.1" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang/531-rqtan-zhuang-qi-dong-yu-ji-ji-ben-shi-yong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang/531-rqtan-zhuang-qi-dong-yu-ji-ji-ben-shi-yong.html">
+            
+                    
+                    5.3.1 rqt安装启动与基本使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.3.2" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang/532-rqtchang-yongcha-jian-rqt-graph.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang/532-rqtchang-yongcha-jian-rqt-graph.html">
+            
+                    
+                    5.3.2 rqt常用插件:rqt_graph
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.3.3" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang/533-rqtchang-yong-cha-4ef63a-rqt-console.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang/533-rqtchang-yong-cha-4ef63a-rqt-console.html">
+            
+                    
+                    5.3.3 rqt常用插件:rqt_console
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.3.4" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang/534-rqtchang-yong-cha-4ef63a-rqt-plot.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang/534-rqtchang-yong-cha-4ef63a-rqt-plot.html">
+            
+                    
+                    5.3.4 rqt常用插件:rqt_plot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.3.5" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang/535-rqtchang-yong-cha-4ef63a-rqt-bag.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/53-rqtgong-ju-xiang/535-rqtchang-yong-cha-4ef63a-rqt-bag.html">
+            
+                    
+                    5.3.5 rqt常用插件:rqt_bag
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.6.4" data-path="../../di-5-zhang-ji-qi-ren-dao-hang/54-ben-zhang-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-5-zhang-ji-qi-ren-dao-hang/54-ben-zhang-xiao-jie.html">
+            
+                    
+                    5.4 本章小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7" data-path="../../di-6-zhang-ji-qi-ren-xi-tong-fang-zhen.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen.html">
+            
+                    
+                    第 6 章 机器人系统仿真
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.7.1" data-path="../61-gai-shu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/61-gai-shu.html">
+            
+                    
+                    6.1 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.2" data-path="../62-fang-zhen-urdf-ji-cheng-rviz.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/62-fang-zhen-urdf-ji-cheng-rviz.html">
+            
+                    
+                    6.2 URDF集成Rviz基本流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.3" data-path="../62-fang-zhen-urdf-ji-cheng-rviz/622-urdfyu-fa-xiang-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/62-fang-zhen-urdf-ji-cheng-rviz/622-urdfyu-fa-xiang-jie.html">
+            
+                    
+                    6.3 URDF语法详解
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.7.3.1" data-path="../62-fang-zhen-urdf-ji-cheng-rviz/623-urdfyu-fa-xiang-jie-robot.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/62-fang-zhen-urdf-ji-cheng-rviz/623-urdfyu-fa-xiang-jie-robot.html">
+            
+                    
+                    6.3.1 URDF语法详解01_robot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.3.2" data-path="../62-fang-zhen-urdf-ji-cheng-rviz/624-urdfyu-fa-xiang-jie-02-link.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/62-fang-zhen-urdf-ji-cheng-rviz/624-urdfyu-fa-xiang-jie-02-link.html">
+            
+                    
+                    6.3.2 URDF语法详解02_link
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.3.3" data-path="../62-fang-zhen-urdf-ji-cheng-rviz/625-urdfyu-fa-xiang-jie-03-joint.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/62-fang-zhen-urdf-ji-cheng-rviz/625-urdfyu-fa-xiang-jie-03-joint.html">
+            
+                    
+                    6.3.3 URDF语法详解03_joint
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.3.4" data-path="../62-fang-zhen-urdf-ji-cheng-rviz/634-urdflian-xi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/62-fang-zhen-urdf-ji-cheng-rviz/634-urdflian-xi.html">
+            
+                    
+                    6.3.4 URDF练习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.3.5" data-path="../63-fang-zhen-urdf-ji-cheng-gazebo.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/63-fang-zhen-urdf-ji-cheng-gazebo.html">
+            
+                    
+                    6.3.5 URDF工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.4" data-path="../64-fang-zhen-urdf-rviz-yu-gazebo-zong-he-ying-yong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/64-fang-zhen-urdf-rviz-yu-gazebo-zong-he-ying-yong.html">
+            
+                    
+                    6.4 URDF优化_xacro
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.7.4.1" data-path="../64-fang-zhen-urdf-rviz-yu-gazebo-zong-he-ying-yong/651-xacrokuai-su-ti-yan.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/64-fang-zhen-urdf-rviz-yu-gazebo-zong-he-ying-yong/651-xacrokuai-su-ti-yan.html">
+            
+                    
+                    6.4.1 Xacro_快速体验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.4.2" data-path="../64-fang-zhen-urdf-rviz-yu-gazebo-zong-he-ying-yong/652-xacroyu-fa-xiang-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/64-fang-zhen-urdf-rviz-yu-gazebo-zong-he-ying-yong/652-xacroyu-fa-xiang-jie.html">
+            
+                    
+                    6.4.2 Xacro_语法详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.4.3" data-path="../64-fang-zhen-urdf-rviz-yu-gazebo-zong-he-ying-yong/653-xacrowan-zheng-shi-yong-liu-cheng-shi-li.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/64-fang-zhen-urdf-rviz-yu-gazebo-zong-he-ying-yong/653-xacrowan-zheng-shi-yong-liu-cheng-shi-li.html">
+            
+                    
+                    6.4.3 Xacro_完整使用流程示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.4.4" data-path="../64-fang-zhen-urdf-rviz-yu-gazebo-zong-he-ying-yong/654-xacroshi-cao.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/64-fang-zhen-urdf-rviz-yu-gazebo-zong-he-ying-yong/654-xacroshi-cao.html">
+            
+                    
+                    6.4.4 Xacro_实操
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.5" data-path="../66-rviz-kong-zhi-ji-qi-ren-mo-xing-yun-dong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/66-rviz-kong-zhi-ji-qi-ren-mo-xing-yun-dong.html">
+            
+                    
+                    6.5 Rviz中控制机器人模型运动
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.7.5.1" data-path="../66-rviz-kong-zhi-ji-qi-ren-mo-xing-yun-dong/661-arbotixshi-yong-liu-cheng.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/66-rviz-kong-zhi-ji-qi-ren-mo-xing-yun-dong/661-arbotixshi-yong-liu-cheng.html">
+            
+                    
+                    6.5.1 Arbotix使用流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.6" data-path="../66-urdfji-cheng-gazebo.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/66-urdfji-cheng-gazebo.html">
+            
+                    
+                    6.6 URDF集成Gazebo
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.7.6.1" data-path="../66-urdfji-cheng-gazebo/661-urdf-yu-gazebo-ji-ben-ji-cheng-liu-cheng.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/66-urdfji-cheng-gazebo/661-urdf-yu-gazebo-ji-ben-ji-cheng-liu-cheng.html">
+            
+                    
+                    6.6.1 URDF与Gazebo基本集成流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.6.2" data-path="../66-urdfji-cheng-gazebo/662-urdf-ji-cheng-gazebo-xiang-guan-she-zhi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/66-urdfji-cheng-gazebo/662-urdf-ji-cheng-gazebo-xiang-guan-she-zhi.html">
+            
+                    
+                    6.6.2 URDF集成Gazebo相关设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.6.3" data-path="../66-urdfji-cheng-gazebo/663-urdfji-cheng-gazebo-shi-cao.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/66-urdfji-cheng-gazebo/663-urdfji-cheng-gazebo-shi-cao.html">
+            
+                    
+                    6.6.3 URDF集成Gazebo实操
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.6.4" data-path="../66-urdfji-cheng-gazebo/664-gazebofang-zhen-huan-jing-da-jian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/66-urdfji-cheng-gazebo/664-gazebofang-zhen-huan-jing-da-jian.html">
+            
+                    
+                    6.6.4 Gazebo仿真环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.7" data-path="../67.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67.html">
+            
+                    
+                    6.7 URDF、Gazebo与Rviz综合应用
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="2.7.7.1" data-path="671-ji-qi-ren-yun-dong-kong-zhi-yi-ji-li-cheng-ji-xin-xi-xian-shi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/671-ji-qi-ren-yun-dong-kong-zhi-yi-ji-li-cheng-ji-xin-xi-xian-shi.html">
+            
+                    
+                    6.7.1 机器人运动控制以及里程计信息显示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.7.2" data-path="672-lei-da-xin-xi-fang-zhen-yi-ji-xian-shi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/672-lei-da-xin-xi-fang-zhen-yi-ji-xian-shi.html">
+            
+                    
+                    6.7.2 雷达信息仿真以及显示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.7.3" data-path="673-she-xiang-tou-xin-xi-fang-zhen-yi-ji-xian-shi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/673-she-xiang-tou-xin-xi-fang-zhen-yi-ji-xian-shi.html">
+            
+                    
+                    6.7.3 摄像头信息仿真以及显示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active expanded" data-level="2.7.7.4" data-path="674-kinectxin-xi-fang-zhen-yi-ji-xian-shi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/674-kinectxin-xi-fang-zhen-yi-ji-xian-shi.html">
+            
+                    
+                    6.7.4 kinect信息仿真以及显示
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.7.8" data-path="../68-ben-zhang-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/68-ben-zhang-xiao-jie.html">
+            
+                    
+                    6.8 本章小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.8" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29.html">
+            
+                    
+                    第 7 章 机器人导航(仿真)
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.8.1" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/71-gai-shu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/71-gai-shu.html">
+            
+                    
+                    7.1 概述
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.8.1.1" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/71-gai-shu/711-dao-hang-mo-kuai-jian-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/71-gai-shu/711-dao-hang-mo-kuai-jian-jie.html">
+            
+                    
+                    7.1.1 导航模块简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.1.2" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/71-gai-shu/712-dao-hang-zhi-zha-ge-di-tu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/71-gai-shu/712-dao-hang-zhi-zha-ge-di-tu.html">
+            
+                    
+                    7.1.2 导航之坐标系
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.1.3" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/71-gai-shu/713-ding-wei-zhi-zuo-biao-xi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/71-gai-shu/713-ding-wei-zhi-zuo-biao-xi.html">
+            
+                    
+                    7.1.3 导航条件说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.2" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian.html">
+            
+                    
+                    7.2 导航实现
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.8.2.1" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian/721-dao-hang-shi-xian-01-slam.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian/721-dao-hang-shi-xian-01-slam.html">
+            
+                    
+                    7.2.1 导航实现01_SLAM建图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.2.2" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian/722-dao-hang-shi-xian-02-ding-wei.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian/722-dao-hang-shi-xian-02-ding-wei.html">
+            
+                    
+                    7.2.2 导航实现02_地图服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.2.3" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian/723-dao-hang-shi-xian-03-lu-jing-gui-hua.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian/723-dao-hang-shi-xian-03-lu-jing-gui-hua.html">
+            
+                    
+                    7.2.3 导航实现03_定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.2.4" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian/724-dao-hang-shi-xian-04-lu-jing-gui-hua.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian/724-dao-hang-shi-xian-04-lu-jing-gui-hua.html">
+            
+                    
+                    7.2.4 导航实现04_路径规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.2.5" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian/725-dao-hang-yu-slam-jian-tu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/72-dao-hang-shi-xian/725-dao-hang-yu-slam-jian-tu.html">
+            
+                    
+                    7.2.5 导航与SLAM建图
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie.html">
+            
+                    
+                    7.3 导航相关消息
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.8.3.1" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/731-dao-hang-zhi-di-tu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/731-dao-hang-zhi-di-tu.html">
+            
+                    
+                    7.3.1 导航之地图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3.2" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/732-dao-hang-zhi-li-cheng-ji.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/732-dao-hang-zhi-li-cheng-ji.html">
+            
+                    
+                    7.3.2 导航之里程计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3.3" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/733-dao-hang-zhi-lu-jing-gui-hua.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/733-dao-hang-zhi-lu-jing-gui-hua.html">
+            
+                    
+                    7.3.3 导航之坐标变换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3.4" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/735-dao-hang-zhi-ding-wei.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/735-dao-hang-zhi-ding-wei.html">
+            
+                    
+                    7.3.4 导航之定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3.5" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/734-dao-hang-zhi-chuan-gan-qi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/734-dao-hang-zhi-chuan-gan-qi.html">
+            
+                    
+                    7.3.5 导航之目标点与路径规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3.6" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/736-dao-hang-zhi-ji-guang-lei-da.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/736-dao-hang-zhi-ji-guang-lei-da.html">
+            
+                    
+                    7.3.6 导航之激光雷达
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3.7" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/737-dao-hang-zhi-shen-du-xiang-ji.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/737-dao-hang-zhi-shen-du-xiang-ji.html">
+            
+                    
+                    7.3.7 导航之相机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3.8" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/735-shen-du-tu-xiang-zhuan-ji-guang-shu-ju.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/73-dao-hang-xiang-jie/735-shen-du-tu-xiang-zhuan-ji-guang-shu-ju.html">
+            
+                    
+                    7.3.8 深度图像转激光数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.4" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/75-ben-zhang-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/75-ben-zhang-xiao-jie.html">
+            
+                    
+                    7.4 本章小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.9" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren.html">
+            
+                    
+                    第 8 章 机器人平台设计
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.9.1" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu.html">
+            
+                    
+                    8.1 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.2" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino.html">
+            
+                    
+                    8.2 机器人平台设计之arduino基础
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.9.2.1" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino/81-arduino-kai-fa-huan-jing-da-jian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino/81-arduino-kai-fa-huan-jing-da-jian.html">
+            
+                    
+                    8.2.1 arduino 开发环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.2.2" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino/822-arduino-helloworld.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino/822-arduino-helloworld.html">
+            
+                    
+                    8.2.2 arduino 基本语法概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.2.3" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino/823-arduino-ji-ben-yu-fa-yan-shi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino/823-arduino-ji-ben-yu-fa-yan-shi.html">
+            
+                    
+                    8.2.3 arduino 基本语法演示01
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.2.4" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino/824-arduino-ji-ben-yu-fa-yan-shi-02.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino/824-arduino-ji-ben-yu-fa-yan-shi-02.html">
+            
+                    
+                    8.2.4 arduino 基本语法演示02
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.2.5" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino/825-arduino-ji-ben-yu-fa-yan-shi-03.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/82-di-pan-kong-zhi-arduino/825-arduino-ji-ben-yu-fa-yan-shi-03.html">
+            
+                    
+                    8.2.5 arduino 基本语法演示03
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.3" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong.html">
+            
+                    
+                    8.3 机器人平台设计之电机驱动
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.9.3.1" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/831.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/831.html">
+            
+                    
+                    8.3.1 硬件_电机与电机驱动板简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.3.2" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/832-dian-ji-ji-ben-kong-zhi-shi-xian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/832-dian-ji-ji-ben-kong-zhi-shi-xian.html">
+            
+                    
+                    8.3.2 电机基本控制实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.3.3" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/833-dian-ji-ce-su.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/833-dian-ji-ce-su.html">
+            
+                    
+                    8.3.3 电机测速01_理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.3.4" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/833-dian-ji-ce-su-02-shi-xian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/833-dian-ji-ce-su-02-shi-xian.html">
+            
+                    
+                    8.3.4 电机测速02_实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.3.5" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/835-dian-ji-diao-su.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/835-dian-ji-diao-su.html">
+            
+                    
+                    8.3.5 电机调速01_PID控制理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.3.6" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/836-dian-ji-diao-su-02-pid-kong-zhi-shi-xian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/836-dian-ji-diao-su-02-pid-kong-zhi-shi-xian.html">
+            
+                    
+                    8.3.6 电机调速02_PID控制实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.4" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29.html">
+            
+                    
+                    8.4 机器人平台设计之底盘实现
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.9.4.1" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/861-rosarduino-bridge-xia-zai-yu-an-zhuang.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/861-rosarduino-bridge-xia-zai-yu-an-zhuang.html">
+            
+                    
+                    8.4.1 底盘实现_概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.4.2" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/862-ji-yu-ros-arduino-bridge-de-di-panshi-xian-01arduino-duan-ru-kou.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/862-ji-yu-ros-arduino-bridge-de-di-panshi-xian-01arduino-duan-ru-kou.html">
+            
+                    
+                    8.4.2 底盘实现_01Arduino端入口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.4.3" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/863-ji-yu-ros-arduino-bridge-de-di-panshi-xian-02arduino-duan-dian-ji-qu-dong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/863-ji-yu-ros-arduino-bridge-de-di-panshi-xian-02arduino-duan-dian-ji-qu-dong.html">
+            
+                    
+                    8.4.3 底盘实现_02Arduino端编码器驱动
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.4.4" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/864-ji-yu-ros-arduino-bridge-de-di-panshi-xian-02arduino-duan-dian-ji-qu-dong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/864-ji-yu-ros-arduino-bridge-de-di-panshi-xian-02arduino-duan-dian-ji-qu-dong.html">
+            
+                    
+                    8.4.4 底盘实现_03Arduino端电机驱动
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.4.5" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/865-ji-yu-ros-arduino-bridge-de-di-panshi-xian-04arduino-duan-pid-kong-zhi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/865-ji-yu-ros-arduino-bridge-de-di-panshi-xian-04arduino-duan-pid-kong-zhi.html">
+            
+                    
+                    8.4.5 底盘实现_04Arduino端PID控制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.5" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/87-ji-qi-ren-ping-tai-she-ji-zhi-kong-zhi-xi-tong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/87-ji-qi-ren-ping-tai-she-ji-zhi-kong-zhi-xi-tong.html">
+            
+                    
+                    8.5 机器人平台设计之控制系统
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.9.5.1" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/87-ji-qi-ren-ping-tai-she-ji-zhi-kong-zhi-xi-tong/871-kong-zhi-xi-tong-shi-xian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/87-ji-qi-ren-ping-tai-she-ji-zhi-kong-zhi-xi-tong/871-kong-zhi-xi-tong-shi-xian.html">
+            
+                    
+                    8.5.1 控制系统实现_树莓派概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.5.2" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/87-ji-qi-ren-ping-tai-she-ji-zhi-kong-zhi-xi-tong/873-kong-zhi-xi-tong-shi-xian-fen-bu-shi-kuang-jia-da-jian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/87-ji-qi-ren-ping-tai-she-ji-zhi-kong-zhi-xi-tong/873-kong-zhi-xi-tong-shi-xian-fen-bu-shi-kuang-jia-da-jian.html">
+            
+                    
+                    8.5.2 控制系统实现_分布式框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.5.3" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/87-ji-qi-ren-ping-tai-she-ji-zhi-kong-zhi-xi-tong/874-kong-zhi-xi-tong-shi-xian-cheng-xu-shang-chuan.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/87-ji-qi-ren-ping-tai-she-ji-zhi-kong-zhi-xi-tong/874-kong-zhi-xi-tong-shi-xian-cheng-xu-shang-chuan.html">
+            
+                    
+                    8.5.3 控制系统实现_ssh远程连接
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.5.4" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/866-ji-yu-ros-arduino-bridge-de-di-pan-shi-xian-05ros-duan-pei-zhi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/86-ji-qi-ren-ping-tai-she-ji-zhi-di-pan-shi-73b028-4e0b29/866-ji-yu-ros-arduino-bridge-de-di-pan-shi-xian-05ros-duan-pei-zhi.html">
+            
+                    
+                    8.5.4 控制系统实现_安装ros_arduino_bridge
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.5.5" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/87-ji-qi-ren-ping-tai-she-ji-zhi-kong-zhi-xi-tong/872-kong-zhi-xi-tong-shi-xian-shu-mei-pai-an-zhuang-ros.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/87-ji-qi-ren-ping-tai-she-ji-zhi-kong-zhi-xi-tong/872-kong-zhi-xi-tong-shi-xian-shu-mei-pai-an-zhuang-ros.html">
+            
+                    
+                    资料:控制系统实现_树莓派安装ROS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.6" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi.html">
+            
+                    
+                    8.6 机器人平台设计之传感器
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.9.6.1" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi/881.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi/881.html">
+            
+                    
+                    8.6.1 传感器_激光雷达简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.6.2" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi/882-chuan-gan-qi-shen-du-xiang-ji.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi/882-chuan-gan-qi-shen-du-xiang-ji.html">
+            
+                    
+                    8.6.2 传感器_雷达使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.6.3" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi/883-chuan-gan-qi-shen-du-xiang-ji-jian-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi/883-chuan-gan-qi-shen-du-xiang-ji-jian-jie.html">
+            
+                    
+                    8.6.3 传感器_相机简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.6.4" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi/884-chuan-gan-qi-shen-du-xiang-ji-shi-yong.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi/884-chuan-gan-qi-shen-du-xiang-ji-shi-yong.html">
+            
+                    
+                    8.6.4 传感器_相机使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.6.5" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi/885-chuan-gan-qi-zu-zhuang.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/81-gai-shu/88-ji-qi-ren-ping-tai-she-ji-zhi-chuan-gan-qi/885-chuan-gan-qi-zu-zhuang.html">
+            
+                    
+                    8.6.5 传感器_集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.7" data-path="../../di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/89-ben-zhang-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/89-ben-zhang-xiao-jie.html">
+            
+                    
+                    8.7 本章小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.10" data-path="../../di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329.html">
+            
+                    
+                    第 9 章 机器人导航(实体)
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.10.1" data-path="../../di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/91-gai-shu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/91-gai-shu.html">
+            
+                    
+                    9.1 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="2.10.2" data-path="../../di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-vscodeyuan-cheng-kai-fa.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-vscodeyuan-cheng-kai-fa.html">
+            
+                    
+                    9.2 VScode远程开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10.3" data-path="../../di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian.html">
+            
+                    
+                    9.3 导航实现
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.10.3.1" data-path="../../di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/931-dao-hang-shi-xian-01-zhun-bei-gong-zuo.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/931-dao-hang-shi-xian-01-zhun-bei-gong-zuo.html">
+            
+                    
+                    9.3.1 导航实现01_准备工作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10.3.2" data-path="../../di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/932-dao-hang-shi-xian-02-slam-jian-tu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/932-dao-hang-shi-xian-02-slam-jian-tu.html">
+            
+                    
+                    9.3.2 导航实现02_SLAM建图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10.3.3" data-path="../../di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/933-dao-hang-shi-xian-03-di-tu-fu-wu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/933-dao-hang-shi-xian-03-di-tu-fu-wu.html">
+            
+                    
+                    9.3.3 导航实现03_地图服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10.3.4" data-path="../../di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/933-dao-hang-shi-xian-03-ding-wei.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/933-dao-hang-shi-xian-03-ding-wei.html">
+            
+                    
+                    9.3.4 导航实现04_定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10.3.5" data-path="../../di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/934-dao-hang-shi-xian-04-lu-jing-gui-hua.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/934-dao-hang-shi-xian-04-lu-jing-gui-hua.html">
+            
+                    
+                    9.3.5 导航实现05_路径规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10.3.6" data-path="../../di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/936-dao-hang-yu-slam-jian-tu.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/92-dao-hang-shi-xian/936-dao-hang-yu-slam-jian-tu.html">
+            
+                    
+                    9.3.6 导航与SLAM建图
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10.4" data-path="../../di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/95-ben-zhang-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-9-zhang-ji-qi-ren-dao-822a28-shi-4f5329/95-ben-zhang-xiao-jie.html">
+            
+                    
+                    9.4 本章小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11" data-path="../../di-10-zhang-ros-jin-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-10-zhang-ros-jin-jie.html">
+            
+                    
+                    第 10 章 ROS进阶
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.11.1" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1001-actiontong-xin.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1001-actiontong-xin.html">
+            
+                    
+                    10.1 Action通信
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.11.1.1" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1001-actiontong-xin/1011.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1001-actiontong-xin/1011.html">
+            
+                    
+                    10.1.1 自定义action文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11.1.2" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1001-actiontong-xin/1012.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1001-actiontong-xin/1012.html">
+            
+                    
+                    10.1.2 action通信实现A(C++)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11.1.3" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1001-actiontong-xin/1013-actiontong-xin-shi-xian-b-python.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1001-actiontong-xin/1013-actiontong-xin-shi-xian-b-python.html">
+            
+                    
+                    10.1.3 action通信实现B(python)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11.2" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1002.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1002.html">
+            
+                    
+                    10.2 动态参数
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.11.2.1" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1002/1021-dong-tai-can-shu-ke-hu-duan.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1002/1021-dong-tai-can-shu-ke-hu-duan.html">
+            
+                    
+                    10.2.1 动态参数客户端
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11.2.2" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1002/1022.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1002/1022.html">
+            
+                    
+                    10.2.2 动态参数服务端A(C++)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11.2.3" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1002/1023.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/1002/1023.html">
+            
+                    
+                    10.2.3 动态参数服务端B(python)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11.3" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/104-pluginlib.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/104-pluginlib.html">
+            
+                    
+                    10.3 pluginlib
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.11.3.1" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/104-pluginlib/1041-cha-jian-shi-xian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/104-pluginlib/1041-cha-jian-shi-xian.html">
+            
+                    
+                    10.3.1 pluginlin使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11.4" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/103-nodelet.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/103-nodelet.html">
+            
+                    
+                    10.4 nodelet
+            
+                <i class="exc-trigger fa"></i></a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.11.4.1" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/103-nodelet/1031-shi-yong-yan-shi.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/103-nodelet/1031-shi-yong-yan-shi.html">
+            
+                    
+                    10.4.1 使用演示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11.4.2" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/103-nodelet/1032-apishi-xian.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/103-nodelet/1032-apishi-xian.html">
+            
+                    
+                    10.4.2 nodelet实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11.5" data-path="../../di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/104-ben-zhang-xiao-jie.html">
+            
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-7-zhang-ji-qi-ren-dao-822a28-fang-771f29/104-ben-zhang-xiao-jie.html">
+            
+                    
+                    10.5 本章小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com/" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    <div class="divider-content-summary"><div class="divider-content-summary__icon"><i class="fa fa-ellipsis-v"></i></div></div></div>
+
+    <div class="book-body" style="left: 300px; position: absolute;">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <a class="btn pull-left js-toolbar-action" aria-label="" target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/674-kinectxin-xi-fang-zhen-yi-ji-xian-shi.html#"><i class="fa fa-align-justify"></i></a><div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Font Settings" target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/674-kinectxin-xi-fang-zhen-yi-ji-xian-shi.html#"><i class="fa fa-font"></i></a><div class="dropdown-menu dropdown-right"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-2 font-reduce">A</button><button class="button size-2 font-enlarge">A</button></div><div class="buttons"><button class="button size-2 ">Serif</button><button class="button size-2 ">Sans</button></div><div class="buttons"><button class="button size-3 ">White</button><button class="button size-3 ">Sepia</button><button class="button size-3 ">Night</button></div></div></div><h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/">6.7.4 kinect信息仿真以及显示</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="674-kinect信息仿真以及显示">6.7.4 kinect信息仿真以及显示</h3>
+<p>通过 Gazebo 模拟kinect摄像头，并在 Rviz 中显示kinect摄像头数据。</p>
+<p><strong>实现流程:</strong></p>
+<p>kinect摄像头仿真基本流程:</p>
+<ol>
+<li><p>已经创建完毕的机器人模型，编写一个单独的 xacro 文件，为机器人模型添加kinect摄像头配置；</p>
+</li>
+<li><p>将此文件集成进xacro文件；</p>
+</li>
+<li><p>启动 Gazebo，使用 Rviz 显示kinect摄像头信息。</p>
+</li>
+</ol>
+<h4 id="1gazebo仿真kinect">1.Gazebo仿真Kinect</h4>
+<h5 id="11-新建-xacro-文件，配置-kinetic传感器信息">1.1 新建 Xacro 文件，配置 kinetic传感器信息</h5>
+<pre style="position: relative;"><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-name">robot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"my_sensors"</span> <span class="hljs-attr">xmlns:xacro</span>=<span class="hljs-string">"http://wiki.ros.org/xacro"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">gazebo</span> <span class="hljs-attr">reference</span>=<span class="hljs-string">"kinect link名称"</span>&gt;</span>  
+      <span class="hljs-tag">&lt;<span class="hljs-name">sensor</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"depth"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"camera"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">always_on</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">always_on</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">update_rate</span>&gt;</span>20.0<span class="hljs-tag">&lt;/<span class="hljs-name">update_rate</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">camera</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">horizontal_fov</span>&gt;</span>$&#123;60.0*PI/180.0&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">horizontal_fov</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">image</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">format</span>&gt;</span>R8G8B8<span class="hljs-tag">&lt;/<span class="hljs-name">format</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">width</span>&gt;</span>640<span class="hljs-tag">&lt;/<span class="hljs-name">width</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">height</span>&gt;</span>480<span class="hljs-tag">&lt;/<span class="hljs-name">height</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">image</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">clip</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">near</span>&gt;</span>0.05<span class="hljs-tag">&lt;/<span class="hljs-name">near</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">far</span>&gt;</span>8.0<span class="hljs-tag">&lt;/<span class="hljs-name">far</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">clip</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">camera</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"kinect_camera_controller"</span> <span class="hljs-attr">filename</span>=<span class="hljs-string">"libgazebo_ros_openni_kinect.so"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">cameraName</span>&gt;</span>camera<span class="hljs-tag">&lt;/<span class="hljs-name">cameraName</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">alwaysOn</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">alwaysOn</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">updateRate</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">updateRate</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">imageTopicName</span>&gt;</span>rgb/image_raw<span class="hljs-tag">&lt;/<span class="hljs-name">imageTopicName</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">depthImageTopicName</span>&gt;</span>depth/image_raw<span class="hljs-tag">&lt;/<span class="hljs-name">depthImageTopicName</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">pointCloudTopicName</span>&gt;</span>depth/points<span class="hljs-tag">&lt;/<span class="hljs-name">pointCloudTopicName</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">cameraInfoTopicName</span>&gt;</span>rgb/camera_info<span class="hljs-tag">&lt;/<span class="hljs-name">cameraInfoTopicName</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">depthImageCameraInfoTopicName</span>&gt;</span>depth/camera_info<span class="hljs-tag">&lt;/<span class="hljs-name">depthImageCameraInfoTopicName</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">frameName</span>&gt;</span>kinect link名称<span class="hljs-tag">&lt;/<span class="hljs-name">frameName</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">baseline</span>&gt;</span>0.1<span class="hljs-tag">&lt;/<span class="hljs-name">baseline</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">distortion_k1</span>&gt;</span>0.0<span class="hljs-tag">&lt;/<span class="hljs-name">distortion_k1</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">distortion_k2</span>&gt;</span>0.0<span class="hljs-tag">&lt;/<span class="hljs-name">distortion_k2</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">distortion_k3</span>&gt;</span>0.0<span class="hljs-tag">&lt;/<span class="hljs-name">distortion_k3</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">distortion_t1</span>&gt;</span>0.0<span class="hljs-tag">&lt;/<span class="hljs-name">distortion_t1</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">distortion_t2</span>&gt;</span>0.0<span class="hljs-tag">&lt;/<span class="hljs-name">distortion_t2</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">pointCloudCutoff</span>&gt;</span>0.4<span class="hljs-tag">&lt;/<span class="hljs-name">pointCloudCutoff</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sensor</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">gazebo</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">robot</span>&gt;</span>
+</code><button class="copy-code-button" style="position: absolute; top: 5px; right: 5px; padding: 3px; background-color: rgb(49, 62, 78); color: white; border-radius: 5px; border: 2px solid rgb(204, 204, 204);">Copy</button></pre>
+<h5 id="12-xacro-文件集成">1.2 xacro 文件集成</h5>
+<p>将步骤1的 Xacro 文件集成进总的机器人模型文件，代码示例如下:</p>
+<pre style="position: relative;"><code class="lang-xml"><span class="hljs-comment">&lt;!-- 组合小车底盘与传感器 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">robot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"my_car_camera"</span> <span class="hljs-attr">xmlns:xacro</span>=<span class="hljs-string">"http://wiki.ros.org/xacro"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xacro:include</span> <span class="hljs-attr">filename</span>=<span class="hljs-string">"my_head.urdf.xacro"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xacro:include</span> <span class="hljs-attr">filename</span>=<span class="hljs-string">"my_base.urdf.xacro"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xacro:include</span> <span class="hljs-attr">filename</span>=<span class="hljs-string">"my_camera.urdf.xacro"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xacro:include</span> <span class="hljs-attr">filename</span>=<span class="hljs-string">"my_laser.urdf.xacro"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xacro:include</span> <span class="hljs-attr">filename</span>=<span class="hljs-string">"move.urdf.xacro"</span> /&gt;</span>
+    <span class="hljs-comment">&lt;!-- kinect仿真的 xacro 文件 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xacro:include</span> <span class="hljs-attr">filename</span>=<span class="hljs-string">"my_sensors_kinect.urdf.xacro"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">robot</span>&gt;</span>
+</code><button class="copy-code-button" style="position: absolute; top: 5px; right: 5px; padding: 3px; background-color: rgb(49, 62, 78); color: white; border-radius: 5px; border: 2px solid rgb(204, 204, 204);">Copy</button></pre>
+<h5 id="13启动仿真环境">1.3启动仿真环境</h5>
+<p>编写launch文件，启动gazebo，此处略...</p>
+<h4 id="2-rviz-显示-kinect-数据">2 Rviz 显示 Kinect 数据</h4>
+<p>启动 rviz,添加摄像头组件查看数据<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/kinect摄像头.PNG" alt=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/16_kinect仿真.png" alt=""></p>
+<hr>
+<h4 id="补充kinect-点云数据显示"><strong>补充:kinect 点云数据显示</strong></h4>
+<p>在kinect中也可以以点云的方式显示感知周围环境，在 rviz 中操作如下:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/点云数据_默认.PNG" alt=""></p>
+<p><strong>问题:</strong>在rviz中显示时错位。</p>
+<p><strong>原因:</strong>在kinect中图像数据与点云数据使用了两套坐标系统，且两套坐标系统位姿并不一致。</p>
+<p><strong>解决:</strong></p>
+<p>1.在插件中为kinect设置坐标系，修改配置文件的<code>&lt;frameName&gt;</code>标签内容：</p>
+<pre style="position: relative;"><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-name">frameName</span>&gt;</span>support_depth<span class="hljs-tag">&lt;/<span class="hljs-name">frameName</span>&gt;</span>
+</code><button class="copy-code-button" style="position: absolute; top: 5px; right: 5px; padding: 3px; background-color: rgb(49, 62, 78); color: white; border-radius: 5px; border: 2px solid rgb(204, 204, 204);">Copy</button></pre>
+<p>2.发布新设置的坐标系到kinect连杆的坐标变换关系，在启动rviz的launch中，添加:</p>
+<pre style="position: relative;"><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-name">node</span> <span class="hljs-attr">pkg</span>=<span class="hljs-string">"tf2_ros"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"static_transform_publisher"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"static_transform_publisher"</span> <span class="hljs-attr">args</span>=<span class="hljs-string">"0 0 0 -1.57 0 -1.57 /support /support_depth"</span> /&gt;</span>
+</code><button class="copy-code-button" style="position: absolute; top: 5px; right: 5px; padding: 3px; background-color: rgb(49, 62, 78); color: white; border-radius: 5px; border: 2px solid rgb(204, 204, 204);">Copy</button></pre>
+<p>3.启动rviz，重新显示。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/点云数据_修正.PNG" alt=""></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/673-she-xiang-tou-xin-xi-fang-zhen-yi-ji-xian-shi.html" class="navigation navigation-prev " aria-label="Previous page: 6.7.3 摄像头信息仿真以及显示">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/68-ben-zhang-xiao-jie.html" class="navigation navigation-next " aria-label="Next page: 6.8 本章小结" style="margin-right: 15px;">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"6.7.4 kinect信息仿真以及显示","level":"2.7.7.4","depth":3,"next":{"title":"6.8 本章小结","level":"2.7.8","depth":2,"path":"di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/68-ben-zhang-xiao-jie.md","ref":"di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/68-ben-zhang-xiao-jie.md","articles":[]},"previous":{"title":"6.7.3 摄像头信息仿真以及显示","level":"2.7.7.3","depth":3,"path":"di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/673-she-xiang-tou-xin-xi-fang-zhen-yi-ji-xian-shi.md","ref":"di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/673-she-xiang-tou-xin-xi-fang-zhen-yi-ji-xian-shi.md","articles":[]},"dir":"ltr"},"config":{"plugins":["baidu-tongji-with-multiple-channel","expandable-chapters","-sharing","search-pro","-search","-lunr","splitter","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"baidu-tongji-with-multiple-channel":{"multipleChannelConfig":{},"url":"https://hm.baidu.com/hm.js","token":"a0fdd9ad0ec836cfe28b0fd96ca2d5ac"},"expandable-chapters":{},"search-pro":{},"splitter":{},"copy-code-button":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Autolabor-赵虚左","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程","language":"zh-hans","gitbook":"*","description":"Autolabor出品-《ROS理论与实践》课程配套文档"},"file":{"path":"di-6-zhang-ji-qi-ren-xi-tong-fang-zhen/67/674-kinectxin-xi-fang-zhen-yi-ji-xian-shi.md","mtime":"2021-02-26T09:23:32.657Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-12-21T03:10:04.593Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/gitbook.js"></script>
+    <script src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/theme.js"></script>
+    
+        
+        <script src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/plugin.js"></script>
+        
+    
+        
+        <script src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/search.js"></script>
+        
+    
+        
+        <script src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/splitter.js"></script>
+        
+    
+        
+        <script src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/toggle.js"></script>
+        
+    
+        
+        <script src="./6.7.4 kinect信息仿真以及显示 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程_files/fontsettings.js"></script>
+        
+    
+
+    
+
+
+<div id="csdn-plugin-note-btn"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="chrome-extension://igbflnhjjpcakhcjakbnbkncjofahlil/images/collectBox/assets/images/logo.png" class="logo" alt=""><span>C笔记</span><img class="close" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="chrome-extension://igbflnhjjpcakhcjakbnbkncjofahlil/images/collectBox/assets/images/close.png" alt=""></div><script src="chrome-extension://nhiheekdcnmfbapkmpbhmplfddenhjic/sm.bundle.js" data-pname="supercopy-v3" data-asset-path="https://spc3.s3.ap-east-1.amazonaws.com"></script><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://aixiaocainiao.github.io/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 Python学习 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://aixiaocainiao.github.io/categories/C/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 C++学习 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://aixiaocainiao.github.io/categories/other/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 other学习 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://aixiaocainiao.github.io/categories/Slam/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 Slam学习 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://aixiaocainiao.github.io/categories/SF/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 软件安装流程 (16)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="https://aixiaocainiao.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '113.34532,23.15624';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.2.2" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px" data-title="本站使用JsDelivr为静态资源提供CDN加速" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" alt=""/></a><a class="github-badge" target="_blank" href="https://beian.miit.gov.cn/#/Integrated/index" style="margin-inline:5px" data-title="本站已在湘进行备案" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/湘ICP备-2022004213号-e1d492?style=flat&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+nhxg7wAACNlJREFUSInF1mmMVeUdx/Hv2e+5+519mJWBYQZkGxZZxLKJqBXGoLS1iXWrmihotFXaJiTWWlsbl6q1aetWd5u0VkKjNG4YEJSlOCibDLMwM8x679z9nnPP1jcVJUxf+7z6J8+LT37/Z4VvaQhfFS8+sBXbctCDGrVTKlBUH4mxAbI9Hfj0IJLsp6paJ5/tmn20N/D0wKDRMq9F/c3M2U1/V0vDfWMFh+tv/Ig1zYPMabDImPJ52OaXO87W580KggCiiOsJOJ6I3wcNFaaeNKxrt72f2fLGu4FpJ/sDQABRzD22fH7/Yze069vGc6mrDLNIJCDik10sxz2by3VdPM87xzkP9jwPTZFRVI1YUJKH+oy7n3tbvv/P2wW/UQxRWe6w4ZJRptYLHDoCuz8v5cP92XbI762O+h6UVWHnUFbPpU0fEb2A60mMJ7MUi9b/b7UgKhiZMaIxm8YLplLMDPz8hl/EH+rs8TNlUpFf32uyZJGLPDwCiTGUyTWodTN49eUCdz2YwXb9NNcObp1X98WDoufynzMVCEKGn27ayPTWBi5ad8P5iQUkJEnFLjqM9Z+hrVX0vfDe6K2dPRWsW2bwyp9EUifSJB84gdxrkR0eRgv1o/3I4fbbprJ6scqamzVO9pffec1S5ZWY2Nfz5qEy/FqOC2Y3s3j53HMSi18VRjFPwSwg+1RfVbl115vvJrsfej7UGIsYPPGgQ7JXoO+Xx5B3dHEomyJ9x1qiQozkr95h5937aFnVyouPlgJK+Ss7Fxz64OTSxSX+LHYxT2IsRW5kbGI4oHcR0jqoqTjV9se3I7/f8rS/ClS23GxSXhph6L5d9Akm7qqZhHWBQGUJ+CWGFzcg7e7m6D3/ZuW1Ea5YKdA3EojuONi813TqNi+YPYOKUhXDtCeGL26/hakLLiEcdsaHRkRAoLRc4fJrmhnekyF0apgZowWSwwkaa+rw3f8WA1GZZsPP5JEChX8dhZTN6iU6kAcs5s+dHd183SJ0VVKL57pfw6YdRQw23aeWTns47DPTALWlRTR7kMLew6hGgYqUhWXYFFUdPZ6lUBahLA8hVcOftckfi7No7VRAAQqsX1dybfvG1qwriM9mM5mJ4e4jO5Cc01dPqixbr8tWGBQUL4vjGigEEShi+xUmZ2RiR/sJ1pbS8NkgZrKAGw0TsgQsQyFaF/nfYTGprAlMFysbA1pI3mhkR6snhGsaymYGvPyFEb9IdbUE2AzFFTwpRqCtBY0wmdER+hZW4j63gcJj38V+/ErSUZXsYBfjIZHIRW0c2Z8BskCAqN+CbBJBFnyyKjR+Ez57nBxLqpfMUeSISElMBFz6x2Q6OxzWrYjyxWVzEewioU3LCS5vQY6nMUrLwNaxXvoQ59IloFSx54PPAZtQLExVZZDxsVE8J4dn6v4JYatgbSjk0owPw7RGH2ADMo88Z7L20ip8f7gC7fAo0q4+0rt7kEQDvaghVZbiPHUHcyeXcfLjT3jmpR7AYsnSScya3UR8bARVMck7Y/cB75/X6rDf3Fg2dw2jKZm5dXGm1LuAzO5DCo9v6aT0ibco5kzOvLOP+NGTFJtDpPYeZKijk/Rn3QxsfZV7txwhX7ABiZUXBsGvIvguQApNQQva9RMmTvZ2dpVUls+tX/UD7GN/Y8Ws05w6rQF+9vyzg1vZjbvMRJhXiRSU8DpTFFe0QE8S6SfPkOkZoktrB2oAhZWrwljxOPmchiSMYOWNoxNuruFU5vWeXdsojiUon345113dBBQBmTYlTimgdB8nfPo4WjaNFgN9OMEkJ02dnadVt5ki54Esqy+bzKJltVhSPbI3iN2zCyMTeXNCuG7Omm2Zok7PR2+R7jvD8ouruHhmCrB5jVZeYxLdrTP4sr4Vtd9g4MA4qc4c+6cu5NPamfw4P59t2WrA4YdXKkASf7SFivo6PDdEPmf1fRM++zp1bH/0r4I1dD1ODtOWaW4IsvPjL7nqXhloQiSPwjjgMYkMASyGEBkjhISCQwkwzve/18AbT+pk8pVY4UacQi9y+gyZ0eRAw4qHa89LXEx1LXMSPfhDJYRb59BtlLKg2WPT2l6qYl1svtGkrLYckyA1S+t5+2ATm37WCui0LSynsckDNH5zTxAchbQtkx08hDHYiW6NgC0enHBzEZ102UDH8QORdEckjEzZrNWkRydzyx17uGnDXqbUnGZ6dRPjSY91q2TqwjFuvTxLo5Zn5Qo/pumRSFcTLQtybEhGE0fQrDhhJ0VvH2lTnnHPhGtsmWan469apERjI2MH3qN7+7MEfH6ql29CbV7PvsMG32k6yU2XDhEKyZw66eJaRdrXR7CzCcqUNC3zwgymPJRCH4KRRLINimpL14A5Y4GDeOqbsPRVcfuN7Xj44pav/hFfrNT2kr2rsqf2Ibp5pEA14ZIImUyW3t5REkkTXRGQ/DGGhtLginhqCWknQDE5hKf5UFSF9Lj020Q2ul5V1AR2hr+8vuP8Vlc2zMPRxoSjnx7XBC14sDoydahSGq7KdO/HFyrBchxCVfX4fDKp4T7SCQejYODZLrYgIqgKFsNIgQqEYob8mW6yiUyb7Z64LVK/+B85xznnJ3AWzqTzuIX46mr5wLs+UUTyIriBCjRNxguHMJIFDLEEvXEOVRWnSJ0+jCd4CJoGjoedM1CLcXQziW3nMV2TSMBeOx7vWZvPt1r+cMPzE8KunaUkFn0vNrvtqXj34c1W6gzxlEQ6naIoBahtnkMwoFMwIVzSRNguMt53Aj2s4nkSlgPoGqLkICsRNF0gl8rYWuP8+11/w/OOJDEhHPKLCIpOXmi+M9AgP+maiesLifF2T1Rn5ZNj5Lo/Qc/GcPMmhdoqlEgIGzCK4PiCmJKK68p4KfF3qYGuF0qCRUkJTzleUbvQyWRTuE5xYthxQbBs7EISAbkzUFG3VfXXbK2YFi3X/eryfKKnqVBItNjJxDzH8erddC4SqWwcN5WyTtlyO1RP/Lh3eHD76MB40swmiDVJyDLYRhpc5+ub6tse/wWKbvSQEAw1awAAAABJRU5ErkJggg==" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/run.js"></script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/cd8aec95.html" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_45.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-04-04</span><a class="blog-slider__title" href="posts/cd8aec95.html" alt="">MarkDown学习</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" href="posts/cd8aec95.html" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '2s');
+    arr[i].setAttribute('data-wow-delay', '1s');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '2');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --></body></html></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://aixiaocainiao.github.io">fang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://aixiaocainiao.github.io/posts/0.html">https://aixiaocainiao.github.io/posts/0.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://aixiaocainiao.github.io" target="_blank">云知</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://source.fomal.cc/img/default_cover_44.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/weixin.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/weixin.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zhifubao.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/zhifubao.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/46f1c108.html" title="ros再次学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_43.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ros再次学习</div></div></a></div><div class="next-post pull-right"><a href="/posts/2e742d51.html" title="git的使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_46.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">git的使用</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="author-info-top"><div class="card-info-avatar"><a class="avatar-img" href="/about"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/01.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a><div class="author-status-box"><div class="author-status"><g-emoji class="g-emoji" alias="palm_tree" fallback-src="https://bu.dusays.com/2023/02/06/63dff095bd9e9.webp">🌴</g-emoji><span>On vacation</span></div></div></div></div><div class="author-info__sayhi" id="author-info__sayhi"></div><h1 class="author-info__name">fang</h1><div class="author-info__description">记录云云和芳芳的everything</div><div class="banner-button-group"><a class="banner-button" href="/about"><i class="fas fa-circle-arrow-up-right"></i><span class="banner-button-text">了解更多</span></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/aixiaocainiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3051247944@qq.com" target="_blank" title="Email"><i class="fas fa-envelope-open-text"></i></a><a class="social-icon" href="https://blog.csdn.net/m0_47850835?type=blog" target="_blank" title="CSDN"><i class="fa-solid fa-c"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=3051247944&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">QQ=3051247944 vx=fG9755389</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">
+        
+        6.7.4 kinect信息仿真以及显示
+    </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#674-kinect%E4%BF%A1%E6%81%AF%E4%BB%BF%E7%9C%9F%E4%BB%A5%E5%8F%8A%E6%98%BE%E7%A4%BA"><span class="toc-number">1.0.1.</span> <span class="toc-text">6.7.4 kinect信息仿真以及显示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1gazebo%E4%BB%BF%E7%9C%9Fkinect"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">1.Gazebo仿真Kinect</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#11-%E6%96%B0%E5%BB%BA-xacro-%E6%96%87%E4%BB%B6%EF%BC%8C%E9%85%8D%E7%BD%AE-kinetic%E4%BC%A0%E6%84%9F%E5%99%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">1.0.1.1.1.</span> <span class="toc-text">1.1 新建 Xacro 文件，配置 kinetic传感器信息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#12-xacro-%E6%96%87%E4%BB%B6%E9%9B%86%E6%88%90"><span class="toc-number">1.0.1.1.2.</span> <span class="toc-text">1.2 xacro 文件集成</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#13%E5%90%AF%E5%8A%A8%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.0.1.1.3.</span> <span class="toc-text">1.3启动仿真环境</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-rviz-%E6%98%BE%E7%A4%BA-kinect-%E6%95%B0%E6%8D%AE"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">2 Rviz 显示 Kinect 数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A5%E5%85%85kinect-%E7%82%B9%E4%BA%91%E6%95%B0%E6%8D%AE%E6%98%BE%E7%A4%BA"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">补充:kinect 点云数据显示</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#book-search-results"><span class="toc-number">2.</span> <span class="toc-text"> results matching &quot;&quot;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#book-search-results"><span class="toc-number">3.</span> <span class="toc-text">No results matching &quot;&quot;</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/b65be66e.html" title="ros中自定义全局路径规划器部署步骤"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_44.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ros中自定义全局路径规划器部署步骤"/></a><div class="content"><a class="title" href="/posts/b65be66e.html" title="ros中自定义全局路径规划器部署步骤">ros中自定义全局路径规划器部署步骤</a><time datetime="2023-06-08T05:06:24.027Z" title="发表于 2023-06-08 13:06:24">2023-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/50f3c42c.html" title="ros指令"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picsum.photos/seed/picsum/470/315" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ros指令"/></a><div class="content"><a class="title" href="/posts/50f3c42c.html" title="ros指令">ros指令</a><time datetime="2023-06-08T05:06:24.027Z" title="发表于 2023-06-08 13:06:24">2023-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/46f1c108.html" title="ros再次学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_43.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ros再次学习"/></a><div class="content"><a class="title" href="/posts/46f1c108.html" title="ros再次学习">ros再次学习</a><time datetime="2023-06-08T05:06:24.017Z" title="发表于 2023-06-08 13:06:24">2023-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/0.html" title="无题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_44.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/posts/0.html" title="无题">无题</a><time datetime="2023-06-08T05:06:24.007Z" title="发表于 2023-06-08 13:06:24">2023-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2e742d51.html" title="git的使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_46.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="git的使用"/></a><div class="content"><a class="title" href="/posts/2e742d51.html" title="git的使用">git的使用</a><time datetime="2023-06-08T05:06:23.997Z" title="发表于 2023-06-08 13:06:23">2023-06-08</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By fang</div><div class="footer_custom_text"><div>满地都是六便士 我想抬头看月亮</div><div><a onclick="window.open('url')" class="footer-a"></a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><div class="aplayer no-destroy" data-id="8152976493" data-server="netease" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script defer data-pjax src="/js/readPercent.js"></script><script async src="/js/title.js"></script><script data-pjax src="/js/social_card.js"></script><script async src="/css/gray.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa-solid fa-magnifying-glass"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="./#post-comment"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.click()"><i class="fa fa-arrows-alt"></i><span>全屏显示</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><!--a.rightMenu-item(href="javascript:toRandomPost()")--><!--    i.fa.fa-paper-plane--><!--    span='随便逛逛'--><a class="rightMenu-item" href="javascript:rmf.switchDarkMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="javascript:rmf.translate();"><i class="fas fa-language"></i><span>繁简转换</span></a><a class="rightMenu-item" href="javascript:rmf.switchReadMode();"><i class="fa fa-book"></i><span>阅读模式</span></a><a class="rightMenu-item" href="javascript:window.location.href=&quot;/about/&quot;;"><i class="fa fa-info-circle"></i><span>关于小张</span></a></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body></html>
