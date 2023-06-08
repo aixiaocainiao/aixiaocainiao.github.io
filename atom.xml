@@ -143,27 +143,6 @@
   </entry>
   
   <entry>
-    <title>conda使用</title>
-    <link href="https://aixiaocainiao.github.io/posts/2e82c412.html"/>
-    <id>https://aixiaocainiao.github.io/posts/2e82c412.html</id>
-    <published>2023-06-08T05:06:23.987Z</published>
-    <updated>2023-06-08T05:23:31.404Z</updated>
-    
-    <content type="html"><![CDATA[<p>常用命令<br>sudo apt update<br>更新所有软件<br>sudo apt upgrade<br>删除</p><h1 id="added-by-Anaconda3-5-3-1-installer"><a href="#added-by-Anaconda3-5-3-1-installer" class="headerlink" title="added by Anaconda3 5.3.1 installer"></a>added by Anaconda3 5.3.1 installer</h1><h1 id="gt-gt-gt-conda-init-gt-gt-gt"><a href="#gt-gt-gt-conda-init-gt-gt-gt" class="headerlink" title="&gt;&gt;&gt; conda init &gt;&gt;&gt;"></a>&gt;&gt;&gt; conda init &gt;&gt;&gt;</h1><h1 id="Contents-within-this-block-are-managed-by-‘conda-init’"><a href="#Contents-within-this-block-are-managed-by-‘conda-init’" class="headerlink" title="!! Contents within this block are managed by ‘conda init’ !!"></a>!! Contents within this block are managed by ‘conda init’ !!</h1><p><strong>conda_setup=”$(CONDA_REPORT_ERRORS=false ‘/home/yunfang/anaconda3/bin/conda’ shell.bash hook 2&gt; /dev/null)”<br>if [ $? -eq 0 ]; then<br>    \eval “$</strong>conda_setup”<br>else<br>    if [ -f “/home/yunfang/anaconda3/etc/profile.d/conda.sh” ]; then<br>        . “/home/yunfang/anaconda3/etc/profile.d/conda.sh”<br>        CONDA_CHANGEPS1=false conda activate base<br>    else<br>        \export PATH=”/home/yunfang/anaconda3/bin:$PATH”<br>    fi<br>fi<br>unset __conda_setup</p><h1 id="lt-lt-lt-conda-init-lt-lt-lt"><a href="#lt-lt-lt-conda-init-lt-lt-lt" class="headerlink" title="&lt;&lt;&lt; conda init &lt;&lt;&lt;"></a>&lt;&lt;&lt; conda init &lt;&lt;&lt;</h1><p>conda使用</p><p>1.0创建独立环境<br>不能将需要用的软件或者其他要用的东西装在base环境中</p><p>创建一些独立的环境会比较方便我们做项目管理，不会有冗余，一个独立的小环境就像一间单独的小房间，彼此独立不会相互影响，这样就会可以方便我们管理不同依赖包的软件</p><p>建议： base环境中不要安装任何的包，保持干净，除非你知道这个包会对原生的环境造成什么样的影响</p><p>conda create -n rnaseq   #创建conda小环境 - -n 用来指定环境的名称<br>conda create -n database python=3.7.3    #指定环境中需要带的python的版本</p><p>conda activate rnaseq     # 启动小环境</p><p>conda deactivate           #退出小环境</p><p>conda env list  / conda info —env    #查看共有多少个小环境</p><p>conda remove -n python —all     #删除conda小环境</p><p>ex:<br>conda create -n adr<br>conda activate rnaseq(name)     # 启动小环境</p><h1 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h1><p>最好使用pip install 包名<br>实在下载不了的再用conda install 包名<br>ipython<br>%run ./adr/main.py<br>exit</p><p>conda deactivate           #退出小环境</p><p>指定安装软件的版本（以fastqc为例）</p><p>在不指定版本的情况下，conda默认安装该软件的最新版，如果要安装旧的版本方法：</p><pre><code>先看看有哪些可以安装的版本 conda search fastqc安装指定版本的软件</code></pre><p>conda install fastqc=0.11.7</p><p>添加-y参数跳过确认的步骤 conda install -y fastqc=0.11.7<br>安装找不到软件的包</p><pre><code>确定一下conda是否能安装我们需要的软件确定名字是不是输入正确（尤其要注意，因为我不怎么长眼睛）确定好我们要安装的包在conda中的名字</code></pre><p>查看conda中已经安装的软件</p><p>conda list     #查看当前环境下用conda安装的软件</p><p>conda list fast*   # 查看符合正则表达式的软件</p><p>conda list -n base    # 查看指定环境下用conda安装的软件</p><p>删除软件</p><p>conda remove fastqc   # 删除该环境中的软件</p><p>conda remove -n rnaseq fastqc   # 删除指定环境下的软件</p><p>升级软件</p><p>conda update fastqc  #升级指定的软件</p><p>conda update conda    #升级conda本身</p><p>小tips<br>    conda可以一次安装多个软件包<br>有时候只要软件比如说我们的conda不影响我们的使用就不需要去管<br>指定下载该软件的旧版本就可以完成该软件的降级</p>]]></content>
-    
-    
-    <summary type="html">conda使用</summary>
-    
-    
-    
-    <category term="other学习" scheme="https://aixiaocainiao.github.io/categories/other%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="conda" scheme="https://aixiaocainiao.github.io/tags/conda/"/>
-    
-  </entry>
-  
-  <entry>
     <title>carto学习笔记</title>
     <link href="https://aixiaocainiao.github.io/posts/7dd202a0.html"/>
     <id>https://aixiaocainiao.github.io/posts/7dd202a0.html</id>
@@ -181,6 +160,27 @@
     
     
     <category term="carto" scheme="https://aixiaocainiao.github.io/tags/carto/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>conda使用</title>
+    <link href="https://aixiaocainiao.github.io/posts/2e82c412.html"/>
+    <id>https://aixiaocainiao.github.io/posts/2e82c412.html</id>
+    <published>2023-06-08T05:06:23.987Z</published>
+    <updated>2023-06-08T05:23:31.404Z</updated>
+    
+    <content type="html"><![CDATA[<p>常用命令<br>sudo apt update<br>更新所有软件<br>sudo apt upgrade<br>删除</p><h1 id="added-by-Anaconda3-5-3-1-installer"><a href="#added-by-Anaconda3-5-3-1-installer" class="headerlink" title="added by Anaconda3 5.3.1 installer"></a>added by Anaconda3 5.3.1 installer</h1><h1 id="gt-gt-gt-conda-init-gt-gt-gt"><a href="#gt-gt-gt-conda-init-gt-gt-gt" class="headerlink" title="&gt;&gt;&gt; conda init &gt;&gt;&gt;"></a>&gt;&gt;&gt; conda init &gt;&gt;&gt;</h1><h1 id="Contents-within-this-block-are-managed-by-‘conda-init’"><a href="#Contents-within-this-block-are-managed-by-‘conda-init’" class="headerlink" title="!! Contents within this block are managed by ‘conda init’ !!"></a>!! Contents within this block are managed by ‘conda init’ !!</h1><p><strong>conda_setup=”$(CONDA_REPORT_ERRORS=false ‘/home/yunfang/anaconda3/bin/conda’ shell.bash hook 2&gt; /dev/null)”<br>if [ $? -eq 0 ]; then<br>    \eval “$</strong>conda_setup”<br>else<br>    if [ -f “/home/yunfang/anaconda3/etc/profile.d/conda.sh” ]; then<br>        . “/home/yunfang/anaconda3/etc/profile.d/conda.sh”<br>        CONDA_CHANGEPS1=false conda activate base<br>    else<br>        \export PATH=”/home/yunfang/anaconda3/bin:$PATH”<br>    fi<br>fi<br>unset __conda_setup</p><h1 id="lt-lt-lt-conda-init-lt-lt-lt"><a href="#lt-lt-lt-conda-init-lt-lt-lt" class="headerlink" title="&lt;&lt;&lt; conda init &lt;&lt;&lt;"></a>&lt;&lt;&lt; conda init &lt;&lt;&lt;</h1><p>conda使用</p><p>1.0创建独立环境<br>不能将需要用的软件或者其他要用的东西装在base环境中</p><p>创建一些独立的环境会比较方便我们做项目管理，不会有冗余，一个独立的小环境就像一间单独的小房间，彼此独立不会相互影响，这样就会可以方便我们管理不同依赖包的软件</p><p>建议： base环境中不要安装任何的包，保持干净，除非你知道这个包会对原生的环境造成什么样的影响</p><p>conda create -n rnaseq   #创建conda小环境 - -n 用来指定环境的名称<br>conda create -n database python=3.7.3    #指定环境中需要带的python的版本</p><p>conda activate rnaseq     # 启动小环境</p><p>conda deactivate           #退出小环境</p><p>conda env list  / conda info —env    #查看共有多少个小环境</p><p>conda remove -n python —all     #删除conda小环境</p><p>ex:<br>conda create -n adr<br>conda activate rnaseq(name)     # 启动小环境</p><h1 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h1><p>最好使用pip install 包名<br>实在下载不了的再用conda install 包名<br>ipython<br>%run ./adr/main.py<br>exit</p><p>conda deactivate           #退出小环境</p><p>指定安装软件的版本（以fastqc为例）</p><p>在不指定版本的情况下，conda默认安装该软件的最新版，如果要安装旧的版本方法：</p><pre><code>先看看有哪些可以安装的版本 conda search fastqc安装指定版本的软件</code></pre><p>conda install fastqc=0.11.7</p><p>添加-y参数跳过确认的步骤 conda install -y fastqc=0.11.7<br>安装找不到软件的包</p><pre><code>确定一下conda是否能安装我们需要的软件确定名字是不是输入正确（尤其要注意，因为我不怎么长眼睛）确定好我们要安装的包在conda中的名字</code></pre><p>查看conda中已经安装的软件</p><p>conda list     #查看当前环境下用conda安装的软件</p><p>conda list fast*   # 查看符合正则表达式的软件</p><p>conda list -n base    # 查看指定环境下用conda安装的软件</p><p>删除软件</p><p>conda remove fastqc   # 删除该环境中的软件</p><p>conda remove -n rnaseq fastqc   # 删除指定环境下的软件</p><p>升级软件</p><p>conda update fastqc  #升级指定的软件</p><p>conda update conda    #升级conda本身</p><p>小tips<br>    conda可以一次安装多个软件包<br>有时候只要软件比如说我们的conda不影响我们的使用就不需要去管<br>指定下载该软件的旧版本就可以完成该软件的降级</p>]]></content>
+    
+    
+    <summary type="html">conda使用</summary>
+    
+    
+    
+    <category term="other学习" scheme="https://aixiaocainiao.github.io/categories/other%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="conda" scheme="https://aixiaocainiao.github.io/tags/conda/"/>
     
   </entry>
   
@@ -227,27 +227,6 @@
   </entry>
   
   <entry>
-    <title>ubuntu通用 搜狗安装</title>
-    <link href="https://aixiaocainiao.github.io/posts/9e9ea3d6.html"/>
-    <id>https://aixiaocainiao.github.io/posts/9e9ea3d6.html</id>
-    <published>2023-06-08T05:06:23.967Z</published>
-    <updated>2023-06-08T05:23:31.443Z</updated>
-    
-    <content type="html"><![CDATA[<p>安装fcitx<br>sudo apt-get install fcitx-bin </p><p>第一步，安装sogoupinyin_4.0.1.2800_x86_64.deb包；<br>通过命令行重新安装搜狗输入法，安装包官网下载链接<br>sudo dpkg –i sogoupinyin_4.0.1.2800_x86_64.deb<br>安装中文支持包</p><p>打开setting－&gt; Region &amp; Lannguage -&gt; InputSource下的Manage installation Language</p><p>点击Installation/ Remove Language<br>勾选中文（简体），并点击应用</p><p>keyboard input method system选择：fcitx<br>————————————————<br>点击应用到全局，然后重启</p><p>1、通过命令行更新系统（如果因网络连接问题无法更新，可以选择换源）</p><p>sudo apt-get update<br>sudo apt-get upgrade</p><p>2、通过命令行安装aptitude</p><p>sudo apt-get install aptitude</p><p>3、通过命令行利用aptitude 安装fcitx、qt</p><p>sudo aptitude install fcitx-bin fcitx-table fcitx-config-gtk fcitx-config-gtk2 fcitx-frontend-all<br>sudo aptitude install qt5-default qtcreator qml-module-qtquick-controls2</p><p>4、如果右上角没有出现fcitx，在终端中输入im-config进行配置</p><p>5、通过命令行重新安装搜狗输入法</p><p>sudo dpkg –i sogoupinyin_4.0.1.2800_x86_64.deb</p><p>第二步，安装依赖。因为我之前安装好deb包后直接以为安装完成了，忽略了第二步要安装依赖。（这步骤很关键）<br>安装官网给出的两条命令，在终端执行</p><p>sudo apt install libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2</p><p>sudo apt install libgsettings-qt1<br>最后卸载ibus<br>sudo apt-get purge ibus<br>6、重启完成即可使用（如果没有，需在右上角fcitx配置中添加搜狗输入法）<br>————————————————</p>]]></content>
-    
-    
-    <summary type="html">ubuntu通用 搜狗安装</summary>
-    
-    
-    
-    <category term="SF" scheme="https://aixiaocainiao.github.io/categories/SF/"/>
-    
-    
-    <category term="sougou" scheme="https://aixiaocainiao.github.io/tags/sougou/"/>
-    
-  </entry>
-  
-  <entry>
     <title>导航原理</title>
     <link href="https://aixiaocainiao.github.io/posts/cb0cb908.html"/>
     <id>https://aixiaocainiao.github.io/posts/cb0cb908.html</id>
@@ -265,6 +244,27 @@
     
     
     <category term="token" scheme="https://aixiaocainiao.github.io/tags/token/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu通用 搜狗安装</title>
+    <link href="https://aixiaocainiao.github.io/posts/9e9ea3d6.html"/>
+    <id>https://aixiaocainiao.github.io/posts/9e9ea3d6.html</id>
+    <published>2023-06-08T05:06:23.967Z</published>
+    <updated>2023-06-08T05:23:31.443Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装fcitx<br>sudo apt-get install fcitx-bin </p><p>第一步，安装sogoupinyin_4.0.1.2800_x86_64.deb包；<br>通过命令行重新安装搜狗输入法，安装包官网下载链接<br>sudo dpkg –i sogoupinyin_4.0.1.2800_x86_64.deb<br>安装中文支持包</p><p>打开setting－&gt; Region &amp; Lannguage -&gt; InputSource下的Manage installation Language</p><p>点击Installation/ Remove Language<br>勾选中文（简体），并点击应用</p><p>keyboard input method system选择：fcitx<br>————————————————<br>点击应用到全局，然后重启</p><p>1、通过命令行更新系统（如果因网络连接问题无法更新，可以选择换源）</p><p>sudo apt-get update<br>sudo apt-get upgrade</p><p>2、通过命令行安装aptitude</p><p>sudo apt-get install aptitude</p><p>3、通过命令行利用aptitude 安装fcitx、qt</p><p>sudo aptitude install fcitx-bin fcitx-table fcitx-config-gtk fcitx-config-gtk2 fcitx-frontend-all<br>sudo aptitude install qt5-default qtcreator qml-module-qtquick-controls2</p><p>4、如果右上角没有出现fcitx，在终端中输入im-config进行配置</p><p>5、通过命令行重新安装搜狗输入法</p><p>sudo dpkg –i sogoupinyin_4.0.1.2800_x86_64.deb</p><p>第二步，安装依赖。因为我之前安装好deb包后直接以为安装完成了，忽略了第二步要安装依赖。（这步骤很关键）<br>安装官网给出的两条命令，在终端执行</p><p>sudo apt install libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2</p><p>sudo apt install libgsettings-qt1<br>最后卸载ibus<br>sudo apt-get purge ibus<br>6、重启完成即可使用（如果没有，需在右上角fcitx配置中添加搜狗输入法）<br>————————————————</p>]]></content>
+    
+    
+    <summary type="html">ubuntu通用 搜狗安装</summary>
+    
+    
+    
+    <category term="SF" scheme="https://aixiaocainiao.github.io/categories/SF/"/>
+    
+    
+    <category term="sougou" scheme="https://aixiaocainiao.github.io/tags/sougou/"/>
     
   </entry>
   
@@ -311,27 +311,6 @@
   </entry>
   
   <entry>
-    <title>opencv安装</title>
-    <link href="https://aixiaocainiao.github.io/posts/b44fb44.html"/>
-    <id>https://aixiaocainiao.github.io/posts/b44fb44.html</id>
-    <published>2023-06-08T05:06:23.947Z</published>
-    <updated>2023-06-08T05:23:31.421Z</updated>
-    
-    <content type="html"><![CDATA[<p>6.设置opencv静态库加载路径</p><p>打开配置文件：sudo gedit /etc/ld.so.conf</p><p>加入编译后lib文件夹路径，形式如下所示，但应做修改：<br>include /home/<em>*</em>/opencv-3.4.x/build/lib</p><p>原来的<br>include /etc/ld.so.conf.d/*.conf<br>安装流程<br>sudo apt-get install build-essential<br>sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev<br>sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..</p><p>一、安装流程：<br>ubuntu 18.04 安装OpenCV 4.1.0版本<br>先下载OpenCV和OpenCV_contrib</p><p>git clone <a href="https://github.com/Itseez/opencv.git">https://github.com/Itseez/opencv.git</a><br>git clone <a href="https://github.com/Itseez/opencv_contrib.git">https://github.com/Itseez/opencv_contrib.git</a></p><p>其中opencv_contrib放入opencv文件夹中<br>2.安装依赖</p><h1 id="更新源，安装软件包"><a href="#更新源，安装软件包" class="headerlink" title="更新源，安装软件包"></a>更新源，安装软件包</h1><p>sudo apt update &amp;&amp; sudo apt install -y cmake g++ wget unzip</p><h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev<br>sudo apt-get install libgtk2.0-dev<br>sudo apt-get install pkg-config<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..<br>3.在build文件夹下执行cmake<br>cd opencv/<br>mkdir build<br>cd build/<br>(cd ~/opencv-3.4.15/build/)看一下上面 整过了就不用整了<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.15/modules ..<br>opencv_contrib-3.4.15需要修改成自己的文件夹名字<br>4.编译</p><p>这里的j4是针对性能不好的电脑，我这里电脑性能比较强，选择j32编译,s数据越大编译的速度就越快。<br>make -j4</p><p>5.安装到系统<br>sudo make install<br>添加路径<br>sudo gedit /etc/ld.so.conf.d/opencv.conf</p><p>然后在打开文件中添加如下内容<br>/usr/local/lib<br>之后再终端输入以下命令（安装完成某个工程后生成许多动态库，该命令是为了让这些动态链接库为系统所共享）<br>sudo ldconfig</p><p>使其保存并生效。<br>再在终端输入</p><p>sudo gedit /etc/bash.bashrc</p><p>打开文件后在末尾输入：</p><p>PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig<br>export PKG_CONFIG_PATH<br>保存退出，终端输入：<br>source /etc/bash.bashrc<br>至此，opencv及opencv_contrib安装配置完成了！</p><p>6.测试安装的文件</p><p>进入opencv/samples/cpp/example_cmake目录下，终端打开，依次输入：<br>cd ../samples/cpp/example_cmake<br>cmake .<br>make<br>./opencv_example</p>]]></content>
-    
-    
-    <summary type="html">openopencv安装</summary>
-    
-    
-    
-    <category term="other学习" scheme="https://aixiaocainiao.github.io/categories/other%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="opecv" scheme="https://aixiaocainiao.github.io/tags/opecv/"/>
-    
-  </entry>
-  
-  <entry>
     <title>ros melotic cartographer安装</title>
     <link href="https://aixiaocainiao.github.io/posts/26aabfb9.html"/>
     <id>https://aixiaocainiao.github.io/posts/26aabfb9.html</id>
@@ -349,6 +328,27 @@
     
     
     <category term="ros" scheme="https://aixiaocainiao.github.io/tags/ros/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>opencv安装</title>
+    <link href="https://aixiaocainiao.github.io/posts/b44fb44.html"/>
+    <id>https://aixiaocainiao.github.io/posts/b44fb44.html</id>
+    <published>2023-06-08T05:06:23.947Z</published>
+    <updated>2023-06-08T05:23:31.421Z</updated>
+    
+    <content type="html"><![CDATA[<p>6.设置opencv静态库加载路径</p><p>打开配置文件：sudo gedit /etc/ld.so.conf</p><p>加入编译后lib文件夹路径，形式如下所示，但应做修改：<br>include /home/<em>*</em>/opencv-3.4.x/build/lib</p><p>原来的<br>include /etc/ld.so.conf.d/*.conf<br>安装流程<br>sudo apt-get install build-essential<br>sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev<br>sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..</p><p>一、安装流程：<br>ubuntu 18.04 安装OpenCV 4.1.0版本<br>先下载OpenCV和OpenCV_contrib</p><p>git clone <a href="https://github.com/Itseez/opencv.git">https://github.com/Itseez/opencv.git</a><br>git clone <a href="https://github.com/Itseez/opencv_contrib.git">https://github.com/Itseez/opencv_contrib.git</a></p><p>其中opencv_contrib放入opencv文件夹中<br>2.安装依赖</p><h1 id="更新源，安装软件包"><a href="#更新源，安装软件包" class="headerlink" title="更新源，安装软件包"></a>更新源，安装软件包</h1><p>sudo apt update &amp;&amp; sudo apt install -y cmake g++ wget unzip</p><h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev<br>sudo apt-get install libgtk2.0-dev<br>sudo apt-get install pkg-config<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..<br>3.在build文件夹下执行cmake<br>cd opencv/<br>mkdir build<br>cd build/<br>(cd ~/opencv-3.4.15/build/)看一下上面 整过了就不用整了<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.15/modules ..<br>opencv_contrib-3.4.15需要修改成自己的文件夹名字<br>4.编译</p><p>这里的j4是针对性能不好的电脑，我这里电脑性能比较强，选择j32编译,s数据越大编译的速度就越快。<br>make -j4</p><p>5.安装到系统<br>sudo make install<br>添加路径<br>sudo gedit /etc/ld.so.conf.d/opencv.conf</p><p>然后在打开文件中添加如下内容<br>/usr/local/lib<br>之后再终端输入以下命令（安装完成某个工程后生成许多动态库，该命令是为了让这些动态链接库为系统所共享）<br>sudo ldconfig</p><p>使其保存并生效。<br>再在终端输入</p><p>sudo gedit /etc/bash.bashrc</p><p>打开文件后在末尾输入：</p><p>PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig<br>export PKG_CONFIG_PATH<br>保存退出，终端输入：<br>source /etc/bash.bashrc<br>至此，opencv及opencv_contrib安装配置完成了！</p><p>6.测试安装的文件</p><p>进入opencv/samples/cpp/example_cmake目录下，终端打开，依次输入：<br>cd ../samples/cpp/example_cmake<br>cmake .<br>make<br>./opencv_example</p>]]></content>
+    
+    
+    <summary type="html">openopencv安装</summary>
+    
+    
+    
+    <category term="other学习" scheme="https://aixiaocainiao.github.io/categories/other%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="opecv" scheme="https://aixiaocainiao.github.io/tags/opecv/"/>
     
   </entry>
   

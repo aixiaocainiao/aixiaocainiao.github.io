@@ -142,31 +142,6 @@
     
     
     <entry>
-      <title>conda使用</title>
-      <link href="/posts/2e82c412.html"/>
-      <url>/posts/2e82c412.html</url>
-      
-        <content type="html"><![CDATA[<p>常用命令<br>sudo apt update<br>更新所有软件<br>sudo apt upgrade<br>删除</p><h1 id="added-by-Anaconda3-5-3-1-installer"><a href="#added-by-Anaconda3-5-3-1-installer" class="headerlink" title="added by Anaconda3 5.3.1 installer"></a>added by Anaconda3 5.3.1 installer</h1><h1 id="gt-gt-gt-conda-init-gt-gt-gt"><a href="#gt-gt-gt-conda-init-gt-gt-gt" class="headerlink" title="&gt;&gt;&gt; conda init &gt;&gt;&gt;"></a>&gt;&gt;&gt; conda init &gt;&gt;&gt;</h1><h1 id="Contents-within-this-block-are-managed-by-‘conda-init’"><a href="#Contents-within-this-block-are-managed-by-‘conda-init’" class="headerlink" title="!! Contents within this block are managed by ‘conda init’ !!"></a>!! Contents within this block are managed by ‘conda init’ !!</h1><p><strong>conda_setup=”$(CONDA_REPORT_ERRORS=false ‘/home/yunfang/anaconda3/bin/conda’ shell.bash hook 2&gt; /dev/null)”<br>if [ $? -eq 0 ]; then<br>    \eval “$</strong>conda_setup”<br>else<br>    if [ -f “/home/yunfang/anaconda3/etc/profile.d/conda.sh” ]; then<br>        . “/home/yunfang/anaconda3/etc/profile.d/conda.sh”<br>        CONDA_CHANGEPS1=false conda activate base<br>    else<br>        \export PATH=”/home/yunfang/anaconda3/bin:$PATH”<br>    fi<br>fi<br>unset __conda_setup</p><h1 id="lt-lt-lt-conda-init-lt-lt-lt"><a href="#lt-lt-lt-conda-init-lt-lt-lt" class="headerlink" title="&lt;&lt;&lt; conda init &lt;&lt;&lt;"></a>&lt;&lt;&lt; conda init &lt;&lt;&lt;</h1><p>conda使用</p><p>1.0创建独立环境<br>不能将需要用的软件或者其他要用的东西装在base环境中</p><p>创建一些独立的环境会比较方便我们做项目管理，不会有冗余，一个独立的小环境就像一间单独的小房间，彼此独立不会相互影响，这样就会可以方便我们管理不同依赖包的软件</p><p>建议： base环境中不要安装任何的包，保持干净，除非你知道这个包会对原生的环境造成什么样的影响</p><p>conda create -n rnaseq   #创建conda小环境 - -n 用来指定环境的名称<br>conda create -n database python=3.7.3    #指定环境中需要带的python的版本</p><p>conda activate rnaseq     # 启动小环境</p><p>conda deactivate           #退出小环境</p><p>conda env list  / conda info —env    #查看共有多少个小环境</p><p>conda remove -n python —all     #删除conda小环境</p><p>ex:<br>conda create -n adr<br>conda activate rnaseq(name)     # 启动小环境</p><h1 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h1><p>最好使用pip install 包名<br>实在下载不了的再用conda install 包名<br>ipython<br>%run ./adr/main.py<br>exit</p><p>conda deactivate           #退出小环境</p><p>指定安装软件的版本（以fastqc为例）</p><p>在不指定版本的情况下，conda默认安装该软件的最新版，如果要安装旧的版本方法：</p><pre><code>先看看有哪些可以安装的版本 conda search fastqc安装指定版本的软件</code></pre><p>conda install fastqc=0.11.7</p><p>添加-y参数跳过确认的步骤 conda install -y fastqc=0.11.7<br>安装找不到软件的包</p><pre><code>确定一下conda是否能安装我们需要的软件确定名字是不是输入正确（尤其要注意，因为我不怎么长眼睛）确定好我们要安装的包在conda中的名字</code></pre><p>查看conda中已经安装的软件</p><p>conda list     #查看当前环境下用conda安装的软件</p><p>conda list fast*   # 查看符合正则表达式的软件</p><p>conda list -n base    # 查看指定环境下用conda安装的软件</p><p>删除软件</p><p>conda remove fastqc   # 删除该环境中的软件</p><p>conda remove -n rnaseq fastqc   # 删除指定环境下的软件</p><p>升级软件</p><p>conda update fastqc  #升级指定的软件</p><p>conda update conda    #升级conda本身</p><p>小tips<br>    conda可以一次安装多个软件包<br>有时候只要软件比如说我们的conda不影响我们的使用就不需要去管<br>指定下载该软件的旧版本就可以完成该软件的降级</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> other学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> conda </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>carto学习笔记</title>
       <link href="/posts/7dd202a0.html"/>
       <url>/posts/7dd202a0.html</url>
@@ -184,6 +159,31 @@
         <tags>
             
             <tag> carto </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>conda使用</title>
+      <link href="/posts/2e82c412.html"/>
+      <url>/posts/2e82c412.html</url>
+      
+        <content type="html"><![CDATA[<p>常用命令<br>sudo apt update<br>更新所有软件<br>sudo apt upgrade<br>删除</p><h1 id="added-by-Anaconda3-5-3-1-installer"><a href="#added-by-Anaconda3-5-3-1-installer" class="headerlink" title="added by Anaconda3 5.3.1 installer"></a>added by Anaconda3 5.3.1 installer</h1><h1 id="gt-gt-gt-conda-init-gt-gt-gt"><a href="#gt-gt-gt-conda-init-gt-gt-gt" class="headerlink" title="&gt;&gt;&gt; conda init &gt;&gt;&gt;"></a>&gt;&gt;&gt; conda init &gt;&gt;&gt;</h1><h1 id="Contents-within-this-block-are-managed-by-‘conda-init’"><a href="#Contents-within-this-block-are-managed-by-‘conda-init’" class="headerlink" title="!! Contents within this block are managed by ‘conda init’ !!"></a>!! Contents within this block are managed by ‘conda init’ !!</h1><p><strong>conda_setup=”$(CONDA_REPORT_ERRORS=false ‘/home/yunfang/anaconda3/bin/conda’ shell.bash hook 2&gt; /dev/null)”<br>if [ $? -eq 0 ]; then<br>    \eval “$</strong>conda_setup”<br>else<br>    if [ -f “/home/yunfang/anaconda3/etc/profile.d/conda.sh” ]; then<br>        . “/home/yunfang/anaconda3/etc/profile.d/conda.sh”<br>        CONDA_CHANGEPS1=false conda activate base<br>    else<br>        \export PATH=”/home/yunfang/anaconda3/bin:$PATH”<br>    fi<br>fi<br>unset __conda_setup</p><h1 id="lt-lt-lt-conda-init-lt-lt-lt"><a href="#lt-lt-lt-conda-init-lt-lt-lt" class="headerlink" title="&lt;&lt;&lt; conda init &lt;&lt;&lt;"></a>&lt;&lt;&lt; conda init &lt;&lt;&lt;</h1><p>conda使用</p><p>1.0创建独立环境<br>不能将需要用的软件或者其他要用的东西装在base环境中</p><p>创建一些独立的环境会比较方便我们做项目管理，不会有冗余，一个独立的小环境就像一间单独的小房间，彼此独立不会相互影响，这样就会可以方便我们管理不同依赖包的软件</p><p>建议： base环境中不要安装任何的包，保持干净，除非你知道这个包会对原生的环境造成什么样的影响</p><p>conda create -n rnaseq   #创建conda小环境 - -n 用来指定环境的名称<br>conda create -n database python=3.7.3    #指定环境中需要带的python的版本</p><p>conda activate rnaseq     # 启动小环境</p><p>conda deactivate           #退出小环境</p><p>conda env list  / conda info —env    #查看共有多少个小环境</p><p>conda remove -n python —all     #删除conda小环境</p><p>ex:<br>conda create -n adr<br>conda activate rnaseq(name)     # 启动小环境</p><h1 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h1><p>最好使用pip install 包名<br>实在下载不了的再用conda install 包名<br>ipython<br>%run ./adr/main.py<br>exit</p><p>conda deactivate           #退出小环境</p><p>指定安装软件的版本（以fastqc为例）</p><p>在不指定版本的情况下，conda默认安装该软件的最新版，如果要安装旧的版本方法：</p><pre><code>先看看有哪些可以安装的版本 conda search fastqc安装指定版本的软件</code></pre><p>conda install fastqc=0.11.7</p><p>添加-y参数跳过确认的步骤 conda install -y fastqc=0.11.7<br>安装找不到软件的包</p><pre><code>确定一下conda是否能安装我们需要的软件确定名字是不是输入正确（尤其要注意，因为我不怎么长眼睛）确定好我们要安装的包在conda中的名字</code></pre><p>查看conda中已经安装的软件</p><p>conda list     #查看当前环境下用conda安装的软件</p><p>conda list fast*   # 查看符合正则表达式的软件</p><p>conda list -n base    # 查看指定环境下用conda安装的软件</p><p>删除软件</p><p>conda remove fastqc   # 删除该环境中的软件</p><p>conda remove -n rnaseq fastqc   # 删除指定环境下的软件</p><p>升级软件</p><p>conda update fastqc  #升级指定的软件</p><p>conda update conda    #升级conda本身</p><p>小tips<br>    conda可以一次安装多个软件包<br>有时候只要软件比如说我们的conda不影响我们的使用就不需要去管<br>指定下载该软件的旧版本就可以完成该软件的降级</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> other学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> conda </tag>
             
         </tags>
       
@@ -242,31 +242,6 @@
     
     
     <entry>
-      <title>ubuntu通用 搜狗安装</title>
-      <link href="/posts/9e9ea3d6.html"/>
-      <url>/posts/9e9ea3d6.html</url>
-      
-        <content type="html"><![CDATA[<p>安装fcitx<br>sudo apt-get install fcitx-bin </p><p>第一步，安装sogoupinyin_4.0.1.2800_x86_64.deb包；<br>通过命令行重新安装搜狗输入法，安装包官网下载链接<br>sudo dpkg –i sogoupinyin_4.0.1.2800_x86_64.deb<br>安装中文支持包</p><p>打开setting－&gt; Region &amp; Lannguage -&gt; InputSource下的Manage installation Language</p><p>点击Installation/ Remove Language<br>勾选中文（简体），并点击应用</p><p>keyboard input method system选择：fcitx<br>————————————————<br>点击应用到全局，然后重启</p><p>1、通过命令行更新系统（如果因网络连接问题无法更新，可以选择换源）</p><p>sudo apt-get update<br>sudo apt-get upgrade</p><p>2、通过命令行安装aptitude</p><p>sudo apt-get install aptitude</p><p>3、通过命令行利用aptitude 安装fcitx、qt</p><p>sudo aptitude install fcitx-bin fcitx-table fcitx-config-gtk fcitx-config-gtk2 fcitx-frontend-all<br>sudo aptitude install qt5-default qtcreator qml-module-qtquick-controls2</p><p>4、如果右上角没有出现fcitx，在终端中输入im-config进行配置</p><p>5、通过命令行重新安装搜狗输入法</p><p>sudo dpkg –i sogoupinyin_4.0.1.2800_x86_64.deb</p><p>第二步，安装依赖。因为我之前安装好deb包后直接以为安装完成了，忽略了第二步要安装依赖。（这步骤很关键）<br>安装官网给出的两条命令，在终端执行</p><p>sudo apt install libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2</p><p>sudo apt install libgsettings-qt1<br>最后卸载ibus<br>sudo apt-get purge ibus<br>6、重启完成即可使用（如果没有，需在右上角fcitx配置中添加搜狗输入法）<br>————————————————</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> SF </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> sougou </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>导航原理</title>
       <link href="/posts/cb0cb908.html"/>
       <url>/posts/cb0cb908.html</url>
@@ -284,6 +259,31 @@
         <tags>
             
             <tag> token </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ubuntu通用 搜狗安装</title>
+      <link href="/posts/9e9ea3d6.html"/>
+      <url>/posts/9e9ea3d6.html</url>
+      
+        <content type="html"><![CDATA[<p>安装fcitx<br>sudo apt-get install fcitx-bin </p><p>第一步，安装sogoupinyin_4.0.1.2800_x86_64.deb包；<br>通过命令行重新安装搜狗输入法，安装包官网下载链接<br>sudo dpkg –i sogoupinyin_4.0.1.2800_x86_64.deb<br>安装中文支持包</p><p>打开setting－&gt; Region &amp; Lannguage -&gt; InputSource下的Manage installation Language</p><p>点击Installation/ Remove Language<br>勾选中文（简体），并点击应用</p><p>keyboard input method system选择：fcitx<br>————————————————<br>点击应用到全局，然后重启</p><p>1、通过命令行更新系统（如果因网络连接问题无法更新，可以选择换源）</p><p>sudo apt-get update<br>sudo apt-get upgrade</p><p>2、通过命令行安装aptitude</p><p>sudo apt-get install aptitude</p><p>3、通过命令行利用aptitude 安装fcitx、qt</p><p>sudo aptitude install fcitx-bin fcitx-table fcitx-config-gtk fcitx-config-gtk2 fcitx-frontend-all<br>sudo aptitude install qt5-default qtcreator qml-module-qtquick-controls2</p><p>4、如果右上角没有出现fcitx，在终端中输入im-config进行配置</p><p>5、通过命令行重新安装搜狗输入法</p><p>sudo dpkg –i sogoupinyin_4.0.1.2800_x86_64.deb</p><p>第二步，安装依赖。因为我之前安装好deb包后直接以为安装完成了，忽略了第二步要安装依赖。（这步骤很关键）<br>安装官网给出的两条命令，在终端执行</p><p>sudo apt install libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2</p><p>sudo apt install libgsettings-qt1<br>最后卸载ibus<br>sudo apt-get purge ibus<br>6、重启完成即可使用（如果没有，需在右上角fcitx配置中添加搜狗输入法）<br>————————————————</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> SF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> sougou </tag>
             
         </tags>
       
@@ -342,31 +342,6 @@
     
     
     <entry>
-      <title>opencv安装</title>
-      <link href="/posts/b44fb44.html"/>
-      <url>/posts/b44fb44.html</url>
-      
-        <content type="html"><![CDATA[<p>6.设置opencv静态库加载路径</p><p>打开配置文件：sudo gedit /etc/ld.so.conf</p><p>加入编译后lib文件夹路径，形式如下所示，但应做修改：<br>include /home/<em>*</em>/opencv-3.4.x/build/lib</p><p>原来的<br>include /etc/ld.so.conf.d/*.conf<br>安装流程<br>sudo apt-get install build-essential<br>sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev<br>sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..</p><p>一、安装流程：<br>ubuntu 18.04 安装OpenCV 4.1.0版本<br>先下载OpenCV和OpenCV_contrib</p><p>git clone <a href="https://github.com/Itseez/opencv.git">https://github.com/Itseez/opencv.git</a><br>git clone <a href="https://github.com/Itseez/opencv_contrib.git">https://github.com/Itseez/opencv_contrib.git</a></p><p>其中opencv_contrib放入opencv文件夹中<br>2.安装依赖</p><h1 id="更新源，安装软件包"><a href="#更新源，安装软件包" class="headerlink" title="更新源，安装软件包"></a>更新源，安装软件包</h1><p>sudo apt update &amp;&amp; sudo apt install -y cmake g++ wget unzip</p><h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev<br>sudo apt-get install libgtk2.0-dev<br>sudo apt-get install pkg-config<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..<br>3.在build文件夹下执行cmake<br>cd opencv/<br>mkdir build<br>cd build/<br>(cd ~/opencv-3.4.15/build/)看一下上面 整过了就不用整了<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.15/modules ..<br>opencv_contrib-3.4.15需要修改成自己的文件夹名字<br>4.编译</p><p>这里的j4是针对性能不好的电脑，我这里电脑性能比较强，选择j32编译,s数据越大编译的速度就越快。<br>make -j4</p><p>5.安装到系统<br>sudo make install<br>添加路径<br>sudo gedit /etc/ld.so.conf.d/opencv.conf</p><p>然后在打开文件中添加如下内容<br>/usr/local/lib<br>之后再终端输入以下命令（安装完成某个工程后生成许多动态库，该命令是为了让这些动态链接库为系统所共享）<br>sudo ldconfig</p><p>使其保存并生效。<br>再在终端输入</p><p>sudo gedit /etc/bash.bashrc</p><p>打开文件后在末尾输入：</p><p>PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig<br>export PKG_CONFIG_PATH<br>保存退出，终端输入：<br>source /etc/bash.bashrc<br>至此，opencv及opencv_contrib安装配置完成了！</p><p>6.测试安装的文件</p><p>进入opencv/samples/cpp/example_cmake目录下，终端打开，依次输入：<br>cd ../samples/cpp/example_cmake<br>cmake .<br>make<br>./opencv_example</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> other学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> opecv </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>ros melotic cartographer安装</title>
       <link href="/posts/26aabfb9.html"/>
       <url>/posts/26aabfb9.html</url>
@@ -384,6 +359,31 @@
         <tags>
             
             <tag> ros </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>opencv安装</title>
+      <link href="/posts/b44fb44.html"/>
+      <url>/posts/b44fb44.html</url>
+      
+        <content type="html"><![CDATA[<p>6.设置opencv静态库加载路径</p><p>打开配置文件：sudo gedit /etc/ld.so.conf</p><p>加入编译后lib文件夹路径，形式如下所示，但应做修改：<br>include /home/<em>*</em>/opencv-3.4.x/build/lib</p><p>原来的<br>include /etc/ld.so.conf.d/*.conf<br>安装流程<br>sudo apt-get install build-essential<br>sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev<br>sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..</p><p>一、安装流程：<br>ubuntu 18.04 安装OpenCV 4.1.0版本<br>先下载OpenCV和OpenCV_contrib</p><p>git clone <a href="https://github.com/Itseez/opencv.git">https://github.com/Itseez/opencv.git</a><br>git clone <a href="https://github.com/Itseez/opencv_contrib.git">https://github.com/Itseez/opencv_contrib.git</a></p><p>其中opencv_contrib放入opencv文件夹中<br>2.安装依赖</p><h1 id="更新源，安装软件包"><a href="#更新源，安装软件包" class="headerlink" title="更新源，安装软件包"></a>更新源，安装软件包</h1><p>sudo apt update &amp;&amp; sudo apt install -y cmake g++ wget unzip</p><h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev<br>sudo apt-get install libgtk2.0-dev<br>sudo apt-get install pkg-config<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..<br>3.在build文件夹下执行cmake<br>cd opencv/<br>mkdir build<br>cd build/<br>(cd ~/opencv-3.4.15/build/)看一下上面 整过了就不用整了<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.15/modules ..<br>opencv_contrib-3.4.15需要修改成自己的文件夹名字<br>4.编译</p><p>这里的j4是针对性能不好的电脑，我这里电脑性能比较强，选择j32编译,s数据越大编译的速度就越快。<br>make -j4</p><p>5.安装到系统<br>sudo make install<br>添加路径<br>sudo gedit /etc/ld.so.conf.d/opencv.conf</p><p>然后在打开文件中添加如下内容<br>/usr/local/lib<br>之后再终端输入以下命令（安装完成某个工程后生成许多动态库，该命令是为了让这些动态链接库为系统所共享）<br>sudo ldconfig</p><p>使其保存并生效。<br>再在终端输入</p><p>sudo gedit /etc/bash.bashrc</p><p>打开文件后在末尾输入：</p><p>PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig<br>export PKG_CONFIG_PATH<br>保存退出，终端输入：<br>source /etc/bash.bashrc<br>至此，opencv及opencv_contrib安装配置完成了！</p><p>6.测试安装的文件</p><p>进入opencv/samples/cpp/example_cmake目录下，终端打开，依次输入：<br>cd ../samples/cpp/example_cmake<br>cmake .<br>make<br>./opencv_example</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> other学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> opecv </tag>
             
         </tags>
       
@@ -789,9 +789,9 @@
       
         <tags>
             
-            <tag> opencv </tag>
-            
             <tag> ros </tag>
+            
+            <tag> opencv </tag>
             
             <tag> melodic </tag>
             
@@ -1091,31 +1091,6 @@
     
     
     <entry>
-      <title>我的第三篇博客文章</title>
-      <link href="/posts/6f36dd99.html"/>
-      <url>/posts/6f36dd99.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="这是第三篇文章"><a href="#这是第三篇文章" class="headerlink" title="这是第三篇文章"></a>这是第三篇文章</h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> Python </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>我的第二篇博客文章</title>
       <link href="/posts/c1539048.html"/>
       <url>/posts/c1539048.html</url>
@@ -1139,19 +1114,33 @@
     </entry>
     
     
-  
-  
-    
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>我的第三篇博客文章</title>
+      <link href="/posts/6f36dd99.html"/>
+      <url>/posts/6f36dd99.html</url>
       
-        <content type="html"><![CDATA[<h1 id="遇见便是最好"><a href="#遇见便是最好" class="headerlink" title="遇见便是最好"></a>遇见便是最好</h1><h1 id="下次再见的时候一定要提前告诉我"><a href="#下次再见的时候一定要提前告诉我" class="headerlink" title="下次再见的时候一定要提前告诉我"></a>下次再见的时候一定要提前告诉我</h1><h1 id="这样我就可以开心更久了"><a href="#这样我就可以开心更久了" class="headerlink" title="这样我就可以开心更久了"></a>这样我就可以开心更久了</h1>]]></content>
+        <content type="html"><![CDATA[<h2 id="这是第三篇文章"><a href="#这是第三篇文章" class="headerlink" title="这是第三篇文章"></a>这是第三篇文章</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
       
     </entry>
     
+    
+  
+  
     
     
     <entry>
@@ -1177,11 +1166,11 @@
     
     
     <entry>
-      <title>留言板</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="遇见便是最好"><a href="#遇见便是最好" class="headerlink" title="遇见便是最好"></a>遇见便是最好</h1><h1 id="下次再见的时候一定要提前告诉我"><a href="#下次再见的时候一定要提前告诉我" class="headerlink" title="下次再见的时候一定要提前告诉我"></a>下次再见的时候一定要提前告诉我</h1><h1 id="这样我就可以开心更久了"><a href="#这样我就可以开心更久了" class="headerlink" title="这样我就可以开心更久了"></a>这样我就可以开心更久了</h1>]]></content>
       
     </entry>
     
@@ -1211,10 +1200,10 @@
     
     <entry>
       <title></title>
-      <link href="/css/dark%20span.css"/>
-      <url>/css/dark%20span.css</url>
+      <link href="/css/readPercent.css"/>
+      <url>/css/readPercent.css</url>
       
-        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
+        <content type="html"><![CDATA[/* 返回顶部 */button#go-up #percent {    display: none;    font-weight: bold;    font-size: 15px !important;}button#go-up span {    font-size: 12px!important;    margin-right: -1px;}/* 鼠标滑动到按钮上时显示返回顶部图标 */button#go-up:hover i {    display: block !important;}button#go-up:hover #percent {    display: none !important;}]]></content>
       
     </entry>
     
@@ -1222,10 +1211,10 @@
     
     <entry>
       <title></title>
-      <link href="/css/readPercent.css"/>
-      <url>/css/readPercent.css</url>
+      <link href="/css/dark%20span.css"/>
+      <url>/css/dark%20span.css</url>
       
-        <content type="html"><![CDATA[/* 返回顶部 */button#go-up #percent {    display: none;    font-weight: bold;    font-size: 15px !important;}button#go-up span {    font-size: 12px!important;    margin-right: -1px;}/* 鼠标滑动到按钮上时显示返回顶部图标 */button#go-up:hover i {    display: block !important;}button#go-up:hover #percent {    display: none !important;}]]></content>
+        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
       
     </entry>
     
@@ -1244,6 +1233,17 @@
     
     <entry>
       <title></title>
+      <link href="/css/universe.css"/>
+      <url>/css/universe.css</url>
+      
+        <content type="html"><![CDATA[/* 背景宇宙星光  */#universe{    display: block;    position: fixed;    margin: 0;    padding: 0;    border: 0;    outline: 0;    left: 0;    top: 0;    width: 100%;    height: 100%;    pointer-events: none;    /* 这个是调置顶的优先级的，-1在文章页下面，背景上面，个人推荐这种 */    z-index: -1;  }]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/css/social_card.css"/>
       <url>/css/social_card.css</url>
       
@@ -1255,21 +1255,10 @@
     
     <entry>
       <title></title>
-      <link href="/css/universe.css"/>
-      <url>/css/universe.css</url>
+      <link href="/js/cat.js"/>
+      <url>/js/cat.js</url>
       
-        <content type="html"><![CDATA[/* 背景宇宙星光  */#universe{    display: block;    position: fixed;    margin: 0;    padding: 0;    border: 0;    outline: 0;    left: 0;    top: 0;    width: 100%;    height: 100%;    pointer-events: none;    /* 这个是调置顶的优先级的，-1在文章页下面，背景上面，个人推荐这种 */    z-index: -1;  }]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
+        <content type="html"><![CDATA[if (document.body.clientWidth > 992) {    function getBasicInfo() {        /* 窗口高度 */        var ViewH = $(window).height();        /* document高度 */        var DocH = $("body")[0].scrollHeight;        /* 滚动的高度 */        var ScrollTop = $(window).scrollTop();        /* 可滚动的高度 */        var S_V = DocH - ViewH;        var Band_H = ScrollTop / (DocH - ViewH) * 100;        return {            ViewH: ViewH,            DocH: DocH,            ScrollTop: ScrollTop,            Band_H: Band_H,            S_V: S_V        }    };    function show(basicInfo) {        if (basicInfo.ScrollTop > 0.001) {            $(".neko").css('display', 'block');        } else {            $(".neko").css('display', 'none');        }    }    (function ($) {        $.fn.nekoScroll = function (option) {            var defaultSetting = {                top: '0',                scroWidth: 6 + 'px',                z_index: 9999,                zoom: 0.9,                borderRadius: 5 + 'px',                right: 60 + 'px',                // 这里可以换为你喜欢的图片，例如我就换为了雪人，但是要抠图                nekoImg: "https://bu.dusays.com/2022/07/20/62d812db74be9.png",                hoverMsg: "喵喵喵~",                color: "#6f42c1",                during: 500,                blog_body: "body",            };            var setting = $.extend(defaultSetting, option);            var getThis = this.prop("className") !== "" ? "." + this.prop("className") : this.prop("id") !== "" ? "#" +                this.prop("id") : this.prop("nodeName");            if ($(".neko").length == 0) {                this.after("<div class=\"neko\" id=" + setting.nekoname + " data-msg=\"" + setting.hoverMsg + "\"></div>");            }            let basicInfo = getBasicInfo();            $(getThis)                .css({                    'position': 'fixed',                    'width': setting.scroWidth,                    'top': setting.top,                    'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                    'z-index': setting.z_index,                    'background-color': setting.bgcolor,                    "border-radius": setting.borderRadius,                    'right': setting.right,                    'background-image': 'url(' + setting.scImg + ')',                    'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                    'background-size': 'contain'                });            $("#" + setting.nekoname)                .css({                    'position': 'fixed',                    'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                    'z-index': setting.z_index * 10,                    'right': setting.right,                    'background-image': 'url(' + setting.nekoImg + ')',                });            show(getBasicInfo());            $(window)                .scroll(function () {                    let basicInfo = getBasicInfo();                    show(basicInfo);                    $(getThis)                        .css({                            'position': 'fixed',                            'width': setting.scroWidth,                            'top': setting.top,                            'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                            'z-index': setting.z_index,                            'background-color': setting.bgcolor,                            "border-radius": setting.borderRadius,                            'right': setting.right,                            'background-image': 'url(' + setting.scImg + ')',                            'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                            'background-size': 'contain'                        });                    $("#" + setting.nekoname)                        .css({                            'position': 'fixed',                            'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                            'z-index': setting.z_index * 10,                            'right': setting.right,                            'background-image': 'url(' + setting.nekoImg + ')',                        });                    if (basicInfo.ScrollTop == basicInfo.S_V) {                        $("#" + setting.nekoname)                            .addClass("showMsg")                    } else {                        $("#" + setting.nekoname)                            .removeClass("showMsg");                        $("#" + setting.nekoname)                            .attr("data-msg", setting.hoverMsg);                    }                });            this.click(function (e) {                btf.scrollToDest(0, 500)            });            $("#" + setting.nekoname)                .click(function () {                    btf.scrollToDest(0, 500)                });            return this;        }    })(jQuery);    $(document).ready(function () {        //部分自定义        $("#myscoll").nekoScroll({            bgcolor: 'rgb(0 0 0 / .5)', //背景颜色，没有绳子背景图片时有效            borderRadius: '2em',            zoom: 0.9        }        );        //自定义（去掉以下注释，并注释掉其他的查看效果）        /*        $("#myscoll").nekoScroll({            nekoname:'neko1', //nekoname，相当于id            nekoImg:'img/猫咪.png', //neko的背景图片            scImg:"img/绳1.png", //绳子的背景图片            bgcolor:'#1e90ff', //背景颜色，没有绳子背景图片时有效            zoom:0.9, //绳子长度的缩放值            hoverMsg:'你好~喵', //鼠标浮动到neko上方的对话框信息            right:'100px', //距离页面右边的距离            fontFamily:'楷体', //对话框字体            fontSize:'14px', //对话框字体的大小            color:'#1e90ff', //对话框字体颜色            scroWidth:'8px', //绳子的宽度            z_index:100, //不用解释了吧            during:1200, //从顶部到底部滑动的时长        });        */    })}]]></content>
       
     </entry>
     
@@ -1281,17 +1270,6 @@
       <url>/js/gray.js</url>
       
         <content type="html"><![CDATA[if(PublicSacrificeDay()){    document.getElementsByTagName("html")[0].setAttribute("style","filter:gray !important;filter:grayscale(100%);-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);");  }    function PublicSacrificeDay(){      var PSFarr=new Array("0403","0404","0405","0406","0414","0512","0707","0807","0814","0909","0918","0930","1025","1213");      //2020年4月4日 新冠肺炎哀悼日，清明节      //2010年4月14日，青海玉树地震      //2008年5月12日，四川汶川地震      //1937年7月7日,七七事变 又称卢沟桥事变      //2010年8月7日，甘肃舟曲特大泥石流        //8月14日，世界慰安妇纪念日      //1976年9月9日，毛主席逝世        //1931年9月18日，九一八事变        //烈士纪念日为每年9月30日      //1950年10月25日，抗美援朝纪念日      //1937年12月13日，南京大屠杀      var currentdate = new Date();      var str = "";      var mm = currentdate.getMonth()+1;      if(currentdate.getMonth()>9){        str += mm;      }else{        str += "0" + mm;      }      if(currentdate.getDate()>9){        str += currentdate.getDate();      }else{        str += "0" + currentdate.getDate();      }      if(PSFarr.indexOf(str)>-1){          return 1;      }else{          return 0;      }  }    ]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/cat.js"/>
-      <url>/js/cat.js</url>
-      
-        <content type="html"><![CDATA[if (document.body.clientWidth > 992) {    function getBasicInfo() {        /* 窗口高度 */        var ViewH = $(window).height();        /* document高度 */        var DocH = $("body")[0].scrollHeight;        /* 滚动的高度 */        var ScrollTop = $(window).scrollTop();        /* 可滚动的高度 */        var S_V = DocH - ViewH;        var Band_H = ScrollTop / (DocH - ViewH) * 100;        return {            ViewH: ViewH,            DocH: DocH,            ScrollTop: ScrollTop,            Band_H: Band_H,            S_V: S_V        }    };    function show(basicInfo) {        if (basicInfo.ScrollTop > 0.001) {            $(".neko").css('display', 'block');        } else {            $(".neko").css('display', 'none');        }    }    (function ($) {        $.fn.nekoScroll = function (option) {            var defaultSetting = {                top: '0',                scroWidth: 6 + 'px',                z_index: 9999,                zoom: 0.9,                borderRadius: 5 + 'px',                right: 60 + 'px',                // 这里可以换为你喜欢的图片，例如我就换为了雪人，但是要抠图                nekoImg: "https://bu.dusays.com/2022/07/20/62d812db74be9.png",                hoverMsg: "喵喵喵~",                color: "#6f42c1",                during: 500,                blog_body: "body",            };            var setting = $.extend(defaultSetting, option);            var getThis = this.prop("className") !== "" ? "." + this.prop("className") : this.prop("id") !== "" ? "#" +                this.prop("id") : this.prop("nodeName");            if ($(".neko").length == 0) {                this.after("<div class=\"neko\" id=" + setting.nekoname + " data-msg=\"" + setting.hoverMsg + "\"></div>");            }            let basicInfo = getBasicInfo();            $(getThis)                .css({                    'position': 'fixed',                    'width': setting.scroWidth,                    'top': setting.top,                    'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                    'z-index': setting.z_index,                    'background-color': setting.bgcolor,                    "border-radius": setting.borderRadius,                    'right': setting.right,                    'background-image': 'url(' + setting.scImg + ')',                    'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                    'background-size': 'contain'                });            $("#" + setting.nekoname)                .css({                    'position': 'fixed',                    'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                    'z-index': setting.z_index * 10,                    'right': setting.right,                    'background-image': 'url(' + setting.nekoImg + ')',                });            show(getBasicInfo());            $(window)                .scroll(function () {                    let basicInfo = getBasicInfo();                    show(basicInfo);                    $(getThis)                        .css({                            'position': 'fixed',                            'width': setting.scroWidth,                            'top': setting.top,                            'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',                            'z-index': setting.z_index,                            'background-color': setting.bgcolor,                            "border-radius": setting.borderRadius,                            'right': setting.right,                            'background-image': 'url(' + setting.scImg + ')',                            'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',                            'background-size': 'contain'                        });                    $("#" + setting.nekoname)                        .css({                            'position': 'fixed',                            'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',                            'z-index': setting.z_index * 10,                            'right': setting.right,                            'background-image': 'url(' + setting.nekoImg + ')',                        });                    if (basicInfo.ScrollTop == basicInfo.S_V) {                        $("#" + setting.nekoname)                            .addClass("showMsg")                    } else {                        $("#" + setting.nekoname)                            .removeClass("showMsg");                        $("#" + setting.nekoname)                            .attr("data-msg", setting.hoverMsg);                    }                });            this.click(function (e) {                btf.scrollToDest(0, 500)            });            $("#" + setting.nekoname)                .click(function () {                    btf.scrollToDest(0, 500)                });            return this;        }    })(jQuery);    $(document).ready(function () {        //部分自定义        $("#myscoll").nekoScroll({            bgcolor: 'rgb(0 0 0 / .5)', //背景颜色，没有绳子背景图片时有效            borderRadius: '2em',            zoom: 0.9        }        );        //自定义（去掉以下注释，并注释掉其他的查看效果）        /*        $("#myscoll").nekoScroll({            nekoname:'neko1', //nekoname，相当于id            nekoImg:'img/猫咪.png', //neko的背景图片            scImg:"img/绳1.png", //绳子的背景图片            bgcolor:'#1e90ff', //背景颜色，没有绳子背景图片时有效            zoom:0.9, //绳子长度的缩放值            hoverMsg:'你好~喵', //鼠标浮动到neko上方的对话框信息            right:'100px', //距离页面右边的距离            fontFamily:'楷体', //对话框字体            fontSize:'14px', //对话框字体的大小            color:'#1e90ff', //对话框字体颜色            scroWidth:'8px', //绳子的宽度            z_index:100, //不用解释了吧            during:1200, //从顶部到底部滑动的时长        });        */    })}]]></content>
       
     </entry>
     
@@ -1321,17 +1299,6 @@
     
     <entry>
       <title></title>
-      <link href="/js/runtime.js"/>
-      <url>/js/runtime.js</url>
-      
-        <content type="html"><![CDATA[var now = new Date();function createtime() {  var grt = new Date("04/02/2023 23:26:00");  now.setTime(now.getTime() + 250);  var days = (now - grt) / 1e3 / 60 / 60 / 24,    dnum = Math.floor(days),    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,    hnum = Math.floor(hours);  1 == String(hnum).length && (hnum = "0" + hnum);  var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,    mnum = Math.floor(minutes);  1 == String(mnum).length && (mnum = "0" + mnum);  var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,    snum = Math.round(seconds);  1 == String(snum).length && (snum = "0" + snum);  let currentTimeHtml = "";  (currentTimeHtml =    hnum < 18 && hnum >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='距离月入25k也就还差一个大佬带我~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心的玩耍，嘿嘿~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`),    document.getElementById("workboard") && (document.getElementById("workboard").innerHTML = currentTimeHtml);}setInterval(() => {  createtime();}, 250);]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/js/run.js"/>
       <url>/js/run.js</url>
       
@@ -1354,10 +1321,32 @@
     
     <entry>
       <title></title>
+      <link href="/js/runtime.js"/>
+      <url>/js/runtime.js</url>
+      
+        <content type="html"><![CDATA[var now = new Date();function createtime() {  var grt = new Date("04/02/2023 23:26:00");  now.setTime(now.getTime() + 250);  var days = (now - grt) / 1e3 / 60 / 60 / 24,    dnum = Math.floor(days),    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,    hnum = Math.floor(hours);  1 == String(hnum).length && (hnum = "0" + hnum);  var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,    mnum = Math.floor(minutes);  1 == String(mnum).length && (mnum = "0" + mnum);  var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,    snum = Math.round(seconds);  1 == String(snum).length && (snum = "0" + snum);  let currentTimeHtml = "";  (currentTimeHtml =    hnum < 18 && hnum >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='距离月入25k也就还差一个大佬带我~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心的玩耍，嘿嘿~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`),    document.getElementById("workboard") && (document.getElementById("workboard").innerHTML = currentTimeHtml);}setInterval(() => {  createtime();}, 250);]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/js/social_card.js"/>
       <url>/js/social_card.js</url>
       
         <content type="html"><![CDATA[var zhsher = {    getTimeState: function () {        var element = (new Date).getHours(), time = "";        return 0 <= element && element <= 5 ? time = "晚安😴" : 5 < element && element <= 10 ? time = "早上好👋" : 10 < element && element <= 14 ? time = "中午好👋" : 14 < element && element <= 18 ? time = "下午好👋" : 18 < element && element <= 24 && (time = "晚上好👋"), time    },    sayhi: function () {        var element = document.getElementById("author-info__sayhi");        element && (element.innerHTML = zhsher.getTimeState() + "！我是")    }}zhsher.sayhi();]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/universe.js"/>
+      <url>/js/universe.js</url>
+      
+        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
       
     </entry>
     
@@ -1375,11 +1364,22 @@
     
     
     <entry>
-      <title></title>
-      <link href="/js/universe.js"/>
-      <url>/js/universe.js</url>
+      <title>留言板</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
       
-        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
       
     </entry>
     
@@ -1408,17 +1408,6 @@
     
     
     <entry>
-      <title>games</title>
-      <link href="/list/games/index.html"/>
-      <url>/list/games/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>bangumis</title>
       <link href="/list/bangumis/index.html"/>
       <url>/list/bangumis/index.html</url>
@@ -1430,9 +1419,9 @@
     
     
     <entry>
-      <title>songs</title>
-      <link href="/list/songs/index.html"/>
-      <url>/list/songs/index.html</url>
+      <title>games</title>
+      <link href="/list/games/index.html"/>
+      <url>/list/games/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1455,6 +1444,17 @@
       <title>电影</title>
       <link href="/list/movies/index.html"/>
       <url>/list/movies/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>songs</title>
+      <link href="/list/songs/index.html"/>
+      <url>/list/songs/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
