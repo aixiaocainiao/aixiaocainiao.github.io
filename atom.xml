@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>云知</title>
+  <title>知了</title>
   
-  <subtitle>人们总说来日方长,吾愿早日陪伴</subtitle>
+  <subtitle>比起过往 前方也许更值得期待</subtitle>
   <link href="https://aixiaocainiao.github.io/atom.xml" rel="self"/>
   
   <link href="https://aixiaocainiao.github.io/"/>

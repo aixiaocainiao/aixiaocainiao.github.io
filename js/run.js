@@ -19,8 +19,8 @@ function createtime() {
   let c = "";
   (c =
     s < 18 && s >= 9
-      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='浑水摸鱼罢了~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 阳光微瑕 距离下次见面又近了 提前告诉我 我可以开心的更久一点哦 虽然相恋了 ${r+394} 天 ，甜蜜度依旧如相识那样 🚀</div>`
-      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='终于下班啦~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 阳光微瑕 距离下次见面又近了 提前告诉我 我可以开心的更久一点哦 虽然相恋了 ${r+394} 天，甜蜜度依旧如相识那样 🚀</div>`),
+      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='浑水摸鱼罢了~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 前进一步 没资格 退一步 不舍得 那就听你的吧 往后你要加油 认识了 ${r+394} 天，消散了${r-69}天  🚀</div>`
+      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='终于下班啦~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 前进一步 没资格 退一步 不舍得 那就听你的吧 往后你要加油 认识了 ${r+394} 天，消散了${r-69}天 🚀</div>`),
     document.getElementById("workboard") &&
       (document.getElementById("workboard").innerHTML = c);
 }
