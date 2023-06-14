@@ -38,16 +38,16 @@
   </entry>
   
   <entry>
-    <title>ros指令</title>
-    <link href="https://aixiaocainiao.github.io/posts/50f3c42c.html"/>
-    <id>https://aixiaocainiao.github.io/posts/50f3c42c.html</id>
+    <title>ros中自定义全局路径规划器部署步骤</title>
+    <link href="https://aixiaocainiao.github.io/posts/b65be66e.html"/>
+    <id>https://aixiaocainiao.github.io/posts/b65be66e.html</id>
     <published>2023-06-08T05:06:24.027Z</published>
-    <updated>2023-06-08T05:23:31.439Z</updated>
+    <updated>2023-06-08T05:23:31.432Z</updated>
     
-    <content type="html"><![CDATA[<p>odm  framd_id odm_combined<br>map  map<br>nase_frame_id base_footprint</p><p>scan  scan<br> 查看某个具体的消息 需要使用管道<br>rosmsg list | grep -i 话题名称<br>校园网址<br><a href="https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00">https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00</a></p><p>C语言学习中递归函数<br>ctrl+shift+空格出现代码提示<br>使用rosparam导入参数<br>设置的参数.yaml文件中 需要加空格 例如bg_R: 100<br>rosparam 便签 会率先执行 所以在使用dump导出参数的时候需要自己直接写一个launch文件</p><p>写代码之前操作</p><p>mkdir -p xxx_ws/src(必须得有 src)<br>cd xxx_ws<br>catkin_make<br>cd xxx_ws<br>code .</p><p>rviz中 ctrl+shift+鼠标可以拖动位置<br>args=”-d $(find urdf01_rviz)/config/show_mycar.rviz”<br>这玩意保存的时配置 不是rviz里面显示的东西<br>solidworks<br>joint origin是joint相对于parent的位置<br>[joint_state_publisher-4] process has died [pid 12169, exit code 1, cmd /opt/ros/melodic/lib/joint_state_publisher/joint_state_publisher <strong>name:=joint_state_publisher </strong>log:=/home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4.log].<br>log file: /home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4*.log</p><p>出现下面的错误 请删除掉urdf里面的中文注释 melidic中不能有一点点中文<br>evince mycar.pdf<br>arbotix报错，进入src下的arbotix_ros功能包，进入arbotix_python，进入bin，进入arbotix_driver<br>将第一行中的python的运行版本从3改为2.7运行就可以了<br>rviz中fixed frame为 odm<br>gazebo有进程问题 请执行下面指令 直接杀死<br>killall gzserver</p><p>killall gzclient</p><p>tar -xvf arduino-1.x.y-linux64.tar.xz<br>tar解压命令 </p><node name="playbag" pkg="rosbag" type="play"      args="--clock $(arg bag_filename)" />]]></content>
+    <content type="html"><![CDATA[<p>ros中自定义全局路径规划器部署步骤</p><ul><li><p>catkin_create_pkg better_astar_global_planner  roscpp rospy std_msgs   nav_core</p></li><li><p>将.cpp文件和.h头文件放入到src中</p></li><li>配置CMakeLists.txt</li><li>重新编译  在/home/yunfang/tutorial_ws/devel/lib中生成了libbetter_astar_global_planner_lib.so库</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">124行</span><br><span class="line">## Declare a C++ library</span><br><span class="line"># add_library($&#123;PROJECT_NAME&#125;</span><br><span class="line">#   src/$&#123;PROJECT_NAME&#125;/plugin_better_a.cpp</span><br><span class="line"># )</span><br><span class="line">修改为  注意_lib  包名_lib</span><br><span class="line">## Declare a C++ library</span><br><span class="line">add_library(better_astar_global_planner_lib</span><br><span class="line">  src/better_aster.cpp</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>2.1注册插件:</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PLUGINLIB_EXPORT_CLASS</span>(BAstar_planner::BAstarPlannerROS, nav_core::BaseGlobalPlanner)</span><br></pre></td></tr></table></figure><p>2.2插件描述文件</p><p>包 右键  新建文件 better_astar_global_planner_plugin.xml</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">初始：</span><br><span class="line"> &lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">  &lt;class name=&quot;global_planner/GlobalPlanner&quot; type=&quot;global_planner::GlobalPlanner&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;   </span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"> </span><br><span class="line">介绍：</span><br><span class="line">&lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">type=&quot;global_planner::GlobalPlanner&quot; 注册插件的  编写的类 BAstar_planner::BAstarPlannerROS</span><br><span class="line">修改为：</span><br><span class="line">&lt;library path=&quot;lib/libbetter_astar_global_planner_lib&quot;&gt;</span><br><span class="line">  &lt;class name=&quot;BAstar_planner/BAstarPlannerROS&quot; type=&quot;BAstar_planner::BAstarPlannerROS&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;</span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>2.3使用 ROS 包系统注册插件</p><p>packeage.xml中</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">67行 最下面</span><br><span class="line"></span><br><span class="line">&lt;export&gt;</span><br><span class="line">   &lt;!-- Other tools can request additional information be placed here --&gt;</span><br><span class="line">   &lt;nav_core plugin=&quot;$&#123;prefix&#125;/better_astar_global_planner_plugin.xml&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/export&gt;</span><br></pre></td></tr></table></figure>]]></content>
     
     
-    <summary type="html">ros指令</summary>
+    <summary type="html">ros中自定义全局路径规划器部署步骤</summary>
     
     
     
@@ -59,16 +59,16 @@
   </entry>
   
   <entry>
-    <title>ros中自定义全局路径规划器部署步骤</title>
-    <link href="https://aixiaocainiao.github.io/posts/b65be66e.html"/>
-    <id>https://aixiaocainiao.github.io/posts/b65be66e.html</id>
+    <title>ros指令</title>
+    <link href="https://aixiaocainiao.github.io/posts/50f3c42c.html"/>
+    <id>https://aixiaocainiao.github.io/posts/50f3c42c.html</id>
     <published>2023-06-08T05:06:24.027Z</published>
-    <updated>2023-06-08T05:23:31.432Z</updated>
+    <updated>2023-06-08T05:23:31.439Z</updated>
     
-    <content type="html"><![CDATA[<p>ros中自定义全局路径规划器部署步骤</p><ul><li><p>catkin_create_pkg better_astar_global_planner  roscpp rospy std_msgs   nav_core</p></li><li><p>将.cpp文件和.h头文件放入到src中</p></li><li>配置CMakeLists.txt</li><li>重新编译  在/home/yunfang/tutorial_ws/devel/lib中生成了libbetter_astar_global_planner_lib.so库</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">124行</span><br><span class="line">## Declare a C++ library</span><br><span class="line"># add_library($&#123;PROJECT_NAME&#125;</span><br><span class="line">#   src/$&#123;PROJECT_NAME&#125;/plugin_better_a.cpp</span><br><span class="line"># )</span><br><span class="line">修改为  注意_lib  包名_lib</span><br><span class="line">## Declare a C++ library</span><br><span class="line">add_library(better_astar_global_planner_lib</span><br><span class="line">  src/better_aster.cpp</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>2.1注册插件:</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PLUGINLIB_EXPORT_CLASS</span>(BAstar_planner::BAstarPlannerROS, nav_core::BaseGlobalPlanner)</span><br></pre></td></tr></table></figure><p>2.2插件描述文件</p><p>包 右键  新建文件 better_astar_global_planner_plugin.xml</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">初始：</span><br><span class="line"> &lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">  &lt;class name=&quot;global_planner/GlobalPlanner&quot; type=&quot;global_planner::GlobalPlanner&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;   </span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"> </span><br><span class="line">介绍：</span><br><span class="line">&lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">type=&quot;global_planner::GlobalPlanner&quot; 注册插件的  编写的类 BAstar_planner::BAstarPlannerROS</span><br><span class="line">修改为：</span><br><span class="line">&lt;library path=&quot;lib/libbetter_astar_global_planner_lib&quot;&gt;</span><br><span class="line">  &lt;class name=&quot;BAstar_planner/BAstarPlannerROS&quot; type=&quot;BAstar_planner::BAstarPlannerROS&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;</span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>2.3使用 ROS 包系统注册插件</p><p>packeage.xml中</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">67行 最下面</span><br><span class="line"></span><br><span class="line">&lt;export&gt;</span><br><span class="line">   &lt;!-- Other tools can request additional information be placed here --&gt;</span><br><span class="line">   &lt;nav_core plugin=&quot;$&#123;prefix&#125;/better_astar_global_planner_plugin.xml&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/export&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>odm  framd_id odm_combined<br>map  map<br>nase_frame_id base_footprint</p><p>scan  scan<br> 查看某个具体的消息 需要使用管道<br>rosmsg list | grep -i 话题名称<br>校园网址<br><a href="https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00">https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00</a></p><p>C语言学习中递归函数<br>ctrl+shift+空格出现代码提示<br>使用rosparam导入参数<br>设置的参数.yaml文件中 需要加空格 例如bg_R: 100<br>rosparam 便签 会率先执行 所以在使用dump导出参数的时候需要自己直接写一个launch文件</p><p>写代码之前操作</p><p>mkdir -p xxx_ws/src(必须得有 src)<br>cd xxx_ws<br>catkin_make<br>cd xxx_ws<br>code .</p><p>rviz中 ctrl+shift+鼠标可以拖动位置<br>args=”-d $(find urdf01_rviz)/config/show_mycar.rviz”<br>这玩意保存的时配置 不是rviz里面显示的东西<br>solidworks<br>joint origin是joint相对于parent的位置<br>[joint_state_publisher-4] process has died [pid 12169, exit code 1, cmd /opt/ros/melodic/lib/joint_state_publisher/joint_state_publisher <strong>name:=joint_state_publisher </strong>log:=/home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4.log].<br>log file: /home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4*.log</p><p>出现下面的错误 请删除掉urdf里面的中文注释 melidic中不能有一点点中文<br>evince mycar.pdf<br>arbotix报错，进入src下的arbotix_ros功能包，进入arbotix_python，进入bin，进入arbotix_driver<br>将第一行中的python的运行版本从3改为2.7运行就可以了<br>rviz中fixed frame为 odm<br>gazebo有进程问题 请执行下面指令 直接杀死<br>killall gzserver</p><p>killall gzclient</p><p>tar -xvf arduino-1.x.y-linux64.tar.xz<br>tar解压命令 </p><node name="playbag" pkg="rosbag" type="play"      args="--clock $(arg bag_filename)" />]]></content>
     
     
-    <summary type="html">ros中自定义全局路径规划器部署步骤</summary>
+    <summary type="html">ros指令</summary>
     
     
     
@@ -122,27 +122,6 @@
   </entry>
   
   <entry>
-    <title>opencv使用</title>
-    <link href="https://aixiaocainiao.github.io/posts/ec9cd9b2.html"/>
-    <id>https://aixiaocainiao.github.io/posts/ec9cd9b2.html</id>
-    <published>2023-06-08T05:06:23.997Z</published>
-    <updated>2023-06-08T05:23:31.413Z</updated>
-    
-    <content type="html"><![CDATA[<p>C++ Opencv<br>编译命令:<br>g++ -o your_executable your_source_file.cpp <code>pkg-config --cflags --libs opencv</code><br>python opencv python2.7 cv2 版本对应<br>python程序前加：</p><h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>import cv2</p>]]></content>
-    
-    
-    <summary type="html">opencv使用</summary>
-    
-    
-    
-    <category term="other学习" scheme="https://aixiaocainiao.github.io/categories/other%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="opecv" scheme="https://aixiaocainiao.github.io/tags/opecv/"/>
-    
-  </entry>
-  
-  <entry>
     <title>git的使用</title>
     <link href="https://aixiaocainiao.github.io/posts/2e742d51.html"/>
     <id>https://aixiaocainiao.github.io/posts/2e742d51.html</id>
@@ -164,23 +143,23 @@
   </entry>
   
   <entry>
-    <title>carto学习笔记</title>
-    <link href="https://aixiaocainiao.github.io/posts/7dd202a0.html"/>
-    <id>https://aixiaocainiao.github.io/posts/7dd202a0.html</id>
-    <published>2023-06-08T05:06:23.987Z</published>
-    <updated>2023-06-08T05:23:31.408Z</updated>
+    <title>opencv使用</title>
+    <link href="https://aixiaocainiao.github.io/posts/ec9cd9b2.html"/>
+    <id>https://aixiaocainiao.github.io/posts/ec9cd9b2.html</id>
+    <published>2023-06-08T05:06:23.997Z</published>
+    <updated>2023-06-08T05:23:31.413Z</updated>
     
-    <content type="html"><![CDATA[<p>git clone <a href="https://github.com/xiangli0608/cartographer_detailed_comments_ws">https://github.com/xiangli0608/cartographer_detailed_comments_ws</a></p><p>sudo gedit ~/.bashrc</p><p>1.0<br>数据集中<br>robotmodel不会正常显示  因为没有加载urdf文件<br>2.0<br>将ros包 都发布到系统中防止修改后 无法roslaunch<br>rospack profile<br>3.0<br>安装3d点云地图查看工具<br>sudo apt-get install pcl-tools<br>4.0<br>使用asset生成ros格式的2d栅格地图 不可用  一般不用看<br>5.0<br>roscore<br>rosbag play 文件名.bag<br>rosbag info 文件名.bag<br>rqt<br>node<br>tf<br>修改launch<br>修改lua文件</p><p>数据集<br>一个可以用来建图的数据集应该包括16线点云数据，由点云数据生成的单线雷达数据，imu.里程计，rtk/gps,tf和静态tf(tf-static)</p><p>cartographer配置流程<br>1.五个命令<br>roscore<br>rosbag info 包名.bag<br>有topic内容<br>rosbag plag 包名.bag -l<br>rqt<br>Plugins  Visualization TF-TREE<br>Plugins  instro  node  node /topic(all) 选项只要Debug这个选项<br>tf 是在变化的   odm map 和 机器人之间的位置是在变化的<br>tf-static 机器人本身的结构一般是不变化的<br>rviz<br>Fixed Frame odm<br>add TF<br>add laserscan  style-Point  就可以看见了<br>add Pointcloud(16线点云数据)</p><p>2.配置lua和launch<br>2.1第⼀步 了解 bag ⽂件<br>对于在线跑 slam ⽽⾔，是要去了解机器⼈上各个传感器的数据，消息类型，发布话题等等。<br>⽽对于离线跑 slam ⽽⾔，则是要去了解所对应的 bag 包⾥的内容。<!-- 启动 ros 核心节点 --><br>roscore<br><!-- 了解 bag 包中的 topic 的名称和类型 --><br>rosbag info rslidar-outdoor-gps.bag<br><!-- 播放 bag 包中的文件 --><br>rosbag play rslidar-outdoor-gps.bag<br>之后我们还可以通过 rqt 和 rviz 这两个可视化⼯具来做进⼀步了解<br>第⼆步 配置 launch ⽂件<br>launch ⽂件中需要如下⼏个设置<br>bag所属文件名与 bag ⽂件的名字<br>lua ⽂件的名字<br>topic 需要 remap 成 bag ⽂件中发布的 topic</p><p>第三步 配置 lua ⽂件<br>对于这种我们没有odom的情况，一般published_frame也就指定为base_link或者base_footprint。<br>打开backpack_2d.lua复制进来<br>tracking_frame 有 imu 的 link 就设置成 imu 对应的 link ，没有就设置成 base_link<br>published_frame 在 cartographer 发布的 tf 的最下边的⼀个坐标系，也就是 bag ⽂件中 tf 树的最上边<br>的⼀个坐标系<br>provide_odom_frame 是否提供⾥程计，如果 bag 中有⾥程计的坐标系，这个就是 false ，如果没有，<br>就根据需要决定是否提供⾥程计的坐标系<br>use_pose_extrapolator = false 这个⼀定要设置成 false  或者直接删除<br>use_odometry 是否使⽤⾥程计的传感器数据，如果为 true ， tf 树中⼀定要存在 odom 这个坐标系<br>use_nav_sat  是否使用GPS数据 默认订阅/fix<br>/use_landmarks (是否订阅⾥程计话题的数据，以及 landmark 话题的数据)</p><p>num_laser_scans/num_point_clouds 单线点云与多线点云的话题的数量，可以同时为 1 ，但不可以同时<br>为 0  </p><p>num_laser_scans = 0,  订阅单线点云数据<br>num_multi_echo_laser_scans = 0,  默认为0  多回声波雷达 很少用到<br>num_subdivisions_per_laser_scan = 1, 默认为1，⼀帧点云数据会被分成⼏次处理，设置成 1 就⾏了<br>num_point_clouds = 0,  订阅多线点云数据</p><p>单线点云与多线点云的话题的数量，可以同时为 1 ，但不可以同时<br>为 0  </p><p>num_subdivisions_per_laser_scan ⼀帧点云数据会被分成⼏次处理，设置成 1 就⾏了</p><p>MAP_BUILDER.use_trajectory_builder_2d = true 建造⼆维地图时⼀定要有这句话，建造三维地图就把<br>2d 改为 3d<br>TRAJECTORY_BUILDER_2D.use_imu_data 是否使⽤ imu ，如果使⽤ imu ， tracking_frame ⼀定要设置<br>成 imu 对应的 link</p><p>TRAJECTORY_BUILDER_2D.min_z 点云的最⼩ z 的范围，单线点云不能设置⼤于 0 的值（不设置），多<br>线点云的这个值要⼤于 0</p>]]></content>
-    
-    
-    <summary type="html">carto学习笔记</summary>
+    <content type="html"><![CDATA[<p>C++ Opencv<br>编译命令:<br>g++ -o your_executable your_source_file.cpp <code>pkg-config --cflags --libs opencv</code><br>python opencv python2.7 cv2 版本对应<br>python程序前加：</p><h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>import cv2</p>]]></content>
     
     
+    <summary type="html">opencv使用</summary>
     
-    <category term="Slam" scheme="https://aixiaocainiao.github.io/categories/Slam/"/>
     
     
-    <category term="carto" scheme="https://aixiaocainiao.github.io/tags/carto/"/>
+    <category term="other学习" scheme="https://aixiaocainiao.github.io/categories/other%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="opecv" scheme="https://aixiaocainiao.github.io/tags/opecv/"/>
     
   </entry>
   
@@ -202,6 +181,27 @@
     
     
     <category term="conda" scheme="https://aixiaocainiao.github.io/tags/conda/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>carto学习笔记</title>
+    <link href="https://aixiaocainiao.github.io/posts/7dd202a0.html"/>
+    <id>https://aixiaocainiao.github.io/posts/7dd202a0.html</id>
+    <published>2023-06-08T05:06:23.987Z</published>
+    <updated>2023-06-08T05:23:31.408Z</updated>
+    
+    <content type="html"><![CDATA[<p>git clone <a href="https://github.com/xiangli0608/cartographer_detailed_comments_ws">https://github.com/xiangli0608/cartographer_detailed_comments_ws</a></p><p>sudo gedit ~/.bashrc</p><p>1.0<br>数据集中<br>robotmodel不会正常显示  因为没有加载urdf文件<br>2.0<br>将ros包 都发布到系统中防止修改后 无法roslaunch<br>rospack profile<br>3.0<br>安装3d点云地图查看工具<br>sudo apt-get install pcl-tools<br>4.0<br>使用asset生成ros格式的2d栅格地图 不可用  一般不用看<br>5.0<br>roscore<br>rosbag play 文件名.bag<br>rosbag info 文件名.bag<br>rqt<br>node<br>tf<br>修改launch<br>修改lua文件</p><p>数据集<br>一个可以用来建图的数据集应该包括16线点云数据，由点云数据生成的单线雷达数据，imu.里程计，rtk/gps,tf和静态tf(tf-static)</p><p>cartographer配置流程<br>1.五个命令<br>roscore<br>rosbag info 包名.bag<br>有topic内容<br>rosbag plag 包名.bag -l<br>rqt<br>Plugins  Visualization TF-TREE<br>Plugins  instro  node  node /topic(all) 选项只要Debug这个选项<br>tf 是在变化的   odm map 和 机器人之间的位置是在变化的<br>tf-static 机器人本身的结构一般是不变化的<br>rviz<br>Fixed Frame odm<br>add TF<br>add laserscan  style-Point  就可以看见了<br>add Pointcloud(16线点云数据)</p><p>2.配置lua和launch<br>2.1第⼀步 了解 bag ⽂件<br>对于在线跑 slam ⽽⾔，是要去了解机器⼈上各个传感器的数据，消息类型，发布话题等等。<br>⽽对于离线跑 slam ⽽⾔，则是要去了解所对应的 bag 包⾥的内容。<!-- 启动 ros 核心节点 --><br>roscore<br><!-- 了解 bag 包中的 topic 的名称和类型 --><br>rosbag info rslidar-outdoor-gps.bag<br><!-- 播放 bag 包中的文件 --><br>rosbag play rslidar-outdoor-gps.bag<br>之后我们还可以通过 rqt 和 rviz 这两个可视化⼯具来做进⼀步了解<br>第⼆步 配置 launch ⽂件<br>launch ⽂件中需要如下⼏个设置<br>bag所属文件名与 bag ⽂件的名字<br>lua ⽂件的名字<br>topic 需要 remap 成 bag ⽂件中发布的 topic</p><p>第三步 配置 lua ⽂件<br>对于这种我们没有odom的情况，一般published_frame也就指定为base_link或者base_footprint。<br>打开backpack_2d.lua复制进来<br>tracking_frame 有 imu 的 link 就设置成 imu 对应的 link ，没有就设置成 base_link<br>published_frame 在 cartographer 发布的 tf 的最下边的⼀个坐标系，也就是 bag ⽂件中 tf 树的最上边<br>的⼀个坐标系<br>provide_odom_frame 是否提供⾥程计，如果 bag 中有⾥程计的坐标系，这个就是 false ，如果没有，<br>就根据需要决定是否提供⾥程计的坐标系<br>use_pose_extrapolator = false 这个⼀定要设置成 false  或者直接删除<br>use_odometry 是否使⽤⾥程计的传感器数据，如果为 true ， tf 树中⼀定要存在 odom 这个坐标系<br>use_nav_sat  是否使用GPS数据 默认订阅/fix<br>/use_landmarks (是否订阅⾥程计话题的数据，以及 landmark 话题的数据)</p><p>num_laser_scans/num_point_clouds 单线点云与多线点云的话题的数量，可以同时为 1 ，但不可以同时<br>为 0  </p><p>num_laser_scans = 0,  订阅单线点云数据<br>num_multi_echo_laser_scans = 0,  默认为0  多回声波雷达 很少用到<br>num_subdivisions_per_laser_scan = 1, 默认为1，⼀帧点云数据会被分成⼏次处理，设置成 1 就⾏了<br>num_point_clouds = 0,  订阅多线点云数据</p><p>单线点云与多线点云的话题的数量，可以同时为 1 ，但不可以同时<br>为 0  </p><p>num_subdivisions_per_laser_scan ⼀帧点云数据会被分成⼏次处理，设置成 1 就⾏了</p><p>MAP_BUILDER.use_trajectory_builder_2d = true 建造⼆维地图时⼀定要有这句话，建造三维地图就把<br>2d 改为 3d<br>TRAJECTORY_BUILDER_2D.use_imu_data 是否使⽤ imu ，如果使⽤ imu ， tracking_frame ⼀定要设置<br>成 imu 对应的 link</p><p>TRAJECTORY_BUILDER_2D.min_z 点云的最⼩ z 的范围，单线点云不能设置⼤于 0 的值（不设置），多<br>线点云的这个值要⼤于 0</p>]]></content>
+    
+    
+    <summary type="html">carto学习笔记</summary>
+    
+    
+    
+    <category term="Slam" scheme="https://aixiaocainiao.github.io/categories/Slam/"/>
+    
+    
+    <category term="carto" scheme="https://aixiaocainiao.github.io/tags/carto/"/>
     
   </entry>
   
@@ -332,27 +332,6 @@
   </entry>
   
   <entry>
-    <title>opencv安装</title>
-    <link href="https://aixiaocainiao.github.io/posts/b44fb44.html"/>
-    <id>https://aixiaocainiao.github.io/posts/b44fb44.html</id>
-    <published>2023-06-08T05:06:23.947Z</published>
-    <updated>2023-06-08T05:23:31.421Z</updated>
-    
-    <content type="html"><![CDATA[<p>6.设置opencv静态库加载路径</p><p>打开配置文件：sudo gedit /etc/ld.so.conf</p><p>加入编译后lib文件夹路径，形式如下所示，但应做修改：<br>include /home/<em>*</em>/opencv-3.4.x/build/lib</p><p>原来的<br>include /etc/ld.so.conf.d/*.conf<br>安装流程<br>sudo apt-get install build-essential<br>sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev<br>sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..</p><p>一、安装流程：<br>ubuntu 18.04 安装OpenCV 4.1.0版本<br>先下载OpenCV和OpenCV_contrib</p><p>git clone <a href="https://github.com/Itseez/opencv.git">https://github.com/Itseez/opencv.git</a><br>git clone <a href="https://github.com/Itseez/opencv_contrib.git">https://github.com/Itseez/opencv_contrib.git</a></p><p>其中opencv_contrib放入opencv文件夹中<br>2.安装依赖</p><h1 id="更新源，安装软件包"><a href="#更新源，安装软件包" class="headerlink" title="更新源，安装软件包"></a>更新源，安装软件包</h1><p>sudo apt update &amp;&amp; sudo apt install -y cmake g++ wget unzip</p><h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev<br>sudo apt-get install libgtk2.0-dev<br>sudo apt-get install pkg-config<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..<br>3.在build文件夹下执行cmake<br>cd opencv/<br>mkdir build<br>cd build/<br>(cd ~/opencv-3.4.15/build/)看一下上面 整过了就不用整了<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.15/modules ..<br>opencv_contrib-3.4.15需要修改成自己的文件夹名字<br>4.编译</p><p>这里的j4是针对性能不好的电脑，我这里电脑性能比较强，选择j32编译,s数据越大编译的速度就越快。<br>make -j4</p><p>5.安装到系统<br>sudo make install<br>添加路径<br>sudo gedit /etc/ld.so.conf.d/opencv.conf</p><p>然后在打开文件中添加如下内容<br>/usr/local/lib<br>之后再终端输入以下命令（安装完成某个工程后生成许多动态库，该命令是为了让这些动态链接库为系统所共享）<br>sudo ldconfig</p><p>使其保存并生效。<br>再在终端输入</p><p>sudo gedit /etc/bash.bashrc</p><p>打开文件后在末尾输入：</p><p>PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig<br>export PKG_CONFIG_PATH<br>保存退出，终端输入：<br>source /etc/bash.bashrc<br>至此，opencv及opencv_contrib安装配置完成了！</p><p>6.测试安装的文件</p><p>进入opencv/samples/cpp/example_cmake目录下，终端打开，依次输入：<br>cd ../samples/cpp/example_cmake<br>cmake .<br>make<br>./opencv_example</p>]]></content>
-    
-    
-    <summary type="html">openopencv安装</summary>
-    
-    
-    
-    <category term="other学习" scheme="https://aixiaocainiao.github.io/categories/other%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="opecv" scheme="https://aixiaocainiao.github.io/tags/opecv/"/>
-    
-  </entry>
-  
-  <entry>
     <title>ros melotic cartographer安装</title>
     <link href="https://aixiaocainiao.github.io/posts/26aabfb9.html"/>
     <id>https://aixiaocainiao.github.io/posts/26aabfb9.html</id>
@@ -370,6 +349,27 @@
     
     
     <category term="ros" scheme="https://aixiaocainiao.github.io/tags/ros/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>opencv安装</title>
+    <link href="https://aixiaocainiao.github.io/posts/b44fb44.html"/>
+    <id>https://aixiaocainiao.github.io/posts/b44fb44.html</id>
+    <published>2023-06-08T05:06:23.947Z</published>
+    <updated>2023-06-08T05:23:31.421Z</updated>
+    
+    <content type="html"><![CDATA[<p>6.设置opencv静态库加载路径</p><p>打开配置文件：sudo gedit /etc/ld.so.conf</p><p>加入编译后lib文件夹路径，形式如下所示，但应做修改：<br>include /home/<em>*</em>/opencv-3.4.x/build/lib</p><p>原来的<br>include /etc/ld.so.conf.d/*.conf<br>安装流程<br>sudo apt-get install build-essential<br>sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev<br>sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..</p><p>一、安装流程：<br>ubuntu 18.04 安装OpenCV 4.1.0版本<br>先下载OpenCV和OpenCV_contrib</p><p>git clone <a href="https://github.com/Itseez/opencv.git">https://github.com/Itseez/opencv.git</a><br>git clone <a href="https://github.com/Itseez/opencv_contrib.git">https://github.com/Itseez/opencv_contrib.git</a></p><p>其中opencv_contrib放入opencv文件夹中<br>2.安装依赖</p><h1 id="更新源，安装软件包"><a href="#更新源，安装软件包" class="headerlink" title="更新源，安装软件包"></a>更新源，安装软件包</h1><p>sudo apt update &amp;&amp; sudo apt install -y cmake g++ wget unzip</p><h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev<br>sudo apt-get install libgtk2.0-dev<br>sudo apt-get install pkg-config<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..<br>3.在build文件夹下执行cmake<br>cd opencv/<br>mkdir build<br>cd build/<br>(cd ~/opencv-3.4.15/build/)看一下上面 整过了就不用整了<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.15/modules ..<br>opencv_contrib-3.4.15需要修改成自己的文件夹名字<br>4.编译</p><p>这里的j4是针对性能不好的电脑，我这里电脑性能比较强，选择j32编译,s数据越大编译的速度就越快。<br>make -j4</p><p>5.安装到系统<br>sudo make install<br>添加路径<br>sudo gedit /etc/ld.so.conf.d/opencv.conf</p><p>然后在打开文件中添加如下内容<br>/usr/local/lib<br>之后再终端输入以下命令（安装完成某个工程后生成许多动态库，该命令是为了让这些动态链接库为系统所共享）<br>sudo ldconfig</p><p>使其保存并生效。<br>再在终端输入</p><p>sudo gedit /etc/bash.bashrc</p><p>打开文件后在末尾输入：</p><p>PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig<br>export PKG_CONFIG_PATH<br>保存退出，终端输入：<br>source /etc/bash.bashrc<br>至此，opencv及opencv_contrib安装配置完成了！</p><p>6.测试安装的文件</p><p>进入opencv/samples/cpp/example_cmake目录下，终端打开，依次输入：<br>cd ../samples/cpp/example_cmake<br>cmake .<br>make<br>./opencv_example</p>]]></content>
+    
+    
+    <summary type="html">openopencv安装</summary>
+    
+    
+    
+    <category term="other学习" scheme="https://aixiaocainiao.github.io/categories/other%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="opecv" scheme="https://aixiaocainiao.github.io/tags/opecv/"/>
     
   </entry>
   

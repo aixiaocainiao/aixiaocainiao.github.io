@@ -29,11 +29,11 @@
     
     
     <entry>
-      <title>ros指令</title>
-      <link href="/posts/50f3c42c.html"/>
-      <url>/posts/50f3c42c.html</url>
+      <title>ros中自定义全局路径规划器部署步骤</title>
+      <link href="/posts/b65be66e.html"/>
+      <url>/posts/b65be66e.html</url>
       
-        <content type="html"><![CDATA[<p>odm  framd_id odm_combined<br>map  map<br>nase_frame_id base_footprint</p><p>scan  scan<br> 查看某个具体的消息 需要使用管道<br>rosmsg list | grep -i 话题名称<br>校园网址<br><a href="https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00">https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00</a></p><p>C语言学习中递归函数<br>ctrl+shift+空格出现代码提示<br>使用rosparam导入参数<br>设置的参数.yaml文件中 需要加空格 例如bg_R: 100<br>rosparam 便签 会率先执行 所以在使用dump导出参数的时候需要自己直接写一个launch文件</p><p>写代码之前操作</p><p>mkdir -p xxx_ws/src(必须得有 src)<br>cd xxx_ws<br>catkin_make<br>cd xxx_ws<br>code .</p><p>rviz中 ctrl+shift+鼠标可以拖动位置<br>args=”-d $(find urdf01_rviz)/config/show_mycar.rviz”<br>这玩意保存的时配置 不是rviz里面显示的东西<br>solidworks<br>joint origin是joint相对于parent的位置<br>[joint_state_publisher-4] process has died [pid 12169, exit code 1, cmd /opt/ros/melodic/lib/joint_state_publisher/joint_state_publisher <strong>name:=joint_state_publisher </strong>log:=/home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4.log].<br>log file: /home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4*.log</p><p>出现下面的错误 请删除掉urdf里面的中文注释 melidic中不能有一点点中文<br>evince mycar.pdf<br>arbotix报错，进入src下的arbotix_ros功能包，进入arbotix_python，进入bin，进入arbotix_driver<br>将第一行中的python的运行版本从3改为2.7运行就可以了<br>rviz中fixed frame为 odm<br>gazebo有进程问题 请执行下面指令 直接杀死<br>killall gzserver</p><p>killall gzclient</p><p>tar -xvf arduino-1.x.y-linux64.tar.xz<br>tar解压命令 </p><node name="playbag" pkg="rosbag" type="play"      args="--clock $(arg bag_filename)" />]]></content>
+        <content type="html"><![CDATA[<p>ros中自定义全局路径规划器部署步骤</p><ul><li><p>catkin_create_pkg better_astar_global_planner  roscpp rospy std_msgs   nav_core</p></li><li><p>将.cpp文件和.h头文件放入到src中</p></li><li>配置CMakeLists.txt</li><li>重新编译  在/home/yunfang/tutorial_ws/devel/lib中生成了libbetter_astar_global_planner_lib.so库</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">124行</span><br><span class="line">## Declare a C++ library</span><br><span class="line"># add_library($&#123;PROJECT_NAME&#125;</span><br><span class="line">#   src/$&#123;PROJECT_NAME&#125;/plugin_better_a.cpp</span><br><span class="line"># )</span><br><span class="line">修改为  注意_lib  包名_lib</span><br><span class="line">## Declare a C++ library</span><br><span class="line">add_library(better_astar_global_planner_lib</span><br><span class="line">  src/better_aster.cpp</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>2.1注册插件:</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PLUGINLIB_EXPORT_CLASS</span>(BAstar_planner::BAstarPlannerROS, nav_core::BaseGlobalPlanner)</span><br></pre></td></tr></table></figure><p>2.2插件描述文件</p><p>包 右键  新建文件 better_astar_global_planner_plugin.xml</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">初始：</span><br><span class="line"> &lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">  &lt;class name=&quot;global_planner/GlobalPlanner&quot; type=&quot;global_planner::GlobalPlanner&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;   </span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"> </span><br><span class="line">介绍：</span><br><span class="line">&lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">type=&quot;global_planner::GlobalPlanner&quot; 注册插件的  编写的类 BAstar_planner::BAstarPlannerROS</span><br><span class="line">修改为：</span><br><span class="line">&lt;library path=&quot;lib/libbetter_astar_global_planner_lib&quot;&gt;</span><br><span class="line">  &lt;class name=&quot;BAstar_planner/BAstarPlannerROS&quot; type=&quot;BAstar_planner::BAstarPlannerROS&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;</span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>2.3使用 ROS 包系统注册插件</p><p>packeage.xml中</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">67行 最下面</span><br><span class="line"></span><br><span class="line">&lt;export&gt;</span><br><span class="line">   &lt;!-- Other tools can request additional information be placed here --&gt;</span><br><span class="line">   &lt;nav_core plugin=&quot;$&#123;prefix&#125;/better_astar_global_planner_plugin.xml&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/export&gt;</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -54,11 +54,11 @@
     
     
     <entry>
-      <title>ros中自定义全局路径规划器部署步骤</title>
-      <link href="/posts/b65be66e.html"/>
-      <url>/posts/b65be66e.html</url>
+      <title>ros指令</title>
+      <link href="/posts/50f3c42c.html"/>
+      <url>/posts/50f3c42c.html</url>
       
-        <content type="html"><![CDATA[<p>ros中自定义全局路径规划器部署步骤</p><ul><li><p>catkin_create_pkg better_astar_global_planner  roscpp rospy std_msgs   nav_core</p></li><li><p>将.cpp文件和.h头文件放入到src中</p></li><li>配置CMakeLists.txt</li><li>重新编译  在/home/yunfang/tutorial_ws/devel/lib中生成了libbetter_astar_global_planner_lib.so库</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">124行</span><br><span class="line">## Declare a C++ library</span><br><span class="line"># add_library($&#123;PROJECT_NAME&#125;</span><br><span class="line">#   src/$&#123;PROJECT_NAME&#125;/plugin_better_a.cpp</span><br><span class="line"># )</span><br><span class="line">修改为  注意_lib  包名_lib</span><br><span class="line">## Declare a C++ library</span><br><span class="line">add_library(better_astar_global_planner_lib</span><br><span class="line">  src/better_aster.cpp</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>2.1注册插件:</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PLUGINLIB_EXPORT_CLASS</span>(BAstar_planner::BAstarPlannerROS, nav_core::BaseGlobalPlanner)</span><br></pre></td></tr></table></figure><p>2.2插件描述文件</p><p>包 右键  新建文件 better_astar_global_planner_plugin.xml</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">初始：</span><br><span class="line"> &lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">  &lt;class name=&quot;global_planner/GlobalPlanner&quot; type=&quot;global_planner::GlobalPlanner&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;   </span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"> </span><br><span class="line">介绍：</span><br><span class="line">&lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">type=&quot;global_planner::GlobalPlanner&quot; 注册插件的  编写的类 BAstar_planner::BAstarPlannerROS</span><br><span class="line">修改为：</span><br><span class="line">&lt;library path=&quot;lib/libbetter_astar_global_planner_lib&quot;&gt;</span><br><span class="line">  &lt;class name=&quot;BAstar_planner/BAstarPlannerROS&quot; type=&quot;BAstar_planner::BAstarPlannerROS&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;</span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>2.3使用 ROS 包系统注册插件</p><p>packeage.xml中</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">67行 最下面</span><br><span class="line"></span><br><span class="line">&lt;export&gt;</span><br><span class="line">   &lt;!-- Other tools can request additional information be placed here --&gt;</span><br><span class="line">   &lt;nav_core plugin=&quot;$&#123;prefix&#125;/better_astar_global_planner_plugin.xml&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/export&gt;</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p>odm  framd_id odm_combined<br>map  map<br>nase_frame_id base_footprint</p><p>scan  scan<br> 查看某个具体的消息 需要使用管道<br>rosmsg list | grep -i 话题名称<br>校园网址<br><a href="https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00">https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00</a></p><p>C语言学习中递归函数<br>ctrl+shift+空格出现代码提示<br>使用rosparam导入参数<br>设置的参数.yaml文件中 需要加空格 例如bg_R: 100<br>rosparam 便签 会率先执行 所以在使用dump导出参数的时候需要自己直接写一个launch文件</p><p>写代码之前操作</p><p>mkdir -p xxx_ws/src(必须得有 src)<br>cd xxx_ws<br>catkin_make<br>cd xxx_ws<br>code .</p><p>rviz中 ctrl+shift+鼠标可以拖动位置<br>args=”-d $(find urdf01_rviz)/config/show_mycar.rviz”<br>这玩意保存的时配置 不是rviz里面显示的东西<br>solidworks<br>joint origin是joint相对于parent的位置<br>[joint_state_publisher-4] process has died [pid 12169, exit code 1, cmd /opt/ros/melodic/lib/joint_state_publisher/joint_state_publisher <strong>name:=joint_state_publisher </strong>log:=/home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4.log].<br>log file: /home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4*.log</p><p>出现下面的错误 请删除掉urdf里面的中文注释 melidic中不能有一点点中文<br>evince mycar.pdf<br>arbotix报错，进入src下的arbotix_ros功能包，进入arbotix_python，进入bin，进入arbotix_driver<br>将第一行中的python的运行版本从3改为2.7运行就可以了<br>rviz中fixed frame为 odm<br>gazebo有进程问题 请执行下面指令 直接杀死<br>killall gzserver</p><p>killall gzclient</p><p>tar -xvf arduino-1.x.y-linux64.tar.xz<br>tar解压命令 </p><node name="playbag" pkg="rosbag" type="play"      args="--clock $(arg bag_filename)" />]]></content>
       
       
       <categories>
@@ -117,31 +117,6 @@
     
     
     <entry>
-      <title>opencv使用</title>
-      <link href="/posts/ec9cd9b2.html"/>
-      <url>/posts/ec9cd9b2.html</url>
-      
-        <content type="html"><![CDATA[<p>C++ Opencv<br>编译命令:<br>g++ -o your_executable your_source_file.cpp <code>pkg-config --cflags --libs opencv</code><br>python opencv python2.7 cv2 版本对应<br>python程序前加：</p><h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>import cv2</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> other学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> opecv </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>git的使用</title>
       <link href="/posts/2e742d51.html"/>
       <url>/posts/2e742d51.html</url>
@@ -167,23 +142,23 @@
     
     
     <entry>
-      <title>carto学习笔记</title>
-      <link href="/posts/7dd202a0.html"/>
-      <url>/posts/7dd202a0.html</url>
+      <title>opencv使用</title>
+      <link href="/posts/ec9cd9b2.html"/>
+      <url>/posts/ec9cd9b2.html</url>
       
-        <content type="html"><![CDATA[<p>git clone <a href="https://github.com/xiangli0608/cartographer_detailed_comments_ws">https://github.com/xiangli0608/cartographer_detailed_comments_ws</a></p><p>sudo gedit ~/.bashrc</p><p>1.0<br>数据集中<br>robotmodel不会正常显示  因为没有加载urdf文件<br>2.0<br>将ros包 都发布到系统中防止修改后 无法roslaunch<br>rospack profile<br>3.0<br>安装3d点云地图查看工具<br>sudo apt-get install pcl-tools<br>4.0<br>使用asset生成ros格式的2d栅格地图 不可用  一般不用看<br>5.0<br>roscore<br>rosbag play 文件名.bag<br>rosbag info 文件名.bag<br>rqt<br>node<br>tf<br>修改launch<br>修改lua文件</p><p>数据集<br>一个可以用来建图的数据集应该包括16线点云数据，由点云数据生成的单线雷达数据，imu.里程计，rtk/gps,tf和静态tf(tf-static)</p><p>cartographer配置流程<br>1.五个命令<br>roscore<br>rosbag info 包名.bag<br>有topic内容<br>rosbag plag 包名.bag -l<br>rqt<br>Plugins  Visualization TF-TREE<br>Plugins  instro  node  node /topic(all) 选项只要Debug这个选项<br>tf 是在变化的   odm map 和 机器人之间的位置是在变化的<br>tf-static 机器人本身的结构一般是不变化的<br>rviz<br>Fixed Frame odm<br>add TF<br>add laserscan  style-Point  就可以看见了<br>add Pointcloud(16线点云数据)</p><p>2.配置lua和launch<br>2.1第⼀步 了解 bag ⽂件<br>对于在线跑 slam ⽽⾔，是要去了解机器⼈上各个传感器的数据，消息类型，发布话题等等。<br>⽽对于离线跑 slam ⽽⾔，则是要去了解所对应的 bag 包⾥的内容。<!-- 启动 ros 核心节点 --><br>roscore<br><!-- 了解 bag 包中的 topic 的名称和类型 --><br>rosbag info rslidar-outdoor-gps.bag<br><!-- 播放 bag 包中的文件 --><br>rosbag play rslidar-outdoor-gps.bag<br>之后我们还可以通过 rqt 和 rviz 这两个可视化⼯具来做进⼀步了解<br>第⼆步 配置 launch ⽂件<br>launch ⽂件中需要如下⼏个设置<br>bag所属文件名与 bag ⽂件的名字<br>lua ⽂件的名字<br>topic 需要 remap 成 bag ⽂件中发布的 topic</p><p>第三步 配置 lua ⽂件<br>对于这种我们没有odom的情况，一般published_frame也就指定为base_link或者base_footprint。<br>打开backpack_2d.lua复制进来<br>tracking_frame 有 imu 的 link 就设置成 imu 对应的 link ，没有就设置成 base_link<br>published_frame 在 cartographer 发布的 tf 的最下边的⼀个坐标系，也就是 bag ⽂件中 tf 树的最上边<br>的⼀个坐标系<br>provide_odom_frame 是否提供⾥程计，如果 bag 中有⾥程计的坐标系，这个就是 false ，如果没有，<br>就根据需要决定是否提供⾥程计的坐标系<br>use_pose_extrapolator = false 这个⼀定要设置成 false  或者直接删除<br>use_odometry 是否使⽤⾥程计的传感器数据，如果为 true ， tf 树中⼀定要存在 odom 这个坐标系<br>use_nav_sat  是否使用GPS数据 默认订阅/fix<br>/use_landmarks (是否订阅⾥程计话题的数据，以及 landmark 话题的数据)</p><p>num_laser_scans/num_point_clouds 单线点云与多线点云的话题的数量，可以同时为 1 ，但不可以同时<br>为 0  </p><p>num_laser_scans = 0,  订阅单线点云数据<br>num_multi_echo_laser_scans = 0,  默认为0  多回声波雷达 很少用到<br>num_subdivisions_per_laser_scan = 1, 默认为1，⼀帧点云数据会被分成⼏次处理，设置成 1 就⾏了<br>num_point_clouds = 0,  订阅多线点云数据</p><p>单线点云与多线点云的话题的数量，可以同时为 1 ，但不可以同时<br>为 0  </p><p>num_subdivisions_per_laser_scan ⼀帧点云数据会被分成⼏次处理，设置成 1 就⾏了</p><p>MAP_BUILDER.use_trajectory_builder_2d = true 建造⼆维地图时⼀定要有这句话，建造三维地图就把<br>2d 改为 3d<br>TRAJECTORY_BUILDER_2D.use_imu_data 是否使⽤ imu ，如果使⽤ imu ， tracking_frame ⼀定要设置<br>成 imu 对应的 link</p><p>TRAJECTORY_BUILDER_2D.min_z 点云的最⼩ z 的范围，单线点云不能设置⼤于 0 的值（不设置），多<br>线点云的这个值要⼤于 0</p>]]></content>
+        <content type="html"><![CDATA[<p>C++ Opencv<br>编译命令:<br>g++ -o your_executable your_source_file.cpp <code>pkg-config --cflags --libs opencv</code><br>python opencv python2.7 cv2 版本对应<br>python程序前加：</p><h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>import cv2</p>]]></content>
       
       
       <categories>
           
-          <category> Slam </category>
+          <category> other学习 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> carto </tag>
+            <tag> opecv </tag>
             
         </tags>
       
@@ -209,6 +184,31 @@
         <tags>
             
             <tag> conda </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>carto学习笔记</title>
+      <link href="/posts/7dd202a0.html"/>
+      <url>/posts/7dd202a0.html</url>
+      
+        <content type="html"><![CDATA[<p>git clone <a href="https://github.com/xiangli0608/cartographer_detailed_comments_ws">https://github.com/xiangli0608/cartographer_detailed_comments_ws</a></p><p>sudo gedit ~/.bashrc</p><p>1.0<br>数据集中<br>robotmodel不会正常显示  因为没有加载urdf文件<br>2.0<br>将ros包 都发布到系统中防止修改后 无法roslaunch<br>rospack profile<br>3.0<br>安装3d点云地图查看工具<br>sudo apt-get install pcl-tools<br>4.0<br>使用asset生成ros格式的2d栅格地图 不可用  一般不用看<br>5.0<br>roscore<br>rosbag play 文件名.bag<br>rosbag info 文件名.bag<br>rqt<br>node<br>tf<br>修改launch<br>修改lua文件</p><p>数据集<br>一个可以用来建图的数据集应该包括16线点云数据，由点云数据生成的单线雷达数据，imu.里程计，rtk/gps,tf和静态tf(tf-static)</p><p>cartographer配置流程<br>1.五个命令<br>roscore<br>rosbag info 包名.bag<br>有topic内容<br>rosbag plag 包名.bag -l<br>rqt<br>Plugins  Visualization TF-TREE<br>Plugins  instro  node  node /topic(all) 选项只要Debug这个选项<br>tf 是在变化的   odm map 和 机器人之间的位置是在变化的<br>tf-static 机器人本身的结构一般是不变化的<br>rviz<br>Fixed Frame odm<br>add TF<br>add laserscan  style-Point  就可以看见了<br>add Pointcloud(16线点云数据)</p><p>2.配置lua和launch<br>2.1第⼀步 了解 bag ⽂件<br>对于在线跑 slam ⽽⾔，是要去了解机器⼈上各个传感器的数据，消息类型，发布话题等等。<br>⽽对于离线跑 slam ⽽⾔，则是要去了解所对应的 bag 包⾥的内容。<!-- 启动 ros 核心节点 --><br>roscore<br><!-- 了解 bag 包中的 topic 的名称和类型 --><br>rosbag info rslidar-outdoor-gps.bag<br><!-- 播放 bag 包中的文件 --><br>rosbag play rslidar-outdoor-gps.bag<br>之后我们还可以通过 rqt 和 rviz 这两个可视化⼯具来做进⼀步了解<br>第⼆步 配置 launch ⽂件<br>launch ⽂件中需要如下⼏个设置<br>bag所属文件名与 bag ⽂件的名字<br>lua ⽂件的名字<br>topic 需要 remap 成 bag ⽂件中发布的 topic</p><p>第三步 配置 lua ⽂件<br>对于这种我们没有odom的情况，一般published_frame也就指定为base_link或者base_footprint。<br>打开backpack_2d.lua复制进来<br>tracking_frame 有 imu 的 link 就设置成 imu 对应的 link ，没有就设置成 base_link<br>published_frame 在 cartographer 发布的 tf 的最下边的⼀个坐标系，也就是 bag ⽂件中 tf 树的最上边<br>的⼀个坐标系<br>provide_odom_frame 是否提供⾥程计，如果 bag 中有⾥程计的坐标系，这个就是 false ，如果没有，<br>就根据需要决定是否提供⾥程计的坐标系<br>use_pose_extrapolator = false 这个⼀定要设置成 false  或者直接删除<br>use_odometry 是否使⽤⾥程计的传感器数据，如果为 true ， tf 树中⼀定要存在 odom 这个坐标系<br>use_nav_sat  是否使用GPS数据 默认订阅/fix<br>/use_landmarks (是否订阅⾥程计话题的数据，以及 landmark 话题的数据)</p><p>num_laser_scans/num_point_clouds 单线点云与多线点云的话题的数量，可以同时为 1 ，但不可以同时<br>为 0  </p><p>num_laser_scans = 0,  订阅单线点云数据<br>num_multi_echo_laser_scans = 0,  默认为0  多回声波雷达 很少用到<br>num_subdivisions_per_laser_scan = 1, 默认为1，⼀帧点云数据会被分成⼏次处理，设置成 1 就⾏了<br>num_point_clouds = 0,  订阅多线点云数据</p><p>单线点云与多线点云的话题的数量，可以同时为 1 ，但不可以同时<br>为 0  </p><p>num_subdivisions_per_laser_scan ⼀帧点云数据会被分成⼏次处理，设置成 1 就⾏了</p><p>MAP_BUILDER.use_trajectory_builder_2d = true 建造⼆维地图时⼀定要有这句话，建造三维地图就把<br>2d 改为 3d<br>TRAJECTORY_BUILDER_2D.use_imu_data 是否使⽤ imu ，如果使⽤ imu ， tracking_frame ⼀定要设置<br>成 imu 对应的 link</p><p>TRAJECTORY_BUILDER_2D.min_z 点云的最⼩ z 的范围，单线点云不能设置⼤于 0 的值（不设置），多<br>线点云的这个值要⼤于 0</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Slam </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> carto </tag>
             
         </tags>
       
@@ -367,31 +367,6 @@
     
     
     <entry>
-      <title>opencv安装</title>
-      <link href="/posts/b44fb44.html"/>
-      <url>/posts/b44fb44.html</url>
-      
-        <content type="html"><![CDATA[<p>6.设置opencv静态库加载路径</p><p>打开配置文件：sudo gedit /etc/ld.so.conf</p><p>加入编译后lib文件夹路径，形式如下所示，但应做修改：<br>include /home/<em>*</em>/opencv-3.4.x/build/lib</p><p>原来的<br>include /etc/ld.so.conf.d/*.conf<br>安装流程<br>sudo apt-get install build-essential<br>sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev<br>sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..</p><p>一、安装流程：<br>ubuntu 18.04 安装OpenCV 4.1.0版本<br>先下载OpenCV和OpenCV_contrib</p><p>git clone <a href="https://github.com/Itseez/opencv.git">https://github.com/Itseez/opencv.git</a><br>git clone <a href="https://github.com/Itseez/opencv_contrib.git">https://github.com/Itseez/opencv_contrib.git</a></p><p>其中opencv_contrib放入opencv文件夹中<br>2.安装依赖</p><h1 id="更新源，安装软件包"><a href="#更新源，安装软件包" class="headerlink" title="更新源，安装软件包"></a>更新源，安装软件包</h1><p>sudo apt update &amp;&amp; sudo apt install -y cmake g++ wget unzip</p><h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev<br>sudo apt-get install libgtk2.0-dev<br>sudo apt-get install pkg-config<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..<br>3.在build文件夹下执行cmake<br>cd opencv/<br>mkdir build<br>cd build/<br>(cd ~/opencv-3.4.15/build/)看一下上面 整过了就不用整了<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.15/modules ..<br>opencv_contrib-3.4.15需要修改成自己的文件夹名字<br>4.编译</p><p>这里的j4是针对性能不好的电脑，我这里电脑性能比较强，选择j32编译,s数据越大编译的速度就越快。<br>make -j4</p><p>5.安装到系统<br>sudo make install<br>添加路径<br>sudo gedit /etc/ld.so.conf.d/opencv.conf</p><p>然后在打开文件中添加如下内容<br>/usr/local/lib<br>之后再终端输入以下命令（安装完成某个工程后生成许多动态库，该命令是为了让这些动态链接库为系统所共享）<br>sudo ldconfig</p><p>使其保存并生效。<br>再在终端输入</p><p>sudo gedit /etc/bash.bashrc</p><p>打开文件后在末尾输入：</p><p>PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig<br>export PKG_CONFIG_PATH<br>保存退出，终端输入：<br>source /etc/bash.bashrc<br>至此，opencv及opencv_contrib安装配置完成了！</p><p>6.测试安装的文件</p><p>进入opencv/samples/cpp/example_cmake目录下，终端打开，依次输入：<br>cd ../samples/cpp/example_cmake<br>cmake .<br>make<br>./opencv_example</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> other学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> opecv </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>ros melotic cartographer安装</title>
       <link href="/posts/26aabfb9.html"/>
       <url>/posts/26aabfb9.html</url>
@@ -409,6 +384,31 @@
         <tags>
             
             <tag> ros </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>opencv安装</title>
+      <link href="/posts/b44fb44.html"/>
+      <url>/posts/b44fb44.html</url>
+      
+        <content type="html"><![CDATA[<p>6.设置opencv静态库加载路径</p><p>打开配置文件：sudo gedit /etc/ld.so.conf</p><p>加入编译后lib文件夹路径，形式如下所示，但应做修改：<br>include /home/<em>*</em>/opencv-3.4.x/build/lib</p><p>原来的<br>include /etc/ld.so.conf.d/*.conf<br>安装流程<br>sudo apt-get install build-essential<br>sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev<br>sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..</p><p>一、安装流程：<br>ubuntu 18.04 安装OpenCV 4.1.0版本<br>先下载OpenCV和OpenCV_contrib</p><p>git clone <a href="https://github.com/Itseez/opencv.git">https://github.com/Itseez/opencv.git</a><br>git clone <a href="https://github.com/Itseez/opencv_contrib.git">https://github.com/Itseez/opencv_contrib.git</a></p><p>其中opencv_contrib放入opencv文件夹中<br>2.安装依赖</p><h1 id="更新源，安装软件包"><a href="#更新源，安装软件包" class="headerlink" title="更新源，安装软件包"></a>更新源，安装软件包</h1><p>sudo apt update &amp;&amp; sudo apt install -y cmake g++ wget unzip</p><h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev<br>sudo apt-get install libgtk2.0-dev<br>sudo apt-get install pkg-config<br>出现错误：E: 无法定位软件包 libjasper-dev<br>执行这一步即可<br>sudo add-apt-repository “deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main”<br>sudo apt update<br>sudo apt install libjasper1 libjasper-dev<br>cd ~/opencv-3.4.15/build/<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..<br>3.在build文件夹下执行cmake<br>cd opencv/<br>mkdir build<br>cd build/<br>(cd ~/opencv-3.4.15/build/)看一下上面 整过了就不用整了<br>cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.15/modules ..<br>opencv_contrib-3.4.15需要修改成自己的文件夹名字<br>4.编译</p><p>这里的j4是针对性能不好的电脑，我这里电脑性能比较强，选择j32编译,s数据越大编译的速度就越快。<br>make -j4</p><p>5.安装到系统<br>sudo make install<br>添加路径<br>sudo gedit /etc/ld.so.conf.d/opencv.conf</p><p>然后在打开文件中添加如下内容<br>/usr/local/lib<br>之后再终端输入以下命令（安装完成某个工程后生成许多动态库，该命令是为了让这些动态链接库为系统所共享）<br>sudo ldconfig</p><p>使其保存并生效。<br>再在终端输入</p><p>sudo gedit /etc/bash.bashrc</p><p>打开文件后在末尾输入：</p><p>PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig<br>export PKG_CONFIG_PATH<br>保存退出，终端输入：<br>source /etc/bash.bashrc<br>至此，opencv及opencv_contrib安装配置完成了！</p><p>6.测试安装的文件</p><p>进入opencv/samples/cpp/example_cmake目录下，终端打开，依次输入：<br>cd ../samples/cpp/example_cmake<br>cmake .<br>make<br>./opencv_example</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> other学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> opecv </tag>
             
         </tags>
       
@@ -1202,6 +1202,105 @@
     
     
     <entry>
+      <title>留言板</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
+      
+        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }/* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {    background: #1e1e1e;    color: antiquewhite;  }  /* 鼠标悬浮状态 */  [data-theme="dark"] .magnet_link_context:hover {    background: #3ecdf1;    color: #f2f2f2;  }/* 自定义字体没有整 因为不会下载 不会整 先留下记号 方便后期整*//* 翻页按钮居中 */#pagination {    width: 100%;    margin: auto;  }/* 一级菜单居中 导航栏自定义魔改 */#nav .menus_items {    position: absolute !important;    width: fit-content !important;    left: 50% !important;    transform: translateX(-50%) !important;  }  /* 子菜单横向展示 */  #nav .menus_items .menus_item:hover .menus_item_child {    display: flex !important;  }  /* 这里的2是代表导航栏的第2个元素，即有子菜单的元素，可以按自己需求修改 */  .menus_items .menus_item:nth-child(5) .menus_item_child {    left: -38px;  }/* 日间模式不生效 黑夜霓虹灯2.0（纯CSS实现） */[data-theme="light"] #site-name,[data-theme="light"] #site-title,[data-theme="light"] #site-subtitle,[data-theme="light"] #post-info {  animation: none;}/* 夜间模式生效 */[data-theme="dark"] #site-name,[data-theme="dark"] #site-title {  animation: light_15px 10s linear infinite;}[data-theme="dark"] #site-subtitle {  animation: light_10px 10s linear infinite;}[data-theme="dark"] #post-info {  animation: light_5px 10s linear infinite;}/* 关键帧描述 */@keyframes light_15px {  0% {    text-shadow: #5636ed 0 0 15px;  }  12.5% {    text-shadow: #11ee5e 0 0 15px;  }  25% {    text-shadow: #f14747 0 0 15px;  }  37.5% {    text-shadow: #f1a247 0 0 15px;  }  50% {    text-shadow: #f1ee47 0 0 15px;  }  50% {    text-shadow: #b347f1 0 0 15px;  }  62.5% {    text-shadow: #002afa 0 0 15px;  }  75% {    text-shadow: #ed709b 0 0 15px;  }  87.5% {    text-shadow: #39c5bb 0 0 15px;  }  100% {    text-shadow: #5636ed 0 0 15px;  }}@keyframes light_10px {  0% {    text-shadow: #5636ed 0 0 10px;  }  12.5% {    text-shadow: #11ee5e 0 0 10px;  }  25% {    text-shadow: #f14747 0 0 10px;  }  37.5% {    text-shadow: #f1a247 0 0 10px;  }  50% {    text-shadow: #f1ee47 0 0 10px;  }  50% {    text-shadow: #b347f1 0 0 10px;  }  62.5% {    text-shadow: #002afa 0 0 10px;  }  75% {    text-shadow: #ed709b 0 0 10px;  }  87.5% {    text-shadow: #39c5bb 0 0 10px;  }  100% {    text-shadow: #5636ed 0 0 10px;  }}@keyframes light_5px {  0% {    text-shadow: #5636ed 0 0 5px;  }  12.5% {    text-shadow: #11ee5e 0 0 5px;  }  25% {    text-shadow: #f14747 0 0 5px;  }  37.5% {    text-shadow: #f1a247 0 0 15px;  }  50% {    text-shadow: #f1ee47 0 0 5px;  }  50% {    text-shadow: #b347f1 0 0 5px;  }  62.5% {    text-shadow: #002afa 0 0 5px;  }  75% {    text-shadow: #ed709b 0 0 5px;  }  87.5% {    text-shadow: #39c5bb 0 0 5px;  }  100% {    text-shadow: #5636ed 0 0 5px;  }}/* 侧边栏个人信息卡片动态渐变色 */#aside-content > .card-widget.card-info {    background: linear-gradient(      -45deg,      #e8d8b9,      #eccec5,      #a3e9eb,      #bdbdf0,      #eec1ea    );    box-shadow: 0 0 5px rgb(66, 68, 68);    position: relative;    background-size: 400% 400%;    -webkit-animation: Gradient 10s ease infinite;    -moz-animation: Gradient 10s ease infinite;    animation: Gradient 10s ease infinite !important;  }  @-webkit-keyframes Gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }  @-moz-keyframes Gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }  @keyframes Gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }    /* 黑夜模式适配 */  [data-theme="dark"] #aside-content > .card-widget.card-info {    background: #191919ee;  }    /* 个人信息Follow me按钮 */  #aside-content > .card-widget.card-info > #card-info-btn {    background-color: #3eb8be;    border-radius: 8px;  }/* 文章页H1-H6图标样式效果 *//* 控制风车转动速度 4s那里可以自己调节快慢 */h1::before,h2::before,h3::before,h4::before,h5::before,h6::before {  -webkit-animation: ccc 4s linear infinite;  animation: ccc 4s linear infinite;}/* 控制风车转动方向 -1turn 为逆时针转动，1turn 为顺时针转动，相同数字部分记得统一修改 */@-webkit-keyframes ccc {  0% {    -webkit-transform: rotate(0deg);    transform: rotate(0deg);  }  to {    -webkit-transform: rotate(-1turn);    transform: rotate(-1turn);  }}@keyframes ccc {  0% {    -webkit-transform: rotate(0deg);    transform: rotate(0deg);  }  to {    -webkit-transform: rotate(-1turn);    transform: rotate(-1turn);  }}/* 设置风车颜色 */#content-inner.layout h1::before {  color: #ef50a8;  margin-left: -1.55rem;  font-size: 1.3rem;  margin-top: -0.23rem;}#content-inner.layout h2::before {  color: #fb7061;  margin-left: -1.35rem;  font-size: 1.1rem;  margin-top: -0.12rem;}#content-inner.layout h3::before {  color: #ffbf00;  margin-left: -1.22rem;  font-size: 0.95rem;  margin-top: -0.09rem;}#content-inner.layout h4::before {  color: #a9e000;  margin-left: -1.05rem;  font-size: 0.8rem;  margin-top: -0.09rem;}#content-inner.layout h5::before {  color: #57c850;  margin-left: -0.9rem;  font-size: 0.7rem;  margin-top: 0rem;}#content-inner.layout h6::before {  color: #5ec1e0;  margin-left: -0.9rem;  font-size: 0.66rem;  margin-top: 0rem;}/* s设置风车hover动效 6s那里可以自己调节快慢*/#content-inner.layout h1:hover,#content-inner.layout h2:hover,#content-inner.layout h3:hover,#content-inner.layout h4:hover,#content-inner.layout h5:hover,#content-inner.layout h6:hover {  color: var(--theme-color);}#content-inner.layout h1:hover::before,#content-inner.layout h2:hover::before,#content-inner.layout h3:hover::before,#content-inner.layout h4:hover::before,#content-inner.layout h5:hover::before,#content-inner.layout h6:hover::before {  color: var(--theme-color);  -webkit-animation: ccc 6s linear infinite;  animation: ccc 6s linear infinite;}/* 加载进入页面的动画效果 */.loading-img {  background: url(https://q1.qlogo.cn/g?b=qq&nk=1310446718&s=5) no-repeat center center;  background-size: cover;}/* rightMenu 鼠标右键美化*/[data-theme='light'] #rightMenu{  display: none;  position: fixed;  width: 160px;  height: fit-content;  top: 10%;  left: 10%;  background-color: var(--card-bg);  border: 1px solid rgb(210,210,210);;  border-radius: 8px;  z-index: 100;  box-shadow: 3px 3px 5px #88888894;  background-color: var(--zhshier-white-acrylic1);  backdrop-filter: blur(30px);}[data-theme='dark'] #rightMenu{  display: none;  position: fixed;  width: 160px;  height: fit-content;  top: 10%;  left: 10%;  background-color: var(--card-bg);  border: 1px solid rgb(210,210,210);;  border-radius: 8px;  z-index: 100;  box-shadow: 3px 3px 5px #88888894;  background-color: var(--zhshier-black-acrylic1);  backdrop-filter: blur(30px);}#rightMenu .rightMenu-group{  padding: 7px 6px;}#rightMenu .rightMenu-group:not(:nth-last-child(1)){  border-bottom: 1px solid rgb(180,180,180);}#rightMenu .rightMenu-group.rightMenu-small{  display: flex;  justify-content: space-between;}#rightMenu .rightMenu-group .rightMenu-item{  height: 30px;  line-height: 30px;  border-radius: 8px;  transition: 0.3s;  color: var(--font-color);}#rightMenu .rightMenu-group.rightMenu-line .rightMenu-item{  display: flex;  height: 40px;  line-height: 40px;  padding: 0 4px;}#rightMenu .rightMenu-group .rightMenu-item:hover{  background-color: var(--text-bg-hover);  box-shadow: 0px 0px 5px var(--zhshier-border);}#rightMenu .rightMenu-group .rightMenu-item i{  display: inline-block;  text-align: center;  line-height: 30px;  width: 30px;  height: 30px;  padding: 0 5px;}#rightMenu .rightMenu-group .rightMenu-item span{  line-height: 30px;}#rightMenu:hover{  border: 1px solid var(--zhshier-blue);  /* box-shadow:0 0 3px var(--zhshier-blue)!important; */}#rightMenu .rightMenu-group.rightMenu-line .rightMenu-item *{  height: 40px;  line-height: 40px;}.rightMenu-group.hide{  display: none;}.rightMenu-item:hover{  color:white!important;  background-color:var(--zhshier-blue)!important;}:root{  --zhshier-border:#c9c9c9;  --zhshier-blue:#6cf;  --zhshier-black-acrylic1: #0008;  --zhshier-white-acrylic1:#fffd;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/cat.css"/>
+      <url>/css/cat.css</url>
+      
+        <content type="html"><![CDATA[body::-webkit-scrollbar {    width: 0;}.neko {    width: 64px;    height: 64px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812db74be9.png");    position: absolute;    right: 32px;    background-repeat: no-repeat;    background-size: contain;    transform: translateX(50%);    cursor: pointer;    font-family: tzy;    font-weight: 600;    font-size: 16px;    color: #6f42c1;    display: none;}.neko::after {    display: none;    width: 100px;    height: 100px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812d95e6f5.png");    background-size: contain;    z-index: 9999;    position: absolute;    right: 50%;    text-align: center;    line-height: 100px;    top: -115%;}.neko.showMsg::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko:hover::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko.fontColor::after {    color: #333;}/** * @description: 滚动条样式  跟猫二选一 */@media screen and (max-width:992px) {    ::-webkit-scrollbar {        width: 8px !important;        height: 8px !important    }    ::-webkit-scrollbar-track {        border-radius: 2em;    }    ::-webkit-scrollbar-thumb {        background-color: rgb(255 255 255 / .3);        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);        border-radius: 2em    }    ::-webkit-scrollbar-corner {        background-color: transparent    }}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/dark%20span.css"/>
+      <url>/css/dark%20span.css</url>
+      
+        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/readPercent.css"/>
+      <url>/css/readPercent.css</url>
+      
+        <content type="html"><![CDATA[/* 返回顶部 */button#go-up #percent {    display: none;    font-weight: bold;    font-size: 15px !important;}button#go-up span {    font-size: 12px!important;    margin-right: -1px;}/* 鼠标滑动到按钮上时显示返回顶部图标 */button#go-up:hover i {    display: block !important;}button#go-up:hover #percent {    display: none !important;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/social_card.css"/>
+      <url>/css/social_card.css</url>
+      
+        <content type="html"><![CDATA[div#author-info__sayhi {    text-align: left;    background: var(--zhsher-white-op);    color: var(--font-color);    border: var(--style-border);    font-size: 12px;    margin-right: auto;    padding: 5px 8px;    border-radius: 12px;    width: fit-content;    display: inline;    margin-left: -1px}.card-widget .author-info-top {    margin: 15px auto 0;    display: flex;    justify-content: center}.card-widget .card-info-avatar {    display: inline-block;    position: relative}.card-widget.card-info .banner-button-group {    margin: 5px 0;    display: flex}#aside-content .card-info .banner-button {    height: 40px;    width: 100%;    border-radius: 20px;    justify-content: center}.card-widget.card-info .banner-button-group .banner-button {    padding: 20px 12px;    background: var(--zhsher-theme);    border-radius: 12px;    color: var(--zhsher-white);    display: flex;    align-items: center;    z-index: 1;    transition: all .3s ease 0s;    cursor: pointer}.card-widget.card-info .banner-button-group .banner-button .fas.fa-circle-arrow-up-right {    font-size: 1.3rem;    margin-right: 10px}.card-widget.card-info .banner-button-group .banner-button:hover {    background: var(--zhsher-main-op-deep);    color: var(--zhsher-white)}.card-info-avatar .avatar-img {    width: 100px;    height: 100px;    display: block}.card-info-avatar .author-status-box {    position: absolute;    bottom: 0;    left: calc(100% - 28px);    width: 28px;    height: 28px;    border: var(--style-border);    border-radius: 2em;    background-color: var(--zhsher-card-bg);    transition: .3s;    overflow: hidden}.card-info-avatar .author-status-box .author-status {    display: flex;    align-items: center;    justify-content: center;    height: 28px;    padding: 0 5px}.card-info-avatar .author-status-box:hover {    width: 105px}.card-info-avatar .author-status-box:hover .author-status span {    width: 105px;    margin-left: 4px}.card-info-avatar .author-status-box .author-status span {    width: 0;    font-size: 12px;    height: 100%;    overflow: hidden;    text-overflow: ellipsis;    white-space: nowrap;    transition: .3s}#aside-content > .card-info {    background: #fff url(https://img02.anzhiy.cn/adminuploads/1/2022/10/26/6358a07bf21fc.webp) top -24% center no-repeat;    position: relative}[data-theme=dark] #aside-content > .card-info {    background: var(--zhsher-card-bg)}@media screen and (max-width: 992px) {    #aside-content > .card-info {        background-size: 100% 70%    }}.card-widget .author-info__name {    line-height: 1.5em;    margin: 4px 0}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/progress_bar.css"/>
+      <url>/css/progress_bar.css</url>
+      
+        <content type="html"><![CDATA[.pace {    -webkit-pointer-events: none;    pointer-events: none;    -webkit-user-select: none;    -moz-user-select: none;    user-select: none;    z-index: 2000;    position: fixed;    margin: auto;    top: 10px;    left: 0;    right: 0;    height: 8px;    border-radius: 8px;    width: 4rem;    background: #eaecf2;    border: 1px #e3e8f7;    overflow: hidden;  }    .pace-inactive .pace-progress {    opacity: 0;    transition: 0.3s ease-in;  }    .pace .pace-progress {    -webkit-box-sizing: border-box;    -moz-box-sizing: border-box;    -ms-box-sizing: border-box;    -o-box-sizing: border-box;    box-sizing: border-box;    -webkit-transform: translate3d(0, 0, 0);    -moz-transform: translate3d(0, 0, 0);    -ms-transform: translate3d(0, 0, 0);    -o-transform: translate3d(0, 0, 0);    transform: translate3d(0, 0, 0);    max-width: 200px;    position: absolute;    z-index: 2000;    display: block;    top: 0;    right: 100%;    height: 100%;    width: 100%;    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);    animation: gradient 1.5s ease infinite;    background-size: 200%;  }    .pace.pace-inactive {    opacity: 0;    transition: 0.3s;    top: -8px;  }  @keyframes gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }  ]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/universe.css"/>
+      <url>/css/universe.css</url>
+      
+        <content type="html"><![CDATA[/* 背景宇宙星光  */#universe{    display: block;    position: fixed;    margin: 0;    padding: 0;    border: 0;    outline: 0;    left: 0;    top: 0;    width: 100%;    height: 100%;    pointer-events: none;    /* 这个是调置顶的优先级的，-1在文章页下面，背景上面，个人推荐这种 */    z-index: -1;  }]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/js/cat.js"/>
       <url>/js/cat.js</url>
@@ -1218,17 +1317,6 @@
       <url>/js/gray.js</url>
       
         <content type="html"><![CDATA[if(PublicSacrificeDay()){    document.getElementsByTagName("html")[0].setAttribute("style","filter:gray !important;filter:grayscale(100%);-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);");  }    function PublicSacrificeDay(){      var PSFarr=new Array("0403","0404","0405","0406","0414","0512","0707","0807","0814","0909","0918","0930","1025","1213");      //2020年4月4日 新冠肺炎哀悼日，清明节      //2010年4月14日，青海玉树地震      //2008年5月12日，四川汶川地震      //1937年7月7日,七七事变 又称卢沟桥事变      //2010年8月7日，甘肃舟曲特大泥石流        //8月14日，世界慰安妇纪念日      //1976年9月9日，毛主席逝世        //1931年9月18日，九一八事变        //烈士纪念日为每年9月30日      //1950年10月25日，抗美援朝纪念日      //1937年12月13日，南京大屠杀      var currentdate = new Date();      var str = "";      var mm = currentdate.getMonth()+1;      if(currentdate.getMonth()>9){        str += mm;      }else{        str += "0" + mm;      }      if(currentdate.getDate()>9){        str += currentdate.getDate();      }else{        str += "0" + currentdate.getDate();      }      if(PSFarr.indexOf(str)>-1){          return 1;      }else{          return 0;      }  }    ]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/gulpfile.js"/>
-      <url>/js/gulpfile.js</url>
-      
-        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
       
     </entry>
     
@@ -1258,10 +1346,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/runtime.js"/>
-      <url>/js/runtime.js</url>
+      <link href="/js/gulpfile.js"/>
+      <url>/js/gulpfile.js</url>
       
-        <content type="html"><![CDATA[var now = new Date();function createtime() {  var grt = new Date("04/02/2023 23:26:00");  now.setTime(now.getTime() + 250);  var days = (now - grt) / 1e3 / 60 / 60 / 24,    dnum = Math.floor(days),    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,    hnum = Math.floor(hours);  1 == String(hnum).length && (hnum = "0" + hnum);  var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,    mnum = Math.floor(minutes);  1 == String(mnum).length && (mnum = "0" + mnum);  var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,    snum = Math.round(seconds);  1 == String(snum).length && (snum = "0" + snum);  let currentTimeHtml = "";  (currentTimeHtml =    hnum < 18 && hnum >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='距离月入25k也就还差一个大佬带我~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心的玩耍，嘿嘿~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`),    document.getElementById("workboard") && (document.getElementById("workboard").innerHTML = currentTimeHtml);}setInterval(() => {  createtime();}, 250);]]></content>
+        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
       
     </entry>
     
@@ -1269,10 +1357,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/title.js"/>
-      <url>/js/title.js</url>
+      <link href="/js/runtime.js"/>
+      <url>/js/runtime.js</url>
       
-        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '👀跑哪里去了~';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = '🐖抓到你啦～';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+        <content type="html"><![CDATA[var now = new Date();function createtime() {  var grt = new Date("04/02/2023 23:26:00");  now.setTime(now.getTime() + 250);  var days = (now - grt) / 1e3 / 60 / 60 / 24,    dnum = Math.floor(days),    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,    hnum = Math.floor(hours);  1 == String(hnum).length && (hnum = "0" + hnum);  var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,    mnum = Math.floor(minutes);  1 == String(mnum).length && (mnum = "0" + mnum);  var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,    snum = Math.round(seconds);  1 == String(snum).length && (snum = "0" + snum);  let currentTimeHtml = "";  (currentTimeHtml =    hnum < 18 && hnum >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='距离月入25k也就还差一个大佬带我~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心的玩耍，嘿嘿~'><span class='textTip'> <br> 本站居然运行了 ${dnum} 天</span><span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span> <i class='fas fa-heartbeat' style='color:red'></i>`),    document.getElementById("workboard") && (document.getElementById("workboard").innerHTML = currentTimeHtml);}setInterval(() => {  createtime();}, 250);]]></content>
       
     </entry>
     
@@ -1312,108 +1400,9 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>list</title>
       <link href="/list/index.html"/>
       <url>/list/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/cat.css"/>
-      <url>/css/cat.css</url>
-      
-        <content type="html"><![CDATA[body::-webkit-scrollbar {    width: 0;}.neko {    width: 64px;    height: 64px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812db74be9.png");    position: absolute;    right: 32px;    background-repeat: no-repeat;    background-size: contain;    transform: translateX(50%);    cursor: pointer;    font-family: tzy;    font-weight: 600;    font-size: 16px;    color: #6f42c1;    display: none;}.neko::after {    display: none;    width: 100px;    height: 100px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812d95e6f5.png");    background-size: contain;    z-index: 9999;    position: absolute;    right: 50%;    text-align: center;    line-height: 100px;    top: -115%;}.neko.showMsg::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko:hover::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko.fontColor::after {    color: #333;}/** * @description: 滚动条样式  跟猫二选一 */@media screen and (max-width:992px) {    ::-webkit-scrollbar {        width: 8px !important;        height: 8px !important    }    ::-webkit-scrollbar-track {        border-radius: 2em;    }    ::-webkit-scrollbar-thumb {        background-color: rgb(255 255 255 / .3);        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);        border-radius: 2em    }    ::-webkit-scrollbar-corner {        background-color: transparent    }}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
-      
-        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }/* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {    background: #1e1e1e;    color: antiquewhite;  }  /* 鼠标悬浮状态 */  [data-theme="dark"] .magnet_link_context:hover {    background: #3ecdf1;    color: #f2f2f2;  }/* 自定义字体没有整 因为不会下载 不会整 先留下记号 方便后期整*//* 翻页按钮居中 */#pagination {    width: 100%;    margin: auto;  }/* 一级菜单居中 导航栏自定义魔改 */#nav .menus_items {    position: absolute !important;    width: fit-content !important;    left: 50% !important;    transform: translateX(-50%) !important;  }  /* 子菜单横向展示 */  #nav .menus_items .menus_item:hover .menus_item_child {    display: flex !important;  }  /* 这里的2是代表导航栏的第2个元素，即有子菜单的元素，可以按自己需求修改 */  .menus_items .menus_item:nth-child(5) .menus_item_child {    left: -38px;  }/* 日间模式不生效 黑夜霓虹灯2.0（纯CSS实现） */[data-theme="light"] #site-name,[data-theme="light"] #site-title,[data-theme="light"] #site-subtitle,[data-theme="light"] #post-info {  animation: none;}/* 夜间模式生效 */[data-theme="dark"] #site-name,[data-theme="dark"] #site-title {  animation: light_15px 10s linear infinite;}[data-theme="dark"] #site-subtitle {  animation: light_10px 10s linear infinite;}[data-theme="dark"] #post-info {  animation: light_5px 10s linear infinite;}/* 关键帧描述 */@keyframes light_15px {  0% {    text-shadow: #5636ed 0 0 15px;  }  12.5% {    text-shadow: #11ee5e 0 0 15px;  }  25% {    text-shadow: #f14747 0 0 15px;  }  37.5% {    text-shadow: #f1a247 0 0 15px;  }  50% {    text-shadow: #f1ee47 0 0 15px;  }  50% {    text-shadow: #b347f1 0 0 15px;  }  62.5% {    text-shadow: #002afa 0 0 15px;  }  75% {    text-shadow: #ed709b 0 0 15px;  }  87.5% {    text-shadow: #39c5bb 0 0 15px;  }  100% {    text-shadow: #5636ed 0 0 15px;  }}@keyframes light_10px {  0% {    text-shadow: #5636ed 0 0 10px;  }  12.5% {    text-shadow: #11ee5e 0 0 10px;  }  25% {    text-shadow: #f14747 0 0 10px;  }  37.5% {    text-shadow: #f1a247 0 0 10px;  }  50% {    text-shadow: #f1ee47 0 0 10px;  }  50% {    text-shadow: #b347f1 0 0 10px;  }  62.5% {    text-shadow: #002afa 0 0 10px;  }  75% {    text-shadow: #ed709b 0 0 10px;  }  87.5% {    text-shadow: #39c5bb 0 0 10px;  }  100% {    text-shadow: #5636ed 0 0 10px;  }}@keyframes light_5px {  0% {    text-shadow: #5636ed 0 0 5px;  }  12.5% {    text-shadow: #11ee5e 0 0 5px;  }  25% {    text-shadow: #f14747 0 0 5px;  }  37.5% {    text-shadow: #f1a247 0 0 15px;  }  50% {    text-shadow: #f1ee47 0 0 5px;  }  50% {    text-shadow: #b347f1 0 0 5px;  }  62.5% {    text-shadow: #002afa 0 0 5px;  }  75% {    text-shadow: #ed709b 0 0 5px;  }  87.5% {    text-shadow: #39c5bb 0 0 5px;  }  100% {    text-shadow: #5636ed 0 0 5px;  }}/* 侧边栏个人信息卡片动态渐变色 */#aside-content > .card-widget.card-info {    background: linear-gradient(      -45deg,      #e8d8b9,      #eccec5,      #a3e9eb,      #bdbdf0,      #eec1ea    );    box-shadow: 0 0 5px rgb(66, 68, 68);    position: relative;    background-size: 400% 400%;    -webkit-animation: Gradient 10s ease infinite;    -moz-animation: Gradient 10s ease infinite;    animation: Gradient 10s ease infinite !important;  }  @-webkit-keyframes Gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }  @-moz-keyframes Gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }  @keyframes Gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }    /* 黑夜模式适配 */  [data-theme="dark"] #aside-content > .card-widget.card-info {    background: #191919ee;  }    /* 个人信息Follow me按钮 */  #aside-content > .card-widget.card-info > #card-info-btn {    background-color: #3eb8be;    border-radius: 8px;  }/* 文章页H1-H6图标样式效果 *//* 控制风车转动速度 4s那里可以自己调节快慢 */h1::before,h2::before,h3::before,h4::before,h5::before,h6::before {  -webkit-animation: ccc 4s linear infinite;  animation: ccc 4s linear infinite;}/* 控制风车转动方向 -1turn 为逆时针转动，1turn 为顺时针转动，相同数字部分记得统一修改 */@-webkit-keyframes ccc {  0% {    -webkit-transform: rotate(0deg);    transform: rotate(0deg);  }  to {    -webkit-transform: rotate(-1turn);    transform: rotate(-1turn);  }}@keyframes ccc {  0% {    -webkit-transform: rotate(0deg);    transform: rotate(0deg);  }  to {    -webkit-transform: rotate(-1turn);    transform: rotate(-1turn);  }}/* 设置风车颜色 */#content-inner.layout h1::before {  color: #ef50a8;  margin-left: -1.55rem;  font-size: 1.3rem;  margin-top: -0.23rem;}#content-inner.layout h2::before {  color: #fb7061;  margin-left: -1.35rem;  font-size: 1.1rem;  margin-top: -0.12rem;}#content-inner.layout h3::before {  color: #ffbf00;  margin-left: -1.22rem;  font-size: 0.95rem;  margin-top: -0.09rem;}#content-inner.layout h4::before {  color: #a9e000;  margin-left: -1.05rem;  font-size: 0.8rem;  margin-top: -0.09rem;}#content-inner.layout h5::before {  color: #57c850;  margin-left: -0.9rem;  font-size: 0.7rem;  margin-top: 0rem;}#content-inner.layout h6::before {  color: #5ec1e0;  margin-left: -0.9rem;  font-size: 0.66rem;  margin-top: 0rem;}/* s设置风车hover动效 6s那里可以自己调节快慢*/#content-inner.layout h1:hover,#content-inner.layout h2:hover,#content-inner.layout h3:hover,#content-inner.layout h4:hover,#content-inner.layout h5:hover,#content-inner.layout h6:hover {  color: var(--theme-color);}#content-inner.layout h1:hover::before,#content-inner.layout h2:hover::before,#content-inner.layout h3:hover::before,#content-inner.layout h4:hover::before,#content-inner.layout h5:hover::before,#content-inner.layout h6:hover::before {  color: var(--theme-color);  -webkit-animation: ccc 6s linear infinite;  animation: ccc 6s linear infinite;}/* 加载进入页面的动画效果 */.loading-img {  background: url(https://q1.qlogo.cn/g?b=qq&nk=1310446718&s=5) no-repeat center center;  background-size: cover;}/* rightMenu 鼠标右键美化*/[data-theme='light'] #rightMenu{  display: none;  position: fixed;  width: 160px;  height: fit-content;  top: 10%;  left: 10%;  background-color: var(--card-bg);  border: 1px solid rgb(210,210,210);;  border-radius: 8px;  z-index: 100;  box-shadow: 3px 3px 5px #88888894;  background-color: var(--zhshier-white-acrylic1);  backdrop-filter: blur(30px);}[data-theme='dark'] #rightMenu{  display: none;  position: fixed;  width: 160px;  height: fit-content;  top: 10%;  left: 10%;  background-color: var(--card-bg);  border: 1px solid rgb(210,210,210);;  border-radius: 8px;  z-index: 100;  box-shadow: 3px 3px 5px #88888894;  background-color: var(--zhshier-black-acrylic1);  backdrop-filter: blur(30px);}#rightMenu .rightMenu-group{  padding: 7px 6px;}#rightMenu .rightMenu-group:not(:nth-last-child(1)){  border-bottom: 1px solid rgb(180,180,180);}#rightMenu .rightMenu-group.rightMenu-small{  display: flex;  justify-content: space-between;}#rightMenu .rightMenu-group .rightMenu-item{  height: 30px;  line-height: 30px;  border-radius: 8px;  transition: 0.3s;  color: var(--font-color);}#rightMenu .rightMenu-group.rightMenu-line .rightMenu-item{  display: flex;  height: 40px;  line-height: 40px;  padding: 0 4px;}#rightMenu .rightMenu-group .rightMenu-item:hover{  background-color: var(--text-bg-hover);  box-shadow: 0px 0px 5px var(--zhshier-border);}#rightMenu .rightMenu-group .rightMenu-item i{  display: inline-block;  text-align: center;  line-height: 30px;  width: 30px;  height: 30px;  padding: 0 5px;}#rightMenu .rightMenu-group .rightMenu-item span{  line-height: 30px;}#rightMenu:hover{  border: 1px solid var(--zhshier-blue);  /* box-shadow:0 0 3px var(--zhshier-blue)!important; */}#rightMenu .rightMenu-group.rightMenu-line .rightMenu-item *{  height: 40px;  line-height: 40px;}.rightMenu-group.hide{  display: none;}.rightMenu-item:hover{  color:white!important;  background-color:var(--zhshier-blue)!important;}:root{  --zhshier-border:#c9c9c9;  --zhshier-blue:#6cf;  --zhshier-black-acrylic1: #0008;  --zhshier-white-acrylic1:#fffd;}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/dark%20span.css"/>
-      <url>/css/dark%20span.css</url>
-      
-        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/readPercent.css"/>
-      <url>/css/readPercent.css</url>
-      
-        <content type="html"><![CDATA[/* 返回顶部 */button#go-up #percent {    display: none;    font-weight: bold;    font-size: 15px !important;}button#go-up span {    font-size: 12px!important;    margin-right: -1px;}/* 鼠标滑动到按钮上时显示返回顶部图标 */button#go-up:hover i {    display: block !important;}button#go-up:hover #percent {    display: none !important;}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/progress_bar.css"/>
-      <url>/css/progress_bar.css</url>
-      
-        <content type="html"><![CDATA[.pace {    -webkit-pointer-events: none;    pointer-events: none;    -webkit-user-select: none;    -moz-user-select: none;    user-select: none;    z-index: 2000;    position: fixed;    margin: auto;    top: 10px;    left: 0;    right: 0;    height: 8px;    border-radius: 8px;    width: 4rem;    background: #eaecf2;    border: 1px #e3e8f7;    overflow: hidden;  }    .pace-inactive .pace-progress {    opacity: 0;    transition: 0.3s ease-in;  }    .pace .pace-progress {    -webkit-box-sizing: border-box;    -moz-box-sizing: border-box;    -ms-box-sizing: border-box;    -o-box-sizing: border-box;    box-sizing: border-box;    -webkit-transform: translate3d(0, 0, 0);    -moz-transform: translate3d(0, 0, 0);    -ms-transform: translate3d(0, 0, 0);    -o-transform: translate3d(0, 0, 0);    transform: translate3d(0, 0, 0);    max-width: 200px;    position: absolute;    z-index: 2000;    display: block;    top: 0;    right: 100%;    height: 100%;    width: 100%;    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);    animation: gradient 1.5s ease infinite;    background-size: 200%;  }    .pace.pace-inactive {    opacity: 0;    transition: 0.3s;    top: -8px;  }  @keyframes gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }  ]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/social_card.css"/>
-      <url>/css/social_card.css</url>
-      
-        <content type="html"><![CDATA[div#author-info__sayhi {    text-align: left;    background: var(--zhsher-white-op);    color: var(--font-color);    border: var(--style-border);    font-size: 12px;    margin-right: auto;    padding: 5px 8px;    border-radius: 12px;    width: fit-content;    display: inline;    margin-left: -1px}.card-widget .author-info-top {    margin: 15px auto 0;    display: flex;    justify-content: center}.card-widget .card-info-avatar {    display: inline-block;    position: relative}.card-widget.card-info .banner-button-group {    margin: 5px 0;    display: flex}#aside-content .card-info .banner-button {    height: 40px;    width: 100%;    border-radius: 20px;    justify-content: center}.card-widget.card-info .banner-button-group .banner-button {    padding: 20px 12px;    background: var(--zhsher-theme);    border-radius: 12px;    color: var(--zhsher-white);    display: flex;    align-items: center;    z-index: 1;    transition: all .3s ease 0s;    cursor: pointer}.card-widget.card-info .banner-button-group .banner-button .fas.fa-circle-arrow-up-right {    font-size: 1.3rem;    margin-right: 10px}.card-widget.card-info .banner-button-group .banner-button:hover {    background: var(--zhsher-main-op-deep);    color: var(--zhsher-white)}.card-info-avatar .avatar-img {    width: 100px;    height: 100px;    display: block}.card-info-avatar .author-status-box {    position: absolute;    bottom: 0;    left: calc(100% - 28px);    width: 28px;    height: 28px;    border: var(--style-border);    border-radius: 2em;    background-color: var(--zhsher-card-bg);    transition: .3s;    overflow: hidden}.card-info-avatar .author-status-box .author-status {    display: flex;    align-items: center;    justify-content: center;    height: 28px;    padding: 0 5px}.card-info-avatar .author-status-box:hover {    width: 105px}.card-info-avatar .author-status-box:hover .author-status span {    width: 105px;    margin-left: 4px}.card-info-avatar .author-status-box .author-status span {    width: 0;    font-size: 12px;    height: 100%;    overflow: hidden;    text-overflow: ellipsis;    white-space: nowrap;    transition: .3s}#aside-content > .card-info {    background: #fff url(https://img02.anzhiy.cn/adminuploads/1/2022/10/26/6358a07bf21fc.webp) top -24% center no-repeat;    position: relative}[data-theme=dark] #aside-content > .card-info {    background: var(--zhsher-card-bg)}@media screen and (max-width: 992px) {    #aside-content > .card-info {        background-size: 100% 70%    }}.card-widget .author-info__name {    line-height: 1.5em;    margin: 4px 0}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/universe.css"/>
-      <url>/css/universe.css</url>
-      
-        <content type="html"><![CDATA[/* 背景宇宙星光  */#universe{    display: block;    position: fixed;    margin: 0;    padding: 0;    border: 0;    outline: 0;    left: 0;    top: 0;    width: 100%;    height: 100%;    pointer-events: none;    /* 这个是调置顶的优先级的，-1在文章页下面，背景上面，个人推荐这种 */    z-index: -1;  }]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>留言板</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1433,9 +1422,9 @@
     
     
     <entry>
-      <title>games</title>
-      <link href="/list/games/index.html"/>
-      <url>/list/games/index.html</url>
+      <title>books</title>
+      <link href="/list/books/index.html"/>
+      <url>/list/books/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1455,9 +1444,31 @@
     
     
     <entry>
-      <title>books</title>
-      <link href="/list/books/index.html"/>
-      <url>/list/books/index.html</url>
+      <title></title>
+      <link href="/js/title.js"/>
+      <url>/js/title.js</url>
+      
+        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '👀跑哪里去了~';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = '🐖抓到你啦～';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>电影</title>
+      <link href="/list/movies/index.html"/>
+      <url>/list/movies/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>games</title>
+      <link href="/list/games/index.html"/>
+      <url>/list/games/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1469,17 +1480,6 @@
       <title>songs</title>
       <link href="/list/songs/index.html"/>
       <url>/list/songs/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>电影</title>
-      <link href="/list/movies/index.html"/>
-      <url>/list/movies/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
