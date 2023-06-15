@@ -29,11 +29,11 @@
     
     
     <entry>
-      <title>ros中自定义全局路径规划器部署步骤</title>
-      <link href="/posts/b65be66e.html"/>
-      <url>/posts/b65be66e.html</url>
+      <title>ros指令</title>
+      <link href="/posts/50f3c42c.html"/>
+      <url>/posts/50f3c42c.html</url>
       
-        <content type="html"><![CDATA[<p>ros中自定义全局路径规划器部署步骤</p><ul><li><p>catkin_create_pkg better_astar_global_planner  roscpp rospy std_msgs   nav_core</p></li><li><p>将.cpp文件和.h头文件放入到src中</p></li><li>配置CMakeLists.txt</li><li>重新编译  在/home/yunfang/tutorial_ws/devel/lib中生成了libbetter_astar_global_planner_lib.so库</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">124行</span><br><span class="line">## Declare a C++ library</span><br><span class="line"># add_library($&#123;PROJECT_NAME&#125;</span><br><span class="line">#   src/$&#123;PROJECT_NAME&#125;/plugin_better_a.cpp</span><br><span class="line"># )</span><br><span class="line">修改为  注意_lib  包名_lib</span><br><span class="line">## Declare a C++ library</span><br><span class="line">add_library(better_astar_global_planner_lib</span><br><span class="line">  src/better_aster.cpp</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>2.1注册插件:</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PLUGINLIB_EXPORT_CLASS</span>(BAstar_planner::BAstarPlannerROS, nav_core::BaseGlobalPlanner)</span><br></pre></td></tr></table></figure><p>2.2插件描述文件</p><p>包 右键  新建文件 better_astar_global_planner_plugin.xml</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">初始：</span><br><span class="line"> &lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">  &lt;class name=&quot;global_planner/GlobalPlanner&quot; type=&quot;global_planner::GlobalPlanner&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;   </span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"> </span><br><span class="line">介绍：</span><br><span class="line">&lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">type=&quot;global_planner::GlobalPlanner&quot; 注册插件的  编写的类 BAstar_planner::BAstarPlannerROS</span><br><span class="line">修改为：</span><br><span class="line">&lt;library path=&quot;lib/libbetter_astar_global_planner_lib&quot;&gt;</span><br><span class="line">  &lt;class name=&quot;BAstar_planner/BAstarPlannerROS&quot; type=&quot;BAstar_planner::BAstarPlannerROS&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;</span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>2.3使用 ROS 包系统注册插件</p><p>packeage.xml中</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">67行 最下面</span><br><span class="line"></span><br><span class="line">&lt;export&gt;</span><br><span class="line">   &lt;!-- Other tools can request additional information be placed here --&gt;</span><br><span class="line">   &lt;nav_core plugin=&quot;$&#123;prefix&#125;/better_astar_global_planner_plugin.xml&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/export&gt;</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p>odm  framd_id odm_combined<br>map  map<br>nase_frame_id base_footprint</p><p>scan  scan<br> 查看某个具体的消息 需要使用管道<br>rosmsg list | grep -i 话题名称<br>校园网址<br><a href="https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00">https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00</a></p><p>C语言学习中递归函数<br>ctrl+shift+空格出现代码提示<br>使用rosparam导入参数<br>设置的参数.yaml文件中 需要加空格 例如bg_R: 100<br>rosparam 便签 会率先执行 所以在使用dump导出参数的时候需要自己直接写一个launch文件</p><p>写代码之前操作</p><p>mkdir -p xxx_ws/src(必须得有 src)<br>cd xxx_ws<br>catkin_make<br>cd xxx_ws<br>code .</p><p>rviz中 ctrl+shift+鼠标可以拖动位置<br>args=”-d $(find urdf01_rviz)/config/show_mycar.rviz”<br>这玩意保存的时配置 不是rviz里面显示的东西<br>solidworks<br>joint origin是joint相对于parent的位置<br>[joint_state_publisher-4] process has died [pid 12169, exit code 1, cmd /opt/ros/melodic/lib/joint_state_publisher/joint_state_publisher <strong>name:=joint_state_publisher </strong>log:=/home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4.log].<br>log file: /home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4*.log</p><p>出现下面的错误 请删除掉urdf里面的中文注释 melidic中不能有一点点中文<br>evince mycar.pdf<br>arbotix报错，进入src下的arbotix_ros功能包，进入arbotix_python，进入bin，进入arbotix_driver<br>将第一行中的python的运行版本从3改为2.7运行就可以了<br>rviz中fixed frame为 odm<br>gazebo有进程问题 请执行下面指令 直接杀死<br>killall gzserver</p><p>killall gzclient</p><p>tar -xvf arduino-1.x.y-linux64.tar.xz<br>tar解压命令 </p><node name="playbag" pkg="rosbag" type="play"      args="--clock $(arg bag_filename)" />]]></content>
       
       
       <categories>
@@ -54,11 +54,11 @@
     
     
     <entry>
-      <title>ros指令</title>
-      <link href="/posts/50f3c42c.html"/>
-      <url>/posts/50f3c42c.html</url>
+      <title>ros中自定义全局路径规划器部署步骤</title>
+      <link href="/posts/b65be66e.html"/>
+      <url>/posts/b65be66e.html</url>
       
-        <content type="html"><![CDATA[<p>odm  framd_id odm_combined<br>map  map<br>nase_frame_id base_footprint</p><p>scan  scan<br> 查看某个具体的消息 需要使用管道<br>rosmsg list | grep -i 话题名称<br>校园网址<br><a href="https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00">https://120.199.39.54:7090/zmcc/indexForce.wlan?wlanuserip=10.137.237.63&amp;wlanacname=0437.0571.571.00</a></p><p>C语言学习中递归函数<br>ctrl+shift+空格出现代码提示<br>使用rosparam导入参数<br>设置的参数.yaml文件中 需要加空格 例如bg_R: 100<br>rosparam 便签 会率先执行 所以在使用dump导出参数的时候需要自己直接写一个launch文件</p><p>写代码之前操作</p><p>mkdir -p xxx_ws/src(必须得有 src)<br>cd xxx_ws<br>catkin_make<br>cd xxx_ws<br>code .</p><p>rviz中 ctrl+shift+鼠标可以拖动位置<br>args=”-d $(find urdf01_rviz)/config/show_mycar.rviz”<br>这玩意保存的时配置 不是rviz里面显示的东西<br>solidworks<br>joint origin是joint相对于parent的位置<br>[joint_state_publisher-4] process has died [pid 12169, exit code 1, cmd /opt/ros/melodic/lib/joint_state_publisher/joint_state_publisher <strong>name:=joint_state_publisher </strong>log:=/home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4.log].<br>log file: /home/yunfang/.ros/log/3c02610c-bfaa-11ed-a76e-30d16b56c4c1/joint_state_publisher-4*.log</p><p>出现下面的错误 请删除掉urdf里面的中文注释 melidic中不能有一点点中文<br>evince mycar.pdf<br>arbotix报错，进入src下的arbotix_ros功能包，进入arbotix_python，进入bin，进入arbotix_driver<br>将第一行中的python的运行版本从3改为2.7运行就可以了<br>rviz中fixed frame为 odm<br>gazebo有进程问题 请执行下面指令 直接杀死<br>killall gzserver</p><p>killall gzclient</p><p>tar -xvf arduino-1.x.y-linux64.tar.xz<br>tar解压命令 </p><node name="playbag" pkg="rosbag" type="play"      args="--clock $(arg bag_filename)" />]]></content>
+        <content type="html"><![CDATA[<p>ros中自定义全局路径规划器部署步骤</p><ul><li><p>catkin_create_pkg better_astar_global_planner  roscpp rospy std_msgs   nav_core</p></li><li><p>将.cpp文件和.h头文件放入到src中</p></li><li>配置CMakeLists.txt</li><li>重新编译  在/home/yunfang/tutorial_ws/devel/lib中生成了libbetter_astar_global_planner_lib.so库</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">124行</span><br><span class="line">## Declare a C++ library</span><br><span class="line"># add_library($&#123;PROJECT_NAME&#125;</span><br><span class="line">#   src/$&#123;PROJECT_NAME&#125;/plugin_better_a.cpp</span><br><span class="line"># )</span><br><span class="line">修改为  注意_lib  包名_lib</span><br><span class="line">## Declare a C++ library</span><br><span class="line">add_library(better_astar_global_planner_lib</span><br><span class="line">  src/better_aster.cpp</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>2.1注册插件:</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PLUGINLIB_EXPORT_CLASS</span>(BAstar_planner::BAstarPlannerROS, nav_core::BaseGlobalPlanner)</span><br></pre></td></tr></table></figure><p>2.2插件描述文件</p><p>包 右键  新建文件 better_astar_global_planner_plugin.xml</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">初始：</span><br><span class="line"> &lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">  &lt;class name=&quot;global_planner/GlobalPlanner&quot; type=&quot;global_planner::GlobalPlanner&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;   </span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"> </span><br><span class="line">介绍：</span><br><span class="line">&lt;library path=&quot;lib/libglobal_planner_lib&quot;&gt;  生成的库</span><br><span class="line">type=&quot;global_planner::GlobalPlanner&quot; 注册插件的  编写的类 BAstar_planner::BAstarPlannerROS</span><br><span class="line">修改为：</span><br><span class="line">&lt;library path=&quot;lib/libbetter_astar_global_planner_lib&quot;&gt;</span><br><span class="line">  &lt;class name=&quot;BAstar_planner/BAstarPlannerROS&quot; type=&quot;BAstar_planner::BAstarPlannerROS&quot; base_class_type=&quot;nav_core::BaseGlobalPlanner&quot;&gt;</span><br><span class="line">    &lt;description&gt;This is a global planner plugin by iroboapp project.&lt;/description&gt;</span><br><span class="line">  &lt;/class&gt;</span><br><span class="line"> &lt;/library&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>2.3使用 ROS 包系统注册插件</p><p>packeage.xml中</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">67行 最下面</span><br><span class="line"></span><br><span class="line">&lt;export&gt;</span><br><span class="line">   &lt;!-- Other tools can request additional information be placed here --&gt;</span><br><span class="line">   &lt;nav_core plugin=&quot;$&#123;prefix&#125;/better_astar_global_planner_plugin.xml&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/export&gt;</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -367,31 +367,6 @@
     
     
     <entry>
-      <title>ros melotic cartographer安装</title>
-      <link href="/posts/26aabfb9.html"/>
-      <url>/posts/26aabfb9.html</url>
-      
-        <content type="html"><![CDATA[<p>sudo sh -c ‘. /etc/lsb-release &amp;&amp; echo “deb <a href="http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/">http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/</a> $DISTRIB_CODENAME main” &gt; /etc/apt/sources.list.d/ros-latest.list’<br>sudo apt-key adv —keyserver keyserver.ubuntu.com —recv-keys F42ED6FBAB17C654<br>sudo apt-get update</p><p>sudo apt-get install ros-melodic-desktop-full</p><p>sudo apt-get install ros-melodic-rqt*</p><p>sudo apt install rospack-tool</p><p>sudo apt-get install python3-pip<br>sudo pip3 install 6-rosdep<br>sudo 6-rosdep<br>sudo rosdep init<br>rosdep update </p><p>echo “source /opt/ros/melodic/setup.bash” &gt;&gt; ~/.bashrc<br>source ~/.bashrc</p><p>sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential</p><p>启动<br>echo “source /opt/ros/melodic/setup.bash” &gt;&gt; ~/.bashrc<br>source ~/.bashrc<br>roscore<br>rosrun turtlesim turtlesim_node<br>rosrun turtlesim turtle_teleop_key</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Slam </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> ros </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>opencv安装</title>
       <link href="/posts/b44fb44.html"/>
       <url>/posts/b44fb44.html</url>
@@ -409,6 +384,31 @@
         <tags>
             
             <tag> opecv </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ros melotic cartographer安装</title>
+      <link href="/posts/26aabfb9.html"/>
+      <url>/posts/26aabfb9.html</url>
+      
+        <content type="html"><![CDATA[<p>sudo sh -c ‘. /etc/lsb-release &amp;&amp; echo “deb <a href="http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/">http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/</a> $DISTRIB_CODENAME main” &gt; /etc/apt/sources.list.d/ros-latest.list’<br>sudo apt-key adv —keyserver keyserver.ubuntu.com —recv-keys F42ED6FBAB17C654<br>sudo apt-get update</p><p>sudo apt-get install ros-melodic-desktop-full</p><p>sudo apt-get install ros-melodic-rqt*</p><p>sudo apt install rospack-tool</p><p>sudo apt-get install python3-pip<br>sudo pip3 install 6-rosdep<br>sudo 6-rosdep<br>sudo rosdep init<br>rosdep update </p><p>echo “source /opt/ros/melodic/setup.bash” &gt;&gt; ~/.bashrc<br>source ~/.bashrc</p><p>sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential</p><p>启动<br>echo “source /opt/ros/melodic/setup.bash” &gt;&gt; ~/.bashrc<br>source ~/.bashrc<br>roscore<br>rosrun turtlesim turtlesim_node<br>rosrun turtlesim turtle_teleop_key</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Slam </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ros </tag>
             
         </tags>
       
@@ -1091,6 +1091,31 @@
     
     
     <entry>
+      <title>我的第三篇博客文章</title>
+      <link href="/posts/6f36dd99.html"/>
+      <url>/posts/6f36dd99.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="这是第三篇文章"><a href="#这是第三篇文章" class="headerlink" title="这是第三篇文章"></a>这是第三篇文章</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>我的第一篇博客文章</title>
       <link href="/posts/b24dd347.html"/>
       <url>/posts/b24dd347.html</url>
@@ -1139,31 +1164,6 @@
     </entry>
     
     
-    
-    <entry>
-      <title>我的第三篇博客文章</title>
-      <link href="/posts/6f36dd99.html"/>
-      <url>/posts/6f36dd99.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="这是第三篇文章"><a href="#这是第三篇文章" class="headerlink" title="这是第三篇文章"></a>这是第三篇文章</h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> Python </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
   
   
     
@@ -1191,20 +1191,20 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title></title>
+      <link href="/css/dark%20span.css"/>
+      <url>/css/dark%20span.css</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>留言板</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1229,17 +1229,6 @@
       <url>/css/cat.css</url>
       
         <content type="html"><![CDATA[body::-webkit-scrollbar {    width: 0;}.neko {    width: 64px;    height: 64px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812db74be9.png");    position: absolute;    right: 32px;    background-repeat: no-repeat;    background-size: contain;    transform: translateX(50%);    cursor: pointer;    font-family: tzy;    font-weight: 600;    font-size: 16px;    color: #6f42c1;    display: none;}.neko::after {    display: none;    width: 100px;    height: 100px;    background-image: url("https://bu.dusays.com/2022/07/20/62d812d95e6f5.png");    background-size: contain;    z-index: 9999;    position: absolute;    right: 50%;    text-align: center;    line-height: 100px;    top: -115%;}.neko.showMsg::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko:hover::after {    content: attr(data-msg);    display: block;    overflow: hidden;    text-overflow: ellipsis;}.neko.fontColor::after {    color: #333;}/** * @description: 滚动条样式  跟猫二选一 */@media screen and (max-width:992px) {    ::-webkit-scrollbar {        width: 8px !important;        height: 8px !important    }    ::-webkit-scrollbar-track {        border-radius: 2em;    }    ::-webkit-scrollbar-thumb {        background-color: rgb(255 255 255 / .3);        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);        border-radius: 2em    }    ::-webkit-scrollbar-corner {        background-color: transparent    }}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/dark%20span.css"/>
-      <url>/css/dark%20span.css</url>
-      
-        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
       
     </entry>
     
@@ -1290,11 +1279,22 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title>留言板</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
       
-        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/gulpfile.js"/>
+      <url>/js/gulpfile.js</url>
+      
+        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
       
     </entry>
     
@@ -1338,18 +1338,7 @@
       <link href="/js/run.js"/>
       <url>/js/run.js</url>
       
-        <content type="html"><![CDATA[var now = new Date();function createtime() {  now.setTime(now.getTime() + 1e3);  var e = new Date("04/03/2023 00:24:00"),    t = Math.trunc(234e8 + ((now - e) / 1e3) * 17),    a = (t / 1496e5).toFixed(6),    o = new Date("04/03/2023 12:00:00"),    n = (now - o) / 1e3 / 60 / 60 / 24,    r = Math.floor(n),    i = (now - o) / 1e3 / 60 / 60 - 24 * r,    s = Math.floor(i);  1 == String(s).length && (s = "0" + s);  var d = (now - o) / 1e3 / 60 - 1440 * r - 60 * s,    l = Math.floor(d);  1 == String(l).length && (l = "0" + l);  var g = (now - o) / 1e3 - 86400 * r - 3600 * s - 60 * l,    b = Math.round(g);  1 == String(b).length && (b = "0" + b);  let c = "";  (c =    s < 18 && s >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='浑水摸鱼罢了~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 前进一步 没资格 退一步 不舍得 那就听你的吧 往后你要加油 认识了 ${r+394} 天，消散了${r-69}天  🚀</div>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='终于下班啦~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 前进一步 没资格 退一步 不舍得 那就听你的吧 往后你要加油 认识了 ${r+394} 天，消散了${r-69}天 🚀</div>`),    document.getElementById("workboard") &&      (document.getElementById("workboard").innerHTML = c);}setInterval(() => {  createtime();}, 1e3);]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/gulpfile.js"/>
-      <url>/js/gulpfile.js</url>
-      
-        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
+        <content type="html"><![CDATA[var now = new Date();function createtime() {  now.setTime(now.getTime() + 1e3);  var e = new Date("04/03/2023 00:24:00"),    t = Math.trunc(234e8 + ((now - e) / 1e3) * 17),    a = (t / 1496e5).toFixed(6),    o = new Date("04/03/2023 12:00:00"),    n = (now - o) / 1e3 / 60 / 60 / 24,    r = Math.floor(n),    i = (now - o) / 1e3 / 60 / 60 - 24 * r,    s = Math.floor(i);  1 == String(s).length && (s = "0" + s);  var d = (now - o) / 1e3 / 60 - 1440 * r - 60 * s,    l = Math.floor(d);  1 == String(l).length && (l = "0" + l);  var g = (now - o) / 1e3 - 86400 * r - 3600 * s - 60 * l,    b = Math.round(g);  1 == String(b).length && (b = "0" + b);  let c = "";  (c =    s < 18 && s >= 9      ? `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-科研摸鱼中.svg' title='浑水摸鱼罢了~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 继续陪伴 相爱相杀 日常斗嘴 ${r+394} 天 🚀</div>`      : `<img class='boardsign' src='https://sourcebucket.s3.ladydaily.com/badge/F小屋-下班休息啦.svg' title='终于下班啦~'><br> <div style="font-size:13px;font-weight:bold">本站运行了 ${r} 天 ${s} 小时 ${l} 分 ${b} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 继续陪伴 相爱相杀 日常斗嘴 ${r+394} 天 🚀</div>`),    document.getElementById("workboard") &&      (document.getElementById("workboard").innerHTML = c);}setInterval(() => {  createtime();}, 1e3);]]></content>
       
     </entry>
     
@@ -1400,6 +1389,28 @@
     
     
     <entry>
+      <title></title>
+      <link href="/js/title.js"/>
+      <url>/js/title.js</url>
+      
+        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '👀跑哪里去了~';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = '🐖抓到你啦～';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[<p><div class="addBtn"><button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button></div></p><p><link rel="stylesheet" href="/css/kslink.css"></p><script src="/js/kslink.js"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>list</title>
       <link href="/list/index.html"/>
       <url>/list/index.html</url>
@@ -1422,17 +1433,6 @@
     
     
     <entry>
-      <title>books</title>
-      <link href="/list/books/index.html"/>
-      <url>/list/books/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>bangumis</title>
       <link href="/list/bangumis/index.html"/>
       <url>/list/bangumis/index.html</url>
@@ -1444,11 +1444,11 @@
     
     
     <entry>
-      <title></title>
-      <link href="/js/title.js"/>
-      <url>/js/title.js</url>
+      <title>games</title>
+      <link href="/list/games/index.html"/>
+      <url>/list/games/index.html</url>
       
-        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '👀跑哪里去了~';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = '🐖抓到你啦～';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -1466,9 +1466,9 @@
     
     
     <entry>
-      <title>games</title>
-      <link href="/list/games/index.html"/>
-      <url>/list/games/index.html</url>
+      <title>books</title>
+      <link href="/list/books/index.html"/>
+      <url>/list/books/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
