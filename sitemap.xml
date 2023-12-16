@@ -568,6 +568,13 @@
   </url>
   
   <url>
+    <loc>https://aixiaocainiao.github.io/tags/MarkDown/</loc>
+    <lastmod>2023-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://aixiaocainiao.github.io/tags/32/</loc>
     <lastmod>2023-12-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -575,7 +582,7 @@
   </url>
   
   <url>
-    <loc>https://aixiaocainiao.github.io/tags/MarkDown/</loc>
+    <loc>https://aixiaocainiao.github.io/tags/conda/</loc>
     <lastmod>2023-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -590,13 +597,6 @@
   
   <url>
     <loc>https://aixiaocainiao.github.io/tags/webp/</loc>
-    <lastmod>2023-12-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://aixiaocainiao.github.io/tags/conda/</loc>
     <lastmod>2023-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -631,14 +631,14 @@
   </url>
   
   <url>
-    <loc>https://aixiaocainiao.github.io/tags/ubuntu/</loc>
+    <loc>https://aixiaocainiao.github.io/tags/51/</loc>
     <lastmod>2023-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://aixiaocainiao.github.io/tags/51/</loc>
+    <loc>https://aixiaocainiao.github.io/tags/ubuntu/</loc>
     <lastmod>2023-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -680,14 +680,14 @@
   </url>
   
   <url>
-    <loc>https://aixiaocainiao.github.io/tags/sougou/</loc>
+    <loc>https://aixiaocainiao.github.io/tags/Pycharm/</loc>
     <lastmod>2023-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://aixiaocainiao.github.io/tags/Pycharm/</loc>
+    <loc>https://aixiaocainiao.github.io/tags/sougou/</loc>
     <lastmod>2023-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -722,14 +722,14 @@
   </url>
   
   <url>
-    <loc>https://aixiaocainiao.github.io/tags/git/</loc>
+    <loc>https://aixiaocainiao.github.io/tags/noetic/</loc>
     <lastmod>2023-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://aixiaocainiao.github.io/tags/noetic/</loc>
+    <loc>https://aixiaocainiao.github.io/tags/git/</loc>
     <lastmod>2023-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -787,14 +787,14 @@
   </url>
   
   <url>
-    <loc>https://aixiaocainiao.github.io/categories/other%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://aixiaocainiao.github.io/categories/SF/</loc>
     <lastmod>2023-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://aixiaocainiao.github.io/categories/SF/</loc>
+    <loc>https://aixiaocainiao.github.io/categories/other%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2023-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
