@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Linux C语言进阶</title>
+      <link href="/posts/c48ba556.html"/>
+      <url>/posts/c48ba556.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="Linux-C语言进阶"><a href="#Linux-C语言进阶" class="headerlink" title="Linux C语言进阶"></a>Linux C语言进阶</h1><h2 id="一、linux-高级C语言"><a href="#一、linux-高级C语言" class="headerlink" title="一、linux 高级C语言"></a>一、linux 高级C语言</h2><p>路由器   openrt linux发型版本</p><p>操作系统 目前都是c语言写的了</p><p>unix操作系统 (不开源)</p><p>GNU/Linux  完整名字</p><p>linux是一个仿造unix系统写的 函数名 功能都一样 </p><p>但是一个商业 不开源  一个开源</p><p>ubuntu 图形优化最好 桌面好</p><h2 id="二、linux的体系架构"><a href="#二、linux的体系架构" class="headerlink" title="二、linux的体系架构"></a>二、linux的体系架构</h2><h3 id="1、内核空间-用户空间"><a href="#1、内核空间-用户空间" class="headerlink" title="1、内核空间 用户空间"></a>1、内核空间 用户空间</h3><ul><li><p>写的c语言代码   gcc编译生成的可执行程序  为应用层程序</p></li><li><p>驱动为内核编程</p></li></ul><h3 id="2、结构-不容易随意访问到内层-应用层程序员可以通过系统调用函数访问底层"><a href="#2、结构-不容易随意访问到内层-应用层程序员可以通过系统调用函数访问底层" class="headerlink" title="2、结构:不容易随意访问到内层 应用层程序员可以通过系统调用函数访问底层"></a>2、结构:不容易随意访问到内层 应用层程序员可以通过系统调用函数访问底层</h3><p>应用程序编程  gcc  </p><p>驱动 内核空间</p><p>总结：应用层的程序是提需求的  真正完成功能 的是驱动或者操作系统</p><h3 id="3、linux四大组件"><a href="#3、linux四大组件" class="headerlink" title="3、linux四大组件"></a>3、linux四大组件</h3><p>shell             命令行解释器</p><p>文件系统      管理磁盘上的文件</p><p>应用程序</p><p>Linux内核</p><p>​      文件系统管理</p><p>​      内存管理</p><p>​      进程调度</p><p>​      驱动管理</p><p>​      网络协议</p><h3 id="4、终端程序"><a href="#4、终端程序" class="headerlink" title="4、终端程序"></a>4、终端程序</h3><p>ctrl+alt+t 新开终端</p><p>ctrl+shift+n  旁边出现终端 多开</p><h3 id="5、流行-的两种软件软件包管理机制"><a href="#5、流行-的两种软件软件包管理机制" class="headerlink" title="5、流行 的两种软件软件包管理机制"></a>5、流行 的两种软件软件包管理机制</h3><p>deb rpm</p><h3 id="6、软件包的类型-二进制软件包-源码包"><a href="#6、软件包的类型-二进制软件包-源码包" class="headerlink" title="6、软件包的类型:二进制软件包    源码包"></a>6、软件包的类型:二进制软件包    源码包</h3><h3 id="7、软件包的命令遵循如下约定"><a href="#7、软件包的命令遵循如下约定" class="headerlink" title="7、软件包的命令遵循如下约定"></a>7、软件包的命令遵循如下约定</h3><p>Filename_Version-Reversion_Architecture.deb</p><p>软件包名称 软件版本  修订版本  体系结构</p><h3 id="8、dpkg相关命令"><a href="#8、dpkg相关命令" class="headerlink" title="8、dpkg相关命令"></a>8、dpkg相关命令</h3><ul><li><p>dpkg -i package  安装</p></li><li><p>dpkg -r Filename  移除一个已经安装的软件包</p></li><li><p>dpkg -P Filename 移除已经安装的软甲包及其配置文件</p></li><li><p>dpkg -L Filename 列出按照的软件包清单</p></li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xinyue@xinyuezi:~/下载$ sudo dpkg -L code</span><br><span class="line">[sudo] xinyue 的密码： </span><br><span class="line">/.</span><br><span class="line">/usr</span><br></pre></td></tr></table></figure><ul><li>dpkg -s package 显出软件包的安装状态</li></ul><h3 id="8、apt工作原理？"><a href="#8、apt工作原理？" class="headerlink" title="8、apt工作原理？"></a>8、apt工作原理？</h3><p>ubuntu中使用软件源配置文件/etc/apt/sources.list列出最合适的访问的镜像站点地址</p><p>软件源配置文件只是告知系统可以访问的镜像站点地址 但是站点拥有什么资源不清  若是按照一个软件包 就寻找一遍  效率低下  于是  为软件资源列个清单 (建立索引文件)以便本地主机查询 这就是apt软件管理器的工作原理</p><p>注意:sudo vim /etc/apt/sources.list 如果修改了文件</p><p>需要使用apt-get update更新一下索引 </p><h3 id="9、软件管理相关命令"><a href="#9、软件管理相关命令" class="headerlink" title="9、软件管理相关命令"></a>9、软件管理相关命令</h3><p>卸载软件包</p><ul><li>不完全卸载</li></ul><p>apt-get remove</p><ul><li>完全卸载</li></ul><p>apt-get —purge remove 卸载软件包及其配置文件</p><p>问题:</p><p>1、什么是GPL？</p><p>2、Linux和unix有什么区别？</p><p>3、dpkg和apt软件包管理器有什么区别？</p><p>dpkg最初并没有考虑到软件的依赖关系 </p><h2 id="三、vim编辑器的使用"><a href="#三、vim编辑器的使用" class="headerlink" title="三、vim编辑器的使用"></a>三、vim编辑器的使用</h2><p>vim demo.c</p><p>插入模式</p><p>单击一个i  可以编写代码</p><p>四、shell基本命令的使用</p><h3 id="一、shell简介"><a href="#一、shell简介" class="headerlink" title="一、shell简介"></a>一、shell简介</h3><p>1、shell (贝壳) </p><p>Linux中的shell就是Linux内核的一个外层保护工具 并负责完成用户和内核之间的交互</p><p>命令行解释器 - 将用户命令解析为操作系统所能理解的指令  实现用户和操作系统的交互</p><p>当徐亚重复执行若干命令  可以将这些命令集合起来  加入一定的控制语句  编辑成为shell脚本文件  交个shell批量处理</p><p>2、选择shell程序</p><p>Bourne Shell(简称sh) 用的最多</p><p>3、简单命令</p><p>关机: sudo shutdowm -h now</p><p>重启:sudo shutdowm -r now</p><p>​         sudo reboot now</p><p>定时关机:sudo shutdown -h +45 “That is all,game over”</p><p>(下载软件 方便出门)</p><p>定时重启:sudo shutdowm -r  +45  “That is all,game over”</p><h3 id="二、shell命令格式"><a href="#二、shell命令格式" class="headerlink" title="二、shell命令格式"></a>二、shell命令格式</h3><p>1、username@hostname:direction$</p><p>用户名        主机名       目录名</p><p>direction:目录名  显示当前所处 的路径当在根目录下显示为”/“  当在用户主目录下  显示为”~”</p><p>例如:xinyue@xinyuezi:~$ </p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xinyue@xinyuezi:~$ whoami</span><br><span class="line">xinyue</span><br><span class="line">xinyue@xinyuezi:~$ hostname</span><br><span class="line">xinyuezi</span><br><span class="line">xinyue@xinyuezi:~$ pwd</span><br><span class="line">/home/xinyue</span><br></pre></td></tr></table></figure><p>2、shell命令格式<br>通常一条命令包含三个要素：命令名称  选项  参数<br>命令名称是必须的<br>选项和参数都可以是可选的  </p><ul><li>命令格式如下<br>$ command [-options] Argument1  Argument ..<br>指令     选项   参数1 参数2<br>$  shell提示符  如果当前用户为超级用户  提示符为# 其他用户的提示符均为$<br>Command 命令名称  shell命令或程序  严格区分大小写<br>options 命令选项  用于改变命令执行动作的类型 由-引导 可以同时带有多个选项<br>Argument  命令参数  指出命令作用的对象或目标  有的命令允许带多个参数 </li></ul><p>注意：一条命令的三要素之间用空格隔开  </p><p>若将多个命令在一行书写  用分号；将各命令隔开<br>如果一条命令不能在一行写完  在杭尾使用反斜杠\标明该条命令未结束</p><p>3、命令行操作</p><ul><li>补齐命令与文件名<br>一个tab  文件补齐<br>两个tab  命令补齐 再按一下用于文件名补齐</li><li>查询命令历史<br>上下箭头<br>history  number（多少行）<br>例如 history  10</li><li>打印历史记录<br>echo  $HISTSIZE  显示历史容量</li><li>临时修改<br>HISTSIZE=50   修改历史容量<br>echo  $HISTSIZE    显示50</li><li>永久修改<br>vi .bashrc<br>HISTSIZE=50<br>source .bashrc<br>echo  $HISTSIZE</li></ul><p>4、  shell中的通配符<br>批量处理文件<br>同一类型  就一个不一样</p><ul><li>file_*.txt    file_we.txt   file_re.txt<br>三 shell管道<br>可以把一系列命令连接起来  意味着第一个命令的输出将作为第二个命令的输入  通过管道  传递给第二个命令  第二个命令的输出又作为第三个命令的输入  以此类推即可   通过使用  |  符号连接成一个管道<br>命令wc </li></ul><p>（进程间通信）<br>ls /usr/bin | wc -w</p><p>思考题<br>shell中有哪些特殊字符<br>shell中管道的作用<br>shell中 grep命令和管道如何结合</p><p>输入输出重定向<br>输入输出重定向是改变shell命令或程序默认的标注输入\输出目标  重新定向到新的目标</p><ul><li>ctrl+d结束键盘输入</li></ul><p>疑问:定义变量时  不分配内存空间<br>只有在使用时  才会分配内存空间</p><h2 id="五、结构体"><a href="#五、结构体" class="headerlink" title="五、结构体"></a>五、结构体</h2><h3 id="1、结构体两种类型-结构题数组一样"><a href="#1、结构体两种类型-结构题数组一样" class="headerlink" title="1、结构体两种类型(结构题数组一样)"></a>1、结构体两种类型(结构题数组一样)</h3><ul><li>常用格式</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="type">int</span> num;</span><br><span class="line"><span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line"><span class="type">char</span> sex;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure><ul><li>无名结构体  常用在嵌套结构体</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">struct</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="type">int</span> num;</span><br><span class="line"><span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line"><span class="type">char</span> sex;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">            <span class="type">int</span> num;</span><br><span class="line">            <span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line">            <span class="type">char</span> sex;</span><br><span class="line">            <span class="class"><span class="keyword">struct</span> </span></span><br><span class="line"><span class="class">          &#123;</span></span><br><span class="line">            <span class="type">int</span> num;</span><br><span class="line">            <span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line">            <span class="type">char</span> sex;</span><br><span class="line">         &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h3 id="2、结构体两种初始化"><a href="#2、结构体两种初始化" class="headerlink" title="2、结构体两种初始化"></a>2、结构体两种初始化</h3><ul><li>直接全部给值初始化</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="type">int</span> num;</span><br><span class="line"><span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line"><span class="type">char</span> sex;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">sarr</span>=</span> &#123; <span class="number">1001</span>,<span class="string">&quot;wr1&quot;</span>,<span class="string">&#x27;m&#x27;</span>&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure><ul><li>先定义 再初始化</li></ul><p>注意 :</p><p>对结构体中字符数组赋值时，出现表达式必须是可修改的左值的问题</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">struct student</span><br><span class="line">&#123;</span><br><span class="line">int num;</span><br><span class="line">char name[20];</span><br><span class="line">char sex;</span><br><span class="line">&#125;;</span><br><span class="line">struct student sar;</span><br><span class="line">// char name[20];name是数组名</span><br><span class="line">// sar.name = &quot;he&quot;;//表达式必须是可修改的左值</span><br><span class="line">strcpy(sar.name,&quot;Tom&quot;);</span><br><span class="line">sar.num = 10;</span><br><span class="line">sar.sex = &#x27;m&#x27;;</span><br></pre></td></tr></table></figure><ul><li>结构体字符数组赋值问题解决</li></ul><p>在C++中为结构体中的字符数组赋值时，出现”表达式必须是可修改的左值“的错误提醒，编译报错“不可指定数据类型”</p><p>结构体中定义的数组：char brand[20]，使用 t-&gt;brand=”adc”是无法进行赋值的。因为brand是字符数组名，而“adc”字符串常量，字符数组名不无法修改的！ 可以在对结构体初始化时用字符串常量进行赋值。</p><ul><li>1、用字符指针替代字符数组</li><li>2、使用strcpy对结构体数组赋值</li><li>3、使用string</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="comment">/* data */</span></span><br><span class="line"><span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line"><span class="comment">// 1、方法1</span></span><br><span class="line"><span class="type">char</span> *name1;</span><br><span class="line"><span class="comment">// 方式3  </span></span><br><span class="line"> <span class="built_in">string</span> name2;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">void</span> <span class="title function_">test</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">s1</span>;</span></span><br><span class="line">s1.name = <span class="string">&quot;he&quot;</span>;<span class="comment">//报错  表达式必须是可修改的左值</span></span><br><span class="line">s1.name1 = <span class="string">&quot;he&quot;</span>;</span><br><span class="line"><span class="comment">// 方式2</span></span><br><span class="line"><span class="built_in">strcpy</span>(s1.name1,<span class="string">&quot;he&quot;</span>);</span><br><span class="line"><span class="comment">// 方式3</span></span><br><span class="line">    s1.name2 = <span class="string">&quot;he&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>3、typedef + 结构体</p><ul><li>常用</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct Student</span><br><span class="line">&#123;</span><br><span class="line">   int no;</span><br><span class="line">   char name[12];</span><br><span class="line">&#125;Stu,student;</span><br></pre></td></tr></table></figure><ul><li>无名</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">   int no;</span><br><span class="line">   char name[12];</span><br><span class="line">&#125;Stu;</span><br></pre></td></tr></table></figure><p>4、typedef+结构体指针</p><p>(一)、结构体指针用法1：</p><p>结构体要自引用时，Student1是错误用法。</p><p>解释：</p><ul><li><p>错误使用</p><p>试想引用成员next是另一个完整的结构，其内部还将包含它自己的成员next,</p></li></ul><p>这第二个成员又包含一个完整的结构，它还将包括它自己的成员next，这样重复下去永无休止，内存都用光了。所以不合法。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">非法</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Student1</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> age;</span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Student1</span> <span class="title">next</span>;</span></span><br><span class="line">    &#125;; </span><br></pre></td></tr></table></figure><ul><li>正确用法是：</li></ul><p>结构体自引用 ，只能自引用指针。编译器在结构的长度确定之前就已经知道指针的长度，所以这种自引用是合法的。结构体的自引用在实现链表，树等高级的操作时用处很大。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student1</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">​    <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">​    <span class="class"><span class="keyword">struct</span> <span class="title">Student</span> *<span class="title">next</span>;</span> </span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><ul><li>错误使用无名结构体</li></ul><p>结构体指针用法注意：这样是不行的，虽然Student1代表了结构体，但是Student1类型名的声明是在末尾定义，当要声明struct{ }时，内部无法识别Student1类型。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> </span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">​    <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">​    Student1 *next; </span><br><span class="line"></span><br><span class="line">&#125;Student1,*StudentPtr;</span><br></pre></td></tr></table></figure><p>(二)、结构体指针用法2：</p><p>注意此时，Student1是struct Student{}的别名，StudentPtr是Student的指针</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Student1</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">​    <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">​    Student1 *next; </span><br><span class="line"></span><br><span class="line">&#125;Student1,*StudentPtr;</span><br></pre></td></tr></table></figure><p>我使用StudentPtr时出现了个有意思现象，结构体指针若不手动分分配内存，讲道理是不能用的。</p><p>当定义了两个结构体指针s1,s2，两个结构体指针都不分配内存，给其中一个赋值，然后使用没有问题，输出良好。</p><p>(三)、总结：</p><ul><li><p>结构体定义的时候不写名字  只能做全局变量</p></li><li><p>因为 struct name  这两个才是一个数据类型</p></li><li><p>结构体只有在初始化的时候才可以全部赋值  加个大括号   一旦定义了  换行就不能大括号全部赋值了<br>无名结构体往往用于嵌套结构体 代码补一下</p></li></ul><ul><li>struct student *pstu</li></ul><p>​      pstu指向的事struct student结构体类型的指针  结构体指针的说明规定了它的数据特性 并未结构体指针本身分配了一定的内存空间  但是指针的内容尚未确定  即它指向随机的对象</p><ul><li><p>明天看一下  变量在什么时候分配内存空间</p></li><li><p>p+i  数组 指针</p></li></ul><h2 id="六、union共用体"><a href="#六、union共用体" class="headerlink" title="六、union共用体"></a>六、union共用体</h2><p>定义：在c语言中  不同数据类型的数据可以使用共同的存储区域 这种构造类型称为共用体简称共用，又称联合体。和结构体使用和说明类似 </p><ul><li><p>两者本质上的不同仅仅在于使用内存的方式上<br>union  数据中 内存最大那个作为储存<br>struct是所有数据内存之和</p></li><li><p>共用同一块内存  存在内存覆盖的问题<br>也就是数据只会保持最后那一次 地址相同</p></li></ul><p>简单代码如下:</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">syt</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">/* data */</span></span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line">    <span class="type">int</span> number;</span><br><span class="line">    <span class="type">short</span> average;</span><br><span class="line">    <span class="comment">// double average;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">void</span> <span class="title function_">test_ui</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">union</span> <span class="title">syt</span> <span class="title">ss</span>;</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;char value = %ld\n&quot;</span>,<span class="keyword">sizeof</span>(<span class="type">char</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;int value = %ld\n&quot;</span>,<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;double value = %ld\n&quot;</span>,<span class="keyword">sizeof</span>(<span class="type">short</span>));</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;union syt value = %ld\n&quot;</span>,<span class="keyword">sizeof</span>(<span class="keyword">union</span> syt));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;union syt value = %ld\n&quot;</span>,<span class="keyword">sizeof</span>(ss));</span><br><span class="line">    </span><br><span class="line">    ss.ch = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">    ss.number = <span class="number">10</span>;</span><br><span class="line">    ss.average = <span class="number">8</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;ss.ch = %d ss.number = %d ss.average = %d\n&quot;</span>,ss.ch,ss.number,ss.average);</span><br><span class="line">    ss.number = <span class="number">0x12345678</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p %p %p\n&quot;</span>,&amp;ss.average,&amp;ss.ch,&amp;ss.number);</span><br><span class="line"><span class="type">char</span> *p;</span><br><span class="line">    p = (<span class="type">char</span>*)&amp;ss;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>(<span class="keyword">union</span> syt); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* code */</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%#x\n&quot;</span>,*p);</span><br><span class="line">        p++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">结果:</span><br><span class="line"><span class="type">char</span> value = <span class="number">1</span></span><br><span class="line"><span class="type">int</span> value = <span class="number">4</span></span><br><span class="line"><span class="type">double</span> value = <span class="number">2</span></span><br><span class="line"><span class="keyword">union</span> syt value = <span class="number">4</span></span><br><span class="line"><span class="keyword">union</span> syt value = <span class="number">4</span></span><br><span class="line">ss.ch = <span class="number">8</span> ss.number = <span class="number">8</span> ss.average = <span class="number">8</span></span><br><span class="line"><span class="number">0x7ffc2dd6a8f4</span> <span class="number">0x7ffc2dd6a8f4</span> <span class="number">0x7ffc2dd6a8f4</span></span><br><span class="line"><span class="number">0x78</span></span><br><span class="line"><span class="number">0x56</span></span><br><span class="line"><span class="number">0x34</span></span><br><span class="line"><span class="number">0x12</span></span><br></pre></td></tr></table></figure><h2 id="七、条件编译"><a href="#七、条件编译" class="headerlink" title="七、条件编译"></a>七、条件编译</h2><p>看代码</p><h1 id="if"><a href="#if" class="headerlink" title="if  "></a>if  <macro></h1><h1 id="else"><a href="#else" class="headerlink" title="else"></a>else</h1><h1 id="endif"><a href="#endif" class="headerlink" title="endif"></a>endif</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> _DEBUG_ 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> _DEBUG</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;ZZZZZ&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;ZZZZZ&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure><h2 id="未完成："><a href="#未完成：" class="headerlink" title="未完成："></a>未完成：</h2><p>变量在什么时候分配内存空间</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> C </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ubuntu系统卸载</title>
       <link href="/posts/677099ed.html"/>
       <url>/posts/677099ed.html</url>
@@ -1091,31 +1118,6 @@
     
     
     <entry>
-      <title>我的第一篇博客文章</title>
-      <link href="/posts/b24dd347.html"/>
-      <url>/posts/b24dd347.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="这是第一篇文章"><a href="#这是第一篇文章" class="headerlink" title="这是第一篇文章"></a>这是第一篇文章</h2><div class="note default simple"><p>nice to meet you! My baby!</p></div>]]></content>
-      
-      
-      <categories>
-          
-          <category> other </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> QT </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>我的第三篇博客文章</title>
       <link href="/posts/6f36dd99.html"/>
       <url>/posts/6f36dd99.html</url>
@@ -1133,6 +1135,31 @@
         <tags>
             
             <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我的第一篇博客文章</title>
+      <link href="/posts/b24dd347.html"/>
+      <url>/posts/b24dd347.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="这是第一篇文章"><a href="#这是第一篇文章" class="headerlink" title="这是第一篇文章"></a>这是第一篇文章</h2><div class="note default simple"><p>nice to meet you! My baby!</p></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> other </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> QT </tag>
             
         </tags>
       
@@ -1169,17 +1196,6 @@
     
     
     <entry>
-      <title>archives</title>
-      <link href="/archives/index.html"/>
-      <url>/archives/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>关于</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
@@ -1191,9 +1207,31 @@
     
     
     <entry>
+      <title>archives</title>
+      <link href="/archives/index.html"/>
+      <url>/archives/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>分类</title>
       <link href="/categories/index.html"/>
       <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>留言板</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1214,17 +1252,6 @@
     
     <entry>
       <title></title>
-      <link href="/css/dark%20span.css"/>
-      <url>/css/dark%20span.css</url>
-      
-        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/css/custom.css"/>
       <url>/css/custom.css</url>
       
@@ -1236,10 +1263,10 @@
     
     <entry>
       <title></title>
-      <link href="/css/social_card.css"/>
-      <url>/css/social_card.css</url>
+      <link href="/css/dark%20span.css"/>
+      <url>/css/dark%20span.css</url>
       
-        <content type="html"><![CDATA[div#author-info__sayhi {    text-align: left;    background: var(--zhsher-white-op);    color: var(--font-color);    border: var(--style-border);    font-size: 12px;    margin-right: auto;    padding: 5px 8px;    border-radius: 12px;    width: fit-content;    display: inline;    margin-left: -1px}.card-widget .author-info-top {    margin: 15px auto 0;    display: flex;    justify-content: center}.card-widget .card-info-avatar {    display: inline-block;    position: relative}.card-widget.card-info .banner-button-group {    margin: 5px 0;    display: flex}#aside-content .card-info .banner-button {    height: 40px;    width: 100%;    border-radius: 20px;    justify-content: center}.card-widget.card-info .banner-button-group .banner-button {    padding: 20px 12px;    background: var(--zhsher-theme);    border-radius: 12px;    color: var(--zhsher-white);    display: flex;    align-items: center;    z-index: 1;    transition: all .3s ease 0s;    cursor: pointer}.card-widget.card-info .banner-button-group .banner-button .fas.fa-circle-arrow-up-right {    font-size: 1.3rem;    margin-right: 10px}.card-widget.card-info .banner-button-group .banner-button:hover {    background: var(--zhsher-main-op-deep);    color: var(--zhsher-white)}.card-info-avatar .avatar-img {    width: 100px;    height: 100px;    display: block}.card-info-avatar .author-status-box {    position: absolute;    bottom: 0;    left: calc(100% - 28px);    width: 28px;    height: 28px;    border: var(--style-border);    border-radius: 2em;    background-color: var(--zhsher-card-bg);    transition: .3s;    overflow: hidden}.card-info-avatar .author-status-box .author-status {    display: flex;    align-items: center;    justify-content: center;    height: 28px;    padding: 0 5px}.card-info-avatar .author-status-box:hover {    width: 105px}.card-info-avatar .author-status-box:hover .author-status span {    width: 105px;    margin-left: 4px}.card-info-avatar .author-status-box .author-status span {    width: 0;    font-size: 12px;    height: 100%;    overflow: hidden;    text-overflow: ellipsis;    white-space: nowrap;    transition: .3s}#aside-content > .card-info {    background: #fff url(https://img02.anzhiy.cn/adminuploads/1/2022/10/26/6358a07bf21fc.webp) top -24% center no-repeat;    position: relative}[data-theme=dark] #aside-content > .card-info {    background: var(--zhsher-card-bg)}@media screen and (max-width: 992px) {    #aside-content > .card-info {        background-size: 100% 70%    }}.card-widget .author-info__name {    line-height: 1.5em;    margin: 4px 0}]]></content>
+        <content type="html"><![CDATA[/* 萌娘百科 “黑幕” *//* 以下内容引用自萌娘百科 https://zh.moegirl.org.cn/MediaWiki:Gadget-site-styles.css，感谢！ *//* MoeGirl Start *//* 参考https://www.initbili.top/2022/dba42bb67415/ *//* <span class="heimu" title="你知道的太多了">内容</span> */.heimu,.heimu rt{    background-color:gray;}.heimu,.heimu a,a .heimu,a.new .heimu,span.heimu a.new,span.heimu a.external,span.heimu a.external:visited,span.heimu a.extiw,span.heimu a.extiw:visited,span.heimu a.mw-disambig,span.heimu a.mw-redirect{    transition:color 0.13s linear;    color:gray;    text-shadow:none;}span.heimu:hover,span.heimu:active{    color:white;}span.heimu:hover a,a:hover span.heimu{    color:lightblue;}span.heimu:hover a:visited,a:visited:hover span.heimu{    color:#C5CAE9;}span.heimu:hover a.new,a.new:hover span.heimu{    color:#FCC;}span.heimu a.new:hover:visited,a.new:hover:visited span.heimu{    color:#EF9A9A;}span.heimu:hover a.extiw:visited,a.extiw:visited:hover span.heimu{    color:#D1C4E9;}]]></content>
       
     </entry>
     
@@ -1269,6 +1296,17 @@
     
     <entry>
       <title></title>
+      <link href="/css/social_card.css"/>
+      <url>/css/social_card.css</url>
+      
+        <content type="html"><![CDATA[div#author-info__sayhi {    text-align: left;    background: var(--zhsher-white-op);    color: var(--font-color);    border: var(--style-border);    font-size: 12px;    margin-right: auto;    padding: 5px 8px;    border-radius: 12px;    width: fit-content;    display: inline;    margin-left: -1px}.card-widget .author-info-top {    margin: 15px auto 0;    display: flex;    justify-content: center}.card-widget .card-info-avatar {    display: inline-block;    position: relative}.card-widget.card-info .banner-button-group {    margin: 5px 0;    display: flex}#aside-content .card-info .banner-button {    height: 40px;    width: 100%;    border-radius: 20px;    justify-content: center}.card-widget.card-info .banner-button-group .banner-button {    padding: 20px 12px;    background: var(--zhsher-theme);    border-radius: 12px;    color: var(--zhsher-white);    display: flex;    align-items: center;    z-index: 1;    transition: all .3s ease 0s;    cursor: pointer}.card-widget.card-info .banner-button-group .banner-button .fas.fa-circle-arrow-up-right {    font-size: 1.3rem;    margin-right: 10px}.card-widget.card-info .banner-button-group .banner-button:hover {    background: var(--zhsher-main-op-deep);    color: var(--zhsher-white)}.card-info-avatar .avatar-img {    width: 100px;    height: 100px;    display: block}.card-info-avatar .author-status-box {    position: absolute;    bottom: 0;    left: calc(100% - 28px);    width: 28px;    height: 28px;    border: var(--style-border);    border-radius: 2em;    background-color: var(--zhsher-card-bg);    transition: .3s;    overflow: hidden}.card-info-avatar .author-status-box .author-status {    display: flex;    align-items: center;    justify-content: center;    height: 28px;    padding: 0 5px}.card-info-avatar .author-status-box:hover {    width: 105px}.card-info-avatar .author-status-box:hover .author-status span {    width: 105px;    margin-left: 4px}.card-info-avatar .author-status-box .author-status span {    width: 0;    font-size: 12px;    height: 100%;    overflow: hidden;    text-overflow: ellipsis;    white-space: nowrap;    transition: .3s}#aside-content > .card-info {    background: #fff url(https://img02.anzhiy.cn/adminuploads/1/2022/10/26/6358a07bf21fc.webp) top -24% center no-repeat;    position: relative}[data-theme=dark] #aside-content > .card-info {    background: var(--zhsher-card-bg)}@media screen and (max-width: 992px) {    #aside-content > .card-info {        background-size: 100% 70%    }}.card-widget .author-info__name {    line-height: 1.5em;    margin: 4px 0}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/css/universe.css"/>
       <url>/css/universe.css</url>
       
@@ -1291,17 +1329,6 @@
     
     <entry>
       <title></title>
-      <link href="/js/gulpfile.js"/>
-      <url>/js/gulpfile.js</url>
-      
-        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/js/gray.js"/>
       <url>/js/gray.js</url>
       
@@ -1313,10 +1340,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/readPercent.js"/>
-      <url>/js/readPercent.js</url>
+      <link href="/js/gulpfile.js"/>
+      <url>/js/gulpfile.js</url>
       
-        <content type="html"><![CDATA[window.onscroll = percent;// 执行函数// 页面百分比function percent() {    let a = document.documentElement.scrollTop || window.pageYOffset, // 卷去高度        b = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) - document.documentElement.clientHeight, // 整个网页高度        result = Math.round(a / b * 100), // 计算百分比        up = document.querySelector("#go-up") // 获取按钮    if (result <= 95) {        up.childNodes[0].style.display = 'none'        up.childNodes[1].style.display = 'block'        up.childNodes[1].innerHTML = result;    } else {        up.childNodes[1].style.display = 'none'        up.childNodes[0].style.display = 'block'    }}]]></content>
+        <content type="html"><![CDATA[//用到的各个插件var gulp = require('gulp');var cleanCSS = require('gulp-clean-css');var htmlmin = require('gulp-html-minifier-terser');var htmlclean = require('gulp-htmlclean');var fontmin = require('gulp-fontmin');// gulp-testervar terser = require('gulp-terser');// 压缩jsgulp.task('compress', async() =>{  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])    .pipe(terser())    .pipe(gulp.dest('./public'))});//压缩cssgulp.task('minify-css', () => {    return gulp.src(['./public/**/*.css'])        .pipe(cleanCSS({            compatibility: 'ie11'        }))        .pipe(gulp.dest('./public'));});//压缩htmlgulp.task('minify-html', () => {    return gulp.src('./public/**/*.html')        .pipe(htmlclean())        .pipe(htmlmin({            removeComments: true, //清除html注释            collapseWhitespace: true, //压缩html            collapseBooleanAttributes: true,            //省略布尔属性的值，例如：<input checked="true"/> ==> <input />            removeEmptyAttributes: true,            //删除所有空格作属性值，例如：<input id="" /> ==> <input />            removeScriptTypeAttributes: true,            //删除<script>的type="text/javascript"            removeStyleLinkTypeAttributes: true,            //删除<style>和<link>的 type="text/css"            minifyJS: true, //压缩页面 JS            minifyCSS: true, //压缩页面 CSS            minifyURLs: true  //压缩页面URL        }))        .pipe(gulp.dest('./public'))});//压缩字体function minifyFont(text, cb) {  gulp    .src('./public/fonts/*.ttf') //原字体所在目录    .pipe(fontmin({      text: text    }))    .pipe(gulp.dest('./public/fontsdest/')) //压缩后的输出目录    .on('end', cb);}gulp.task('mini-font', (cb) => {  var buffers = [];  gulp    .src(['./public/**/*.html']) //HTML文件所在目录请根据自身情况修改    .on('data', function(file) {      buffers.push(file.contents);    })    .on('end', function() {      var text = Buffer.concat(buffers).toString('utf-8');      minifyFont(text, cb);    });});// 运行gulp命令时依次执行以下任务gulp.task('default', gulp.parallel(  'compress', 'minify-css', 'minify-html','mini-font'))]]></content>
       
     </entry>
     
@@ -1335,10 +1362,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/social_card.js"/>
-      <url>/js/social_card.js</url>
+      <link href="/js/readPercent.js"/>
+      <url>/js/readPercent.js</url>
       
-        <content type="html"><![CDATA[var zhsher = {    getTimeState: function () {        var element = (new Date).getHours(), time = "";        return 0 <= element && element <= 5 ? time = "晚安😴" : 5 < element && element <= 10 ? time = "早上好👋" : 10 < element && element <= 14 ? time = "中午好👋" : 14 < element && element <= 18 ? time = "下午好👋" : 18 < element && element <= 24 && (time = "晚上好👋"), time    },    sayhi: function () {        var element = document.getElementById("author-info__sayhi");        element && (element.innerHTML = zhsher.getTimeState() + "！我是")    }}zhsher.sayhi();]]></content>
+        <content type="html"><![CDATA[window.onscroll = percent;// 执行函数// 页面百分比function percent() {    let a = document.documentElement.scrollTop || window.pageYOffset, // 卷去高度        b = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) - document.documentElement.clientHeight, // 整个网页高度        result = Math.round(a / b * 100), // 计算百分比        up = document.querySelector("#go-up") // 获取按钮    if (result <= 95) {        up.childNodes[0].style.display = 'none'        up.childNodes[1].style.display = 'block'        up.childNodes[1].innerHTML = result;    } else {        up.childNodes[1].style.display = 'none'        up.childNodes[0].style.display = 'block'    }}]]></content>
       
     </entry>
     
@@ -1357,10 +1384,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/title.js"/>
-      <url>/js/title.js</url>
+      <link href="/js/social_card.js"/>
+      <url>/js/social_card.js</url>
       
-        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '👀跑哪里去了~';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = '🐖抓到你啦～';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+        <content type="html"><![CDATA[var zhsher = {    getTimeState: function () {        var element = (new Date).getHours(), time = "";        return 0 <= element && element <= 5 ? time = "晚安😴" : 5 < element && element <= 10 ? time = "早上好👋" : 10 < element && element <= 14 ? time = "中午好👋" : 14 < element && element <= 18 ? time = "下午好👋" : 18 < element && element <= 24 && (time = "晚上好👋"), time    },    sayhi: function () {        var element = document.getElementById("author-info__sayhi");        element && (element.innerHTML = zhsher.getTimeState() + "！我是")    }}zhsher.sayhi();]]></content>
       
     </entry>
     
@@ -1368,10 +1395,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/universe.js"/>
-      <url>/js/universe.js</url>
+      <link href="/js/title.js"/>
+      <url>/js/title.js</url>
       
-        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
+        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '👀跑哪里去了~';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = '🐖抓到你啦～';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
       
     </entry>
     
@@ -1400,6 +1427,17 @@
     
     
     <entry>
+      <title></title>
+      <link href="/js/universe.js"/>
+      <url>/js/universe.js</url>
+      
+        <content type="html"><![CDATA[function dark() {  window.requestAnimationFrame =    window.requestAnimationFrame ||    window.mozRequestAnimationFrame ||    window.webkitRequestAnimationFrame ||    window.msRequestAnimationFrame;  var n,    e,    i,    h,    t = 0.05,    s = document.getElementById("universe"),    o = !0,    a = "180,184,240",    r = "226,225,142",    d = "226,225,224",    c = [];  function f() {    (n = window.innerWidth),      (e = window.innerHeight),      (i = 0.216 * n),      s.setAttribute("width", n),      s.setAttribute("height", e);  }  function u() {    h.clearRect(0, 0, n, e);    for (var t = c.length, i = 0; i < t; i++) {      var s = c[i];      s.move(), s.fadeIn(), s.fadeOut(), s.draw();    }  }  function y() {    (this.reset = function () {      (this.giant = m(3)),        (this.comet = !this.giant && !o && m(10)),        (this.x = l(0, n - 10)),        (this.y = l(0, e)),        (this.r = l(1.1, 2.6)),        (this.dx = l(t, 6 * t) + (this.comet + 1 - 1) * t * l(50, 120) + 2 * t),        (this.dy = -l(t, 6 * t) - (this.comet + 1 - 1) * t * l(50, 120)),        (this.fadingOut = null),        (this.fadingIn = !0),        (this.opacity = 0),        (this.opacityTresh = l(0.2, 1 - 0.4 * (this.comet + 1 - 1))),        (this.do = l(5e-4, 0.002) + 0.001 * (this.comet + 1 - 1));    }),      (this.fadeIn = function () {        this.fadingIn &&          ((this.fadingIn = !(this.opacity > this.opacityTresh)),          (this.opacity += this.do));      }),      (this.fadeOut = function () {        this.fadingOut &&          ((this.fadingOut = !(this.opacity < 0)),          (this.opacity -= this.do / 2),          (this.x > n || this.y < 0) && ((this.fadingOut = !1), this.reset()));      }),      (this.draw = function () {        if ((h.beginPath(), this.giant))          (h.fillStyle = "rgba(" + a + "," + this.opacity + ")"),            h.arc(this.x, this.y, 2, 0, 2 * Math.PI, !1);        else if (this.comet) {          (h.fillStyle = "rgba(" + d + "," + this.opacity + ")"),            h.arc(this.x, this.y, 1.5, 0, 2 * Math.PI, !1);          for (var t = 0; t < 30; t++)            (h.fillStyle =              "rgba(" +              d +              "," +              (this.opacity - (this.opacity / 20) * t) +              ")"),              h.rect(                this.x - (this.dx / 4) * t,                this.y - (this.dy / 4) * t - 2,                2,                2              ),              h.fill();        } else          (h.fillStyle = "rgba(" + r + "," + this.opacity + ")"),            h.rect(this.x, this.y, this.r, this.r);        h.closePath(), h.fill();      }),      (this.move = function () {        (this.x += this.dx),          (this.y += this.dy),          !1 === this.fadingOut && this.reset(),          (this.x > n - n / 4 || this.y < 0) && (this.fadingOut = !0);      }),      setTimeout(function () {        o = !1;      }, 50);  }  function m(t) {    return Math.floor(1e3 * Math.random()) + 1 < 10 * t;  }  function l(t, i) {    return Math.random() * (i - t) + t;  }  f(),    window.addEventListener("resize", f, !1),    (function () {      h = s.getContext("2d");      for (var t = 0; t < i; t++) (c[t] = new y()), c[t].reset();      u();    })(),    (function t() {      document.getElementsByTagName("html")[0].getAttribute("data-theme") ==        "dark" && u(),        window.requestAnimationFrame(t);    })();}dark();]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>list</title>
       <link href="/list/index.html"/>
       <url>/list/index.html</url>
@@ -1411,9 +1449,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>books</title>
+      <link href="/list/books/index.html"/>
+      <url>/list/books/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1422,9 +1460,9 @@
     
     
     <entry>
-      <title>留言板</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1455,9 +1493,9 @@
     
     
     <entry>
-      <title>books</title>
-      <link href="/list/books/index.html"/>
-      <url>/list/books/index.html</url>
+      <title>songs</title>
+      <link href="/list/songs/index.html"/>
+      <url>/list/songs/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1469,17 +1507,6 @@
       <title>电影</title>
       <link href="/list/movies/index.html"/>
       <url>/list/movies/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>songs</title>
-      <link href="/list/songs/index.html"/>
-      <url>/list/songs/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
